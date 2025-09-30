@@ -17,9 +17,9 @@ It is built with **Vite + React + Tailwind**.
    ```
 2. navigate into react dir
     ```bash
-   cd humanebench-website
-   ```
-3.install dev dependencies
+    cd humanebench-website
+    ```
+3. install dev dependencies
     ```bash
     npm install
     ```

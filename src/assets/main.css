@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rotate-label {
+  transform: rotate(-45deg);
+  transform-origin: top right;
+}

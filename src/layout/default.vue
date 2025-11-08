@@ -9,8 +9,8 @@
           class="h-12 cursor-pointer hover:opacity-80 transition-opacity" 
         />
         <div class="d-flex ga-4">
-          <v-btn text class="text-none">Contact</v-btn>
-          <v-btn text class="text-none">Download</v-btn>
+          <v-btn text class="text-none" href="mailto:erika@buildinghumanetech.com">Contact</v-btn>
+          <v-btn text class="text-none" href="https://github.com/buildinghumanetech/humanebench" target="_blank">Github</v-btn>
         </div>
       </v-container>
     </v-app-bar>

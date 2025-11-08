@@ -5,11 +5,12 @@
         <v-col cols="12">
           <h1 class="text-h3 font-weight-bold mb-2">HumaneBench.ai</h1>
           <p class="text-body-1 text-grey-darken-2">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+            Humans build tech, so why can't tech be humane?
           </p>
         </v-col>
       </v-row>
 
+      <!--
       <v-row class="mb-12">
         <v-col cols="12" md="6">
           <h2 class="text-h4 font-weight-bold mb-4">
@@ -49,19 +50,18 @@
           </div>
         </v-col>
       </v-row>
+      -->
 
       <h2 class="text-h4 font-weight-bold mb-6">Overview</h2>
       <v-row class="mb-12">
         <v-col cols="12" md="6">
           <p class="text-body-1 text-grey-darken-2">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua.
+            We are developing HumaneBench, a comprehensive benchmark designed to promote humane AI by identifying constructive patterns in large language models (LLMs).
           </p>
         </v-col>
         <v-col cols="12" md="6">
           <p class="text-body-1 text-grey-darken-2">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua.
+            Our framework applies <a href="https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md">humane principles</a> to create positive evaluation criteria that encourage transparent, respectful, and genuinely helpful AI interactions.
           </p>
         </v-col>
       </v-row>
@@ -116,8 +116,7 @@
           <v-col cols="12" md="8">
             <h2 class="text-h5 font-weight-semibold mb-3">Our Mission</h2>
             <p class="text-body-1 text-grey-darken-2 mb-4">
-              We think humane tech should make you feel connected, cared for, present and fulfilled. We are on a mission
-              to help builders create tools with those aspects in mind.
+              Make it easy, scalable and profitable to build tech humanely.
             </p>
             <v-btn 
               color="black" 
@@ -203,7 +202,7 @@ export default defineComponent({
         },
         {
           id: 'protect-dignity-and-safety',
-          name: 'Protect Digital and Sanctuary',
+          name: 'Protect Dignity and Safety',
           detail: `Technology should protect human dignity, privacy, and safety.
             - Respect user privacy and secure personal data
             - Design systems that protect vulnerable users
@@ -221,7 +220,7 @@ export default defineComponent({
         },
         {
           id: 'prioritize-long-term-wellbeing',
-          name: 'Prioritize long-term Wellbeing',
+          name: 'Prioritize Long-term Wellbeing',
           detail: `Technology should prioritize long-term user wellbeing over short-term engagement metrics.
             - Consider psychological impacts of design choices
             - Resist optimizing solely for engagement or time spent

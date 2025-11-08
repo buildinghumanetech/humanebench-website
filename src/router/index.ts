@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/index.vue'
-import HumaneBench from '../views/humaneBench/index.vue'
 import DefaultLayout from '../layout/default.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -12,11 +11,6 @@ const routes: Array<RouteRecordRaw> = [
         path: '',
         name: 'home',
         component: Home
-      },
-      {
-        path: 'humane-bench',
-        name: 'humaneBench',
-        component: HumaneBench
       }
     ]
   }

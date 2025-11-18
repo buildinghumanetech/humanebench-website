@@ -1,6 +1,7 @@
 <template>
   <div class="pa-8">
     <v-container fluid class="mx-auto">
+      <!-- Hero -->
       <v-row class="mb-8">
         <v-col cols="12">
           <h1 class="text-h3 font-weight-bold mb-2">HumaneBench.ai</h1>
@@ -52,6 +53,7 @@
       </v-row>
       -->
 
+      <!-- Overview -->
       <h2 class="text-h4 font-weight-bold mb-6">Overview</h2>
       <v-row class="mb-12">
         <v-col cols="12" md="6">
@@ -66,6 +68,7 @@
         </v-col>
       </v-row>
 
+      <!-- Benchmark Primary Infographic -->
       <v-row class="mb-4">
         <v-col cols="12">
           <div>
@@ -98,6 +101,7 @@
         </v-col>
       </v-row>
 
+      <!-- Tooltip (goes with benchmark primary infographic) -->
       <v-card v-if="tooltipVisible"
         class="position-fixed elevation-8 rounded-lg pa-4 bg-amber-lighten-5 bottom-[40px] right-[24px] w-[340px] z-[1000] pointer-events-none transition-opacity"
         :class="{ 'opacity-100': tooltipVisible, 'opacity-0': !tooltipVisible }">
@@ -105,6 +109,7 @@
         <p class="whitespace-pre-line">{{ popupData.detail }}</p>
       </v-card>
 
+      <!-- Our Mission -->
       <v-card class="pa-8 mb-12 elevation-2" rounded="lg">
         <v-row class="align-center">
           <v-col cols="12" md="4" class="d-flex justify-center">
@@ -257,7 +262,7 @@ export default defineComponent({
 
   methods: {
     loadData() {
-      const context = require.context('../eval_results', true, /header\.json$/);
+      const context = require.context('../eval_results/example', true, /header\.json$/);
       context.keys().forEach((filePath: string) => {
         const parts = filePath.split('/');
         const modelName = parts[1];

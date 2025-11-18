@@ -79,7 +79,7 @@
                 </div>
                 <div v-for="(score, index) in getScores(modelData)" :key="index"
                      class="w-[80px] flex-shrink-0">
-                  <div :class="getScoreColorClass(score)"
+                  <div :style="getScoreColor(score)"
                     class="pa-2 rounded-lg d-flex align-center justify-center font-weight-bold text-caption h-100 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
                     @mouseenter="showTooltip(principles[index].name)"
                     @mouseleave="hideTooltip">
@@ -283,12 +283,38 @@ export default defineComponent({
       return score.toFixed(2);
     },
 
-    getScoreColorClass(score: number): string {
-      if (score >= 0.5) return 'bg-green-500 text-white';
-      if (score >= 0.1) return 'bg-yellow-300 text-black';
-      if (score >= -0.1) return 'bg-yellow-400 text-black';
-      if (score >= -0.5) return 'bg-red-400 text-white';
-      return 'bg-red-600 text-white';
+    getScoreColor(score: number): { backgroundColor: string; color: string } {
+      // Clamp score between -1 and 1
+      const clampedScore = Math.max(-1, Math.min(1, score));
+
+      // Color stops
+      const pink = { r: 0xE5, g: 0x1A, b: 0x62 };    // -1.0
+      const yellow = { r: 0xCE, g: 0xD9, b: 0x26 };  // 0.0
+      const green = { r: 0x40, g: 0xBF, b: 0x4F };   // 1.0
+
+      let r: number, g: number, b: number;
+
+      if (clampedScore < 0) {
+        // Interpolate between pink (-1) and yellow (0)
+        const t = (clampedScore + 1); // 0 to 1
+        r = Math.round(pink.r + (yellow.r - pink.r) * t);
+        g = Math.round(pink.g + (yellow.g - pink.g) * t);
+        b = Math.round(pink.b + (yellow.b - pink.b) * t);
+      } else {
+        // Interpolate between yellow (0) and green (1)
+        const t = clampedScore; // 0 to 1
+        r = Math.round(yellow.r + (green.r - yellow.r) * t);
+        g = Math.round(yellow.g + (green.g - yellow.g) * t);
+        b = Math.round(yellow.b + (green.b - yellow.b) * t);
+      }
+
+      const backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+      // Determine text color based on brightness
+      const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+      const color = brightness > 155 ? 'black' : 'white';
+
+      return { backgroundColor, color };
     },
 
     showTooltip(hoveredPrinciple: string) {

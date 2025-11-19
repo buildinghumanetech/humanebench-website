@@ -131,8 +131,7 @@ export default defineComponent({
       }
 
       const backgroundColor = `rgb(${r}, ${g}, ${b})`;
-      const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-      const color = brightness > 155 ? 'black' : 'white';
+      const color = 'black';
 
       return { backgroundColor, color };
     },

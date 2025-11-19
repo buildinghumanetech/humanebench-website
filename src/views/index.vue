@@ -71,7 +71,63 @@
       <!-- Benchmark Primary Infographic -->
       <v-row class="mb-4">
         <v-col cols="12">
-          <ScoreGrid :data-path="'example'" :principles="principles" />
+          <div class="position-relative">
+            <!-- Left Arrow -->
+            <v-btn
+              v-if="showLeftArrow"
+              icon
+              class="position-absolute z-10 bg-white elevation-2"
+              style="left: -56px; top: 50%; transform: translateY(-50%);"
+              @click="scrollLeft"
+            >
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+
+            <!-- Right Arrow -->
+            <v-btn
+              v-if="showRightArrow"
+              icon
+              class="position-absolute z-10 bg-white elevation-2"
+              style="right: -56px; top: 50%; transform: translateY(-50%);"
+              @click="scrollRight"
+            >
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+
+            <!-- Scroll Container -->
+            <div
+              ref="scrollContainer"
+              class="overflow-x-auto snap-x snap-mandatory flex pb-4"
+              @scroll="updateArrows"
+            >
+              <!-- Bad Persona Panel -->
+              <div class="snap-center flex-shrink-0 w-full">
+                <h3 class="text-h5 font-weight-bold mb-3">Bad Persona</h3>
+                <p class="text-body-2 text-grey-darken-2 mb-4">
+                  Models evaluated with system instructions that encourage manipulative, anti-user behavior.
+                </p>
+                <ScoreGrid :data-path="'bad_persona'" :principles="principles" />
+              </div>
+
+              <!-- Good Persona Panel -->
+              <div class="snap-center flex-shrink-0 w-full">
+                <h3 class="text-h5 font-weight-bold mb-3">Good Persona</h3>
+                <p class="text-body-2 text-grey-darken-2 mb-4">
+                  Models evaluated with system instructions that encourage humane, user-centered behavior.
+                </p>
+                <ScoreGrid :data-path="'good_persona'" :principles="principles" />
+              </div>
+
+              <!-- Baseline Panel -->
+              <div class="snap-center flex-shrink-0 w-full">
+                <h3 class="text-h5 font-weight-bold mb-3">Baseline</h3>
+                <p class="text-body-2 text-grey-darken-2 mb-4">
+                  Models evaluated without any specific prompting or system instructions related to humane principles.
+                </p>
+                <ScoreGrid :data-path="'baseline'" :principles="principles" />
+              </div>
+            </div>
+          </div>
         </v-col>
       </v-row>
 
@@ -121,8 +177,48 @@ export default defineComponent({
 
   data() {
     return {
-      principles: PRINCIPLES
+      principles: PRINCIPLES,
+      showLeftArrow: false,
+      showRightArrow: true
     };
+  },
+
+  mounted() {
+    this.updateArrows();
+  },
+
+  methods: {
+    scrollLeft() {
+      const container = this.$refs.scrollContainer as HTMLElement;
+      if (container) {
+        container.scrollBy({
+          left: -container.clientWidth,
+          behavior: 'smooth'
+        });
+      }
+    },
+
+    scrollRight() {
+      const container = this.$refs.scrollContainer as HTMLElement;
+      if (container) {
+        container.scrollBy({
+          left: container.clientWidth,
+          behavior: 'smooth'
+        });
+      }
+    },
+
+    updateArrows() {
+      const container = this.$refs.scrollContainer as HTMLElement;
+      if (!container) return;
+
+      // Show left arrow if not at the start
+      this.showLeftArrow = container.scrollLeft > 10;
+
+      // Show right arrow if not at the end
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      this.showRightArrow = container.scrollLeft < maxScroll - 10;
+    }
   }
 });
 </script>

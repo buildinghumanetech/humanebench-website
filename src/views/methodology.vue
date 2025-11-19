@@ -10,6 +10,17 @@
         </v-col>
       </v-row>
 
+      <!-- Bad Persona Results -->
+      <v-row class="mb-12">
+        <v-col cols="12">
+          <h2 class="text-h4 font-weight-bold mb-3">Bad Persona</h2>
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+            Models evaluated with system instructions that encourage manipulative, anti-user behavior.
+          </p>
+          <ScoreGrid :data-path="'bad_persona'" :principles="principles" />
+        </v-col>
+      </v-row>
+
       <!-- Baseline Results -->
       <v-row class="mb-12">
         <v-col cols="12">
@@ -29,17 +40,6 @@
             Models evaluated with system instructions that encourage humane, user-centered behavior.
           </p>
           <ScoreGrid :data-path="'good_persona'" :principles="principles" />
-        </v-col>
-      </v-row>
-
-      <!-- Bad Persona Results -->
-      <v-row class="mb-12">
-        <v-col cols="12">
-          <h2 class="text-h4 font-weight-bold mb-3">Bad Persona</h2>
-          <p class="text-body-1 text-grey-darken-2 mb-6">
-            Models evaluated with system instructions that encourage manipulative, anti-user behavior.
-          </p>
-          <ScoreGrid :data-path="'bad_persona'" :principles="principles" />
         </v-col>
       </v-row>
     </v-container>

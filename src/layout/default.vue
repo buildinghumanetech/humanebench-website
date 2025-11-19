@@ -8,7 +8,9 @@
           alt="Building Humane Technology"
           class="h-12 cursor-pointer hover:opacity-80 transition-opacity" 
         />
-        <div class="d-flex ga-4">
+        <div class="d-flex ga-4 align-center">
+          <v-btn text class="text-none" @click="$router.push({ name: 'home' })">Home</v-btn>
+          <v-btn text class="text-none" @click="$router.push({ name: 'methodology' })">Methodology</v-btn>
           <v-btn text class="text-none" href="mailto:erika@buildinghumanetech.com">Contact</v-btn>
           <v-btn text class="text-none" href="https://github.com/buildinghumanetech/humanebench" target="_blank">Github</v-btn>
         </div>

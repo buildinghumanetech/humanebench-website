@@ -145,6 +145,17 @@ Our results suggest that while most LLMs produce acceptably humane output in a s
         </v-col>
       </v-row>
 
+      <!-- Steerability Chart -->
+      <v-row class="mb-12">
+        <v-col cols="12">
+          <img
+            src="/steerability_candlestick.svg"
+            alt="Steerability Analysis"
+            class="w-full"
+          />
+        </v-col>
+      </v-row>
+
       <!-- Our Mission -->
       <v-card class="pa-8 mb-12 elevation-2" rounded="lg">
         <v-row class="align-center">

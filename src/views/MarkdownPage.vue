@@ -9,16 +9,24 @@
 <script lang="ts">
 import { defineComponent, createApp, nextTick } from 'vue';
 import { marked } from 'marked';
+import { createVuetify } from 'vuetify';
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
 import ScoreGrid from '@/components/ScoreGrid.vue';
+import ScoreCarousel from '@/components/ScoreCarousel.vue';
+import Events from '@/components/Events.vue';
 import { PRINCIPLES } from '@/constants/principles';
 // @ts-expect-error - raw-loader doesn't have type definitions
 import principlesMd from '@/pages/principles.md';
 // @ts-expect-error - raw-loader doesn't have type definitions
 import whitepaperMd from '@/pages/whitepaper.md';
+// @ts-expect-error - raw-loader doesn't have type definitions
+import indexMd from '@/pages/index.md';
 
 const markdownPages: Record<string, string> = {
   principles: principlesMd,
-  whitepaper: whitepaperMd
+  whitepaper: whitepaperMd,
+  index: indexMd
 };
 
 export default defineComponent({
@@ -88,6 +96,12 @@ export default defineComponent({
       const container = this.$refs.markdownContainer as HTMLElement;
       if (!container) return;
 
+      // Create Vuetify instance for components
+      const vuetify = createVuetify({
+        components,
+        directives,
+      });
+
       // Find all elements with data-component attribute
       const componentPlaceholders = container.querySelectorAll('[data-component]');
 
@@ -103,10 +117,35 @@ export default defineComponent({
             principles: PRINCIPLES
           });
 
+          // Register Vuetify
+          app.use(vuetify);
+
           // Mount it to the placeholder element
           app.mount(element);
 
           // Store the instance for cleanup
+          this.componentInstances.push(app);
+        } else if (componentName === 'ScoreCarousel') {
+          const panelsData = element.getAttribute('data-panels');
+          const panels = panelsData ? JSON.parse(panelsData) : [];
+
+          const app = createApp(ScoreCarousel, {
+            panels
+          });
+
+          app.use(vuetify);
+          app.mount(element);
+          this.componentInstances.push(app);
+        } else if (componentName === 'Events') {
+          const eventsData = element.getAttribute('data-events');
+          const events = eventsData ? JSON.parse(eventsData) : [];
+
+          const app = createApp(Events, {
+            events
+          });
+
+          app.use(vuetify);
+          app.mount(element);
           this.componentInstances.push(app);
         }
       });
@@ -119,22 +158,23 @@ export default defineComponent({
 .markdown-content :deep(h1) {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
-  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  font-family: 'Lora', serif;
 }
 
 .markdown-content :deep(h2) {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
 }
 
 .markdown-content :deep(h3) {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
-  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
 }
 
 .markdown-content :deep(p) {

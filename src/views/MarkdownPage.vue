@@ -35,14 +35,30 @@ export default defineComponent({
 
   beforeUnmount() {
     // Cleanup mounted component instances
-    this.componentInstances.forEach(instance => {
-      instance.unmount();
-    });
+    this.cleanupComponents();
+  },
+
+  watch: {
+    '$route': {
+      async handler() {
+        await this.loadMarkdown();
+      }
+    }
   },
 
   methods: {
+    cleanupComponents() {
+      this.componentInstances.forEach(instance => {
+        instance.unmount();
+      });
+      this.componentInstances = [];
+    },
+
     async loadMarkdown() {
       try {
+        // Cleanup any existing component instances first
+        this.cleanupComponents();
+
         const response = await fetch(`/pages/${this.pageName}.md`);
         const markdown = await response.text();
         this.renderedMarkdown = await marked(markdown);

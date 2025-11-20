@@ -1,14 +1,16 @@
 <template>
   <div class="pa-8">
     <v-container fluid class="mx-auto markdown-content">
-      <div v-html="renderedMarkdown"></div>
+      <div ref="markdownContainer" v-html="renderedMarkdown"></div>
     </v-container>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, createApp, nextTick } from 'vue';
 import { marked } from 'marked';
+import ScoreGrid from '@/components/ScoreGrid.vue';
+import { PRINCIPLES } from '@/constants/principles';
 
 export default defineComponent({
   name: 'MarkdownPage',
@@ -22,12 +24,20 @@ export default defineComponent({
 
   data() {
     return {
-      renderedMarkdown: ''
+      renderedMarkdown: '',
+      componentInstances: [] as Array<{ unmount: () => void }>
     };
   },
 
   async mounted() {
     await this.loadMarkdown();
+  },
+
+  beforeUnmount() {
+    // Cleanup mounted component instances
+    this.componentInstances.forEach(instance => {
+      instance.unmount();
+    });
   },
 
   methods: {
@@ -36,10 +46,42 @@ export default defineComponent({
         const response = await fetch(`/pages/${this.pageName}.md`);
         const markdown = await response.text();
         this.renderedMarkdown = await marked(markdown);
+
+        // Wait for DOM to update, then mount Vue components
+        await nextTick();
+        this.mountComponents();
       } catch (error) {
         console.error('Error loading markdown:', error);
         this.renderedMarkdown = '<p>Error loading content</p>';
       }
+    },
+
+    mountComponents() {
+      const container = this.$refs.markdownContainer as HTMLElement;
+      if (!container) return;
+
+      // Find all elements with data-component attribute
+      const componentPlaceholders = container.querySelectorAll('[data-component]');
+
+      componentPlaceholders.forEach((element) => {
+        const componentName = element.getAttribute('data-component');
+
+        if (componentName === 'ScoreGrid') {
+          const dataPath = element.getAttribute('data-path');
+
+          // Create a Vue app instance for this component
+          const app = createApp(ScoreGrid, {
+            dataPath,
+            principles: PRINCIPLES
+          });
+
+          // Mount it to the placeholder element
+          app.mount(element);
+
+          // Store the instance for cleanup
+          this.componentInstances.push(app);
+        }
+      });
     }
   }
 });

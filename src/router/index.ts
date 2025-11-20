@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/index.vue'
-import Methodology from '../views/methodology.vue'
 import MarkdownPage from '../views/MarkdownPage.vue'
 import DefaultLayout from '../layout/default.vue'
 
@@ -15,9 +14,10 @@ const routes: Array<RouteRecordRaw> = [
         component: Home
       },
       {
-        path: 'methodology',
+        path: 'whitepaper',
         name: 'methodology',
-        component: Methodology
+        component: MarkdownPage,
+        props: { pageName: 'whitepaper' }
       },
       {
         path: 'principles',

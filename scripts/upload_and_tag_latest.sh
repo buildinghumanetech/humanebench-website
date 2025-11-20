@@ -39,7 +39,7 @@ echo "--- Uploading evaluation results to R2 ---"
 
 # Step 1: Recursively sync the source directory to the new timestamped directory in R2.
 echo "Syncing contents of '$SOURCE_DIR' to 's3://$BUCKET_NAME/$DEST_DIR_NAME/'..."
-aws s3 sync "$SOURCE_DIR" "s3://$BUCKET_NAME/$DEST_DIR_NAME/"
+aws s3 sync "$SOURCE_DIR" "s3://$BUCKET_NAME/$DEST_DIR_NAME/" --exclude "*.DS_Store"
 echo "-> Sync successful."
 
 # Step 2: Update 'latest.txt' to point to the new directory name.

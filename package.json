@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "npm run fetch-and-unzip-eval && vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "upload-eval": "bash scripts/upload_and_tag_latest.sh \"$@\"",
+    "upload-eval": "dotenv bash scripts/upload_and_tag_latest.sh \"$@\"",
     "fetch-and-unzip-eval": "aws s3 cp s3://humanebench-eval-results/latest.txt latest.txt && LATEST_DIR=$(cat latest.txt) && rm -rf src/eval_results && aws s3 sync s3://humanebench-eval-results/$LATEST_DIR src/eval_results && rm latest.txt && bash scripts/unzip_eval_files.sh"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "@vue/cli-service": "^5.0.9",
     "@vue/eslint-config-typescript": "^13.0.0",
     "autoprefixer": "^10.4.21",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^8.57.1",
     "eslint-plugin-vue": "^9.31.0",
     "postcss": "^8.4.47",

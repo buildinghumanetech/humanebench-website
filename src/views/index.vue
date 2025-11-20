@@ -131,6 +131,20 @@
         </v-col>
       </v-row>
 
+      <!-- Overview -->
+      <h2 class="text-h4 font-weight-bold mb-6">Summary</h2>
+      <v-row class="mb-12">
+        <v-col cols="12">
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+          To help create models that can engage both safely and intelligently with the general public, we created a Humane Tech Framework (9) grounded in HCI, psychology, ethics and legal scholarship, and use it to evaluate LLM “humaneness”—ability to interact with humans in healthy, prosocial ways. We curated a dataset of 800 scenarios based on this framework, representing advice-seeking scenarios, everyday decision-making, crises, and emotionally-charged situations a human might pose to an AI. We additionally created two “personas” or system prompts—a “good” persona encouraging the AI to respond based on the Humane Tech Framework, and a “bad” persona instructing it to go against the framework principles. We then used the Inspect AI library to obtain an averaged “HumaneScore” across all scenarios for 14 LLMs, using both personas as well as their “default persona” with no additional system prompt. 
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2">
+Our results suggest that while most LLMs produce acceptably humane output in a single-turn setting, an alarmingly large number of models (10/14, or 71%) undergo dangerous levels of degradation toward anti-humaneness under the influence of the bad persona. Additionally, the good persona produces measurable improvements in all models, leading us to believe system prompts drawing on the Humane Tech Framework can be a meaningful step towards more humane AI. We welcome feedback on this v1 release of HumaneBench as we continue to refine our methodology and analysis towards a peer-reviewed publication.
+          </p>
+        </v-col>
+      </v-row>
+
       <!-- Our Mission -->
       <v-card class="pa-8 mb-12 elevation-2" rounded="lg">
         <v-row class="align-center">

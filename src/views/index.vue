@@ -140,7 +140,7 @@
             alt="Steerability Analysis"
             class="w-full"
           />
-          <p class="text-caption text-grey-darken-1 mt-2 text-center">
+          <p class="text-body-2 text-grey-darken-1 mt-2 text-center">
             Steerability refers to how easily an AI model's behavior can be influenced or changed through instructions. We measured steerability in humane and anti-humane directions.
           </p>
         </v-col>

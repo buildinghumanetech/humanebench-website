@@ -11,7 +11,7 @@
         <div class="d-flex ga-4 align-center">
           <v-btn text class="text-none" @click="$router.push({ name: 'home' })">Home</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'principles' })">Principles</v-btn>
-          <v-btn text class="text-none" @click="$router.push({ name: 'methodology' })">Whitepaper</v-btn>
+          <v-btn text class="text-none" @click="$router.push({ name: 'whitepaper' })">Whitepaper</v-btn>
           <v-btn text class="text-none" href="mailto:erika@buildinghumanetech.com">Contact</v-btn>
           <v-btn text class="text-none" href="https://github.com/buildinghumanetech/humanebench" target="_blank">Github</v-btn>
         </div>

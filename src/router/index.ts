@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'whitepaper',
-        name: 'methodology',
+        name: 'whitepaper',
         component: MarkdownPage,
         props: { pageName: 'whitepaper' }
       },

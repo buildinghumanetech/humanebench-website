@@ -126,7 +126,7 @@ export default defineComponent({
 }
 
 .markdown-content :deep(a) {
-  color: #1976d2;
+  color: #5539EC;
   text-decoration: none;
 }
 

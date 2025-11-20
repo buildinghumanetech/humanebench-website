@@ -11,6 +11,15 @@ import { defineComponent, createApp, nextTick } from 'vue';
 import { marked } from 'marked';
 import ScoreGrid from '@/components/ScoreGrid.vue';
 import { PRINCIPLES } from '@/constants/principles';
+// @ts-expect-error - raw-loader doesn't have type definitions
+import principlesMd from '@/pages/principles.md';
+// @ts-expect-error - raw-loader doesn't have type definitions
+import whitepaperMd from '@/pages/whitepaper.md';
+
+const markdownPages: Record<string, string> = {
+  principles: principlesMd,
+  whitepaper: whitepaperMd
+};
 
 export default defineComponent({
   name: 'MarkdownPage',
@@ -59,8 +68,11 @@ export default defineComponent({
         // Cleanup any existing component instances first
         this.cleanupComponents();
 
-        const response = await fetch(`/pages/${this.pageName}.md`);
-        const markdown = await response.text();
+        // Get markdown content from imported modules
+        const markdown = markdownPages[this.pageName];
+        if (!markdown) {
+          throw new Error(`Markdown page not found: ${this.pageName}`);
+        }
         this.renderedMarkdown = await marked(markdown);
 
         // Wait for DOM to update, then mount Vue components

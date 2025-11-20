@@ -7,7 +7,7 @@
     "build": "npm run fetch-and-unzip-eval && vue-cli-service build",
     "lint": "vue-cli-service lint",
     "upload-eval": "bash scripts/upload_and_tag_latest.sh \"$@\"",
-    "fetch-and-unzip-eval": "wrangler r2 object get humanebench-eval-results/latest.txt --file latest.txt && ZIP_FILE_NAME=$(cat latest.txt) && wrangler r2 object get humanebench-eval-results/$ZIP_FILE_NAME --file $ZIP_FILE_NAME && unzip -o $ZIP_FILE_NAME && bash scripts/unzip_eval_files.sh"
+    "fetch-and-unzip-eval": "aws s3 cp s3://humanebench-eval-results/latest.txt latest.txt && LATEST_DIR=$(cat latest.txt) && rm -rf src/eval_results && aws s3 sync s3://humanebench-eval-results/$LATEST_DIR src/eval_results && rm latest.txt && bash scripts/unzip_eval_files.sh"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",

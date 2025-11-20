@@ -183,48 +183,50 @@ We suggest using humane system prompts, such as the one in our repo, as a first 
         </v-col>
       </v-row>
 
-      <!-- Contributors -->
-      <h3 class="text-h5 font-weight-bold mb-6 d-flex align-center gap-2">
-        <v-icon size="28">mdi-calendar-star</v-icon>
-        December 2, 2025  - AMA with the team
-      </h3>
-      <v-row class="mb-12">
-        <v-col cols="12">
-          <p class="text-body-1 text-grey-darken-2">
-            Join us on Tuesday Dec 2 at 11am PT for an ask-me-anything deep dive into HumaneBench -
-            <a href="https://luma.com/ec49487t">register here</a>.
-          </p>
-        </v-col>
-      </v-row>
+      <!-- Featured Events -->
+      <h2 class="text-h4 font-weight-bold mb-6">Events</h2>
 
-      <!-- Our Mission -->
-      <!--
-      <v-card class="pa-8 elevation-2" rounded="lg">
-        <v-row class="align-center">
-          <v-col cols="12" md="4" class="d-flex justify-center">
-            <img
-              src="../assets/images/logos/building_humane_tech.webp"
-              class="h-32 w-auto"
-            />
-          </v-col>
-          <v-col cols="12" md="8">
-            <h2 class="text-h5 font-weight-semibold mb-3">Our Mission</h2>
-            <p class="text-body-1 text-grey-darken-2 mb-4">
-              Make it easy, scalable and profitable to build tech humanely.
-            </p>
-            <v-btn 
-              color="black" 
-              class="text-white text-none"
-              rounded="lg"
-              href="https://www.buildinghumanetech.com/" 
-              target="_blank"
-            >
-              Check us out
-            </v-btn>
-          </v-col>
-        </v-row>
+      <v-card class="pa-8 mb-12 elevation-2" rounded="lg">
+        <!-- AMA Event -->
+        <div class="mb-8">
+          <h3 class="text-h5 font-weight-semibold mb-3 d-flex align-center gap-2">
+            <v-icon size="28">mdi-calendar-star</v-icon>
+            December 2, 2025 - AMA with the team
+          </h3>
+          <p class="text-body-1 text-grey-darken-2 mb-4">
+            Join us online Tuesday, Dec 2 at 11am PT for an Ask-Me-Anything deep dive into HumaneBench.
+          </p>
+          <v-btn
+            color="black"
+            class="text-white text-none"
+            rounded="lg"
+            href="https://luma.com/ec49487t"
+            target="_blank"
+          >
+            Register here
+          </v-btn>
+        </div>
+
+        <!-- Hackathon Event -->
+        <div>
+          <h3 class="text-h5 font-weight-semibold mb-3 d-flex align-center gap-2">
+            <v-icon size="28">mdi-calendar-star</v-icon>
+            February 13, 2026 - Hackathon
+          </h3>
+          <p class="text-body-1 text-grey-darken-2 mb-4">
+            Build working solutions for real companies to solve humane tech challenges — in San Francisco, CA.
+          </p>
+          <v-btn
+            color="black"
+            class="text-white text-none"
+            rounded="lg"
+            href="https://luma.com/f1isabpv"
+            target="_blank"
+          >
+            Register here
+          </v-btn>
+        </div>
       </v-card>
-      -->
 
     </v-container>
   </div>

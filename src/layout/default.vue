@@ -31,8 +31,16 @@
       <v-container>
         <v-row>
           <v-col cols="12" md="3" class="d-flex flex-column mb-4">
-            <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Technology"
-               class="h-12 cursor-pointer hover:opacity-80 transition-opacity mb-4"  />
+            <div>
+              <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Technology"
+                 class="h-12 cursor-pointer hover:opacity-80 transition-opacity mb-4"  />
+            </div>
+
+            <p class="mb-2 font-weight-bold text-body-2 mt-4">Contact</p>
+            <a href="mailto:info@buildinghumanetech.com" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+              <v-icon size="18" color="grey-darken-2">mdi-email</v-icon>
+              info@buildinghumanetech.com
+            </a>
           </v-col>
 
           <v-col cols="12" md="3" class="d-flex flex-column mb-4">
@@ -79,10 +87,10 @@
               Donate to HumaneBench
             </a>
 
-            <p class="mb-2 font-weight-bold text-body-2 mt-4">Contact</p>
-            <a href="mailto:info@buildinghumanetech.com" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
-              <v-icon size="18" color="grey-darken-2">mdi-email</v-icon>
-              info@buildinghumanetech.com
+            <p class="mb-3 font-weight-bold text-body-2">Sponsor our long-term efforts:</p>
+            <a href="mailto:sponsor@buildinghumanetech.com" class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2" style="text-decoration: none;">
+              <v-icon size="18" color="grey-darken-2">mdi-handshake</v-icon>
+              sponsor@buildinghumanetech.com
             </a>
           </v-col>
         </v-row>

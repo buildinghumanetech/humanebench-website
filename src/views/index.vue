@@ -172,7 +172,7 @@ We suggest using humane system prompts, such as the one in our repo, as a first 
       <h3 class="text-h5 font-weight-bold mb-6">Brought to you by</h3>
       <v-row class="mb-12">
         <v-col cols="12">
-          <p class="text-body-1 text-grey-darken-2">
+          <p class="text-body-1 text-grey-darken-2 mb-6">
             The <a href="https://www.buildinghumanetech.com/" target="_blank" style="color: #5539EC; text-decoration: none;">Building Humane Technology</a> team:
             <a href="https://www.linkedin.com/in/erikamanderson/" target="_blank" style="color: #5539EC; text-decoration: none;">Erika Anderson</a>,
             <a href="https://www.linkedin.com/in/sarahladyman/" target="_blank" style="color: #5539EC; text-decoration: none;">Sarah Ladyman</a>,

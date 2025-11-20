@@ -12,7 +12,7 @@
           <v-btn text class="text-none" @click="$router.push({ name: 'home' })">Home</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'principles' })">Principles</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'whitepaper' })">Whitepaper</v-btn>
-          <v-btn text class="text-none" href="mailto:erika@buildinghumanetech.com">Contact</v-btn>
+          <v-btn text class="text-none" href="mailto:info@buildinghumanetech.com">Contact</v-btn>
           <v-btn text class="text-none" href="https://github.com/buildinghumanetech/humanebench" target="_blank">
             <v-icon left size="20">mdi-github</v-icon>
             Github

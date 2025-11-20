@@ -4,7 +4,7 @@
       <!-- Hero -->
       <v-row class="mb-8">
         <v-col cols="12">
-          <h1 class="text-h3 font-weight-bold mb-2">HumaneBench.ai</h1>
+          <h1 class="text-h3 font-weight-bold mb-2" style="font-family: 'Lora', serif;">HumaneBench.ai</h1>
           <p class="text-body-1 text-grey-darken-2">
             Humans build tech, so why can't tech be humane?
           </p>

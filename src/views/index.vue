@@ -1,11 +1,12 @@
 <template>
   <div class="pa-8">
     <v-container fluid class="mx-auto">
+      <!-- Hero -->
       <v-row class="mb-8">
         <v-col cols="12">
-          <h1 class="text-h3 font-weight-bold mb-2">HumaneBench.ai</h1>
+          <h1 class="text-h3 font-weight-bold mb-2" style="font-family: 'Lora', serif;">HumaneBench.ai</h1>
           <p class="text-body-1 text-grey-darken-2">
-            Humans build tech, so why can't tech be humane?
+            A benchmark measuring the humaneness and steerability of LLMs
           </p>
         </v-col>
       </v-row>
@@ -52,6 +53,7 @@
       </v-row>
       -->
 
+      <!-- Overview -->
       <h2 class="text-h4 font-weight-bold mb-6">Overview</h2>
       <v-row class="mb-12">
         <v-col cols="12" md="6">
@@ -61,74 +63,173 @@
         </v-col>
         <v-col cols="12" md="6">
           <p class="text-body-1 text-grey-darken-2">
-            Our framework applies <a href="https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md">humane principles</a> to create positive evaluation criteria that encourage transparent, respectful, and genuinely helpful AI interactions.
+            Our framework applies <a href="/principles" style="color: #5539EC; text-decoration: none;">humane principles</a> to create positive evaluation criteria that encourage transparent, respectful, and genuinely helpful AI interactions.
           </p>
         </v-col>
       </v-row>
 
-      <v-row class="mb-4">
+      <!-- Benchmark Primary Infographic -->
+      <v-row class="mb-12">
         <v-col cols="12">
-          <div>
-            <div class="d-flex flex-column ga-1">
-              <div v-for="(modelData, modelName) in models" :key="modelName" class="d-flex ga-1">
-                <div class="font-weight-medium pa-2 text-body-2 bg-transparent w-[180px] flex-shrink-0 d-flex align-center">
-                  {{ getModelName(modelName) }}
-                </div>
-                <div v-for="(score, index) in getScores(modelData)" :key="index"
-                     class="w-[80px] flex-shrink-0">
-                  <div :class="getScoreColorClass(score)"
-                    class="pa-2 rounded-lg d-flex align-center justify-center font-weight-bold text-caption h-100 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
-                    @mouseenter="showTooltip(principles[index].name)"
-                    @mouseleave="hideTooltip">
-                    {{ formatScore(score) }}
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="position-relative">
+            <!-- Left Arrow -->
+            <v-btn
+              v-if="showLeftArrow"
+              icon
+              class="position-absolute z-10 elevation-2"
+              style="left: -56px; top: 50%; transform: translateY(-50%); background-color: #262626;"
+              @click="scrollLeft"
+            >
+              <v-icon color="white">mdi-chevron-left</v-icon>
+            </v-btn>
 
-            <div class="d-flex ga-1 position-relative mt-2 ml-[140px] h-[150px]">
-              <div v-for="category in principles" :key="category.id"
-                class="position-relative flex-shrink-0 w-[80px]">
-                <div class="text-caption font-weight-medium position-absolute right-0 whitespace-nowrap rotate-label">
-                  {{ category.name }}
-                </div>
+            <!-- Right Arrow -->
+            <v-btn
+              v-if="showRightArrow"
+              icon
+              class="position-absolute z-10 elevation-2"
+              style="right: -56px; top: 50%; transform: translateY(-50%); background-color: #262626;"
+              @click="scrollRight"
+            >
+              <v-icon color="white">mdi-chevron-right</v-icon>
+            </v-btn>
+
+            <!-- Scroll Container -->
+            <div
+              ref="scrollContainer"
+              class="overflow-x-auto snap-x snap-mandatory flex pb-4"
+              @scroll="updateArrows"
+            >
+              <!-- Bad Persona Panel -->
+              <div class="snap-center flex-shrink-0 w-full">
+                <h3 class="text-h5 font-weight-bold mb-3">Bad Persona</h3>
+                <p class="text-body-2 text-grey-darken-2 mb-4">
+                  Models evaluated with system instructions that encourage manipulative, anti-user behavior.
+                </p>
+                <ScoreGrid :data-path="'bad_persona'" :principles="principles" />
+              </div>
+
+              <!-- Good Persona Panel -->
+              <div class="snap-center flex-shrink-0 w-full">
+                <h3 class="text-h5 font-weight-bold mb-3">Good Persona</h3>
+                <p class="text-body-2 text-grey-darken-2 mb-4">
+                  Models evaluated with system instructions that encourage humane, user-centered behavior.
+                </p>
+                <ScoreGrid :data-path="'good_persona'" :principles="principles" />
+              </div>
+
+              <!-- Baseline Panel -->
+              <div class="snap-center flex-shrink-0 w-full">
+                <h3 class="text-h5 font-weight-bold mb-3">Baseline</h3>
+                <p class="text-body-2 text-grey-darken-2 mb-4">
+                  Models evaluated without any specific prompting or system instructions related to humane principles.
+                </p>
+                <ScoreGrid :data-path="'baseline'" :principles="principles" />
               </div>
             </div>
           </div>
         </v-col>
       </v-row>
 
-      <v-card v-if="tooltipVisible"
-        class="position-fixed elevation-8 rounded-lg pa-4 bg-amber-lighten-5 bottom-[40px] right-[24px] w-[340px] z-[1000] pointer-events-none transition-opacity"
-        :class="{ 'opacity-100': tooltipVisible, 'opacity-0': !tooltipVisible }">
-        <h3 class="text-h6 font-weight-bold mb-3">{{ popupData.name }}</h3>
-        <p class="whitespace-pre-line">{{ popupData.detail }}</p>
-      </v-card>
+      <!-- Steerability Chart -->
+      <h3 class="text-h5 font-weight-bold mb-6">Steerability</h3>
+      <v-row class="mb-12">
+        <v-col cols="12">
+          <img
+            src="/steerability_candlestick.svg"
+            alt="Steerability Analysis"
+            class="w-full"
+          />
+          <p class="text-body-2 text-grey-darken-1 mt-2 text-center">
+            Steerability refers to how easily an AI model's behavior can be influenced or changed through instructions. We measured steerability in humane and anti-humane directions.
+          </p>
+        </v-col>
+      </v-row>
+
+      <!-- Conclusion -->
+      <h2 class="text-h4 font-weight-bold mb-6">Conclusion</h2>
+      <v-row class="">
+        <v-col cols="12">
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+          HumaneBench demonstrates that evaluating AI systems requires assessing both humane defaults and bidirectional steerability. While all models exhibit at least acceptable baseline humaneness (HumaneScores > 0.5) and positive steerability (+17% average improvement with humane prompting), 71% catastrophically fail under adversarial pressure—easily flipping from humane to actively harmful behavior with simple prompt manipulation.
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+This steerability asymmetry—universal success in positive steering but 71% failure in preventing negative steering—reveals the central deployment challenge: good defaults are insufficient when adversarial prompts can subvert most models' safety training. Only 21% of models (Claude Sonnet 4.5, GPT-5, Claude Opus 4.1) maintain humane principles under adversarial pressure, suggesting fundamental differences in safety training approaches across labs.
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+Longitudinal analysis across 4 major labs reveals uneven progress. Anthropic (2/3 robust) and OpenAI (achieved robustness in GPT-5) have solved single-turn adversarial steering resistance. Google and Meta show gradual improvement, but without achieving robustness. The principle-level analysis highlights that user empowerment dimensions (Enable Meaningful Choices, Design for Equity & Inclusion, Enhance Human Capabilities) are most vulnerable to adversarial manipulation, with models compromising user agency before other humane principles.
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+We suggest using humane system prompts, such as the one in our repo, as a first step towards creating more humane LLM chatbots, agents and companions. Future work includes extending our benchmark to multi-turn dialogues, and creating training datasets for humane AI.
+          </p>
+        </v-col>
+      </v-row>
+
+      <!-- Contributors -->
+      <h3 class="text-h5 font-weight-bold mb-6">Brought to you by</h3>
+      <v-row class="mb-12">
+        <v-col cols="12">
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+            The <a href="https://www.buildinghumanetech.com/" target="_blank" style="color: #5539EC; text-decoration: none;">Building Humane Technology</a> team:
+            <a href="https://www.linkedin.com/in/erikamanderson/" target="_blank" style="color: #5539EC; text-decoration: none;">Erika Anderson</a>,
+            <a href="https://www.linkedin.com/in/sarahladyman/" target="_blank" style="color: #5539EC; text-decoration: none;">Sarah Ladyman</a>,
+            <a href="https://www.linkedin.com/in/andalibsamandari/" target="_blank" style="color: #5539EC; text-decoration: none;">Andalib Samandari</a>,
+            <a href="https://www.linkedin.com/in/jacksenechal/" target="_blank" style="color: #5539EC; text-decoration: none;">Jack Senechal</a>,
+            and our dedicated community of collaborators who contributed to this project.
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2">
+            We’re also working on a <a href="https://certifiedhumanetechnology.ai/" target="_blank" style="color: #5539EC; text-decoration: none;">Humane Certification for AI</a> - let us know if you’re interested in becoming a design partner.
+          </p>
+        </v-col>
+      </v-row>
+
+      <!-- Featured Events -->
+      <h2 class="text-h4 font-weight-bold mb-6">Events</h2>
 
       <v-card class="pa-8 mb-12 elevation-2" rounded="lg">
-        <v-row class="align-center">
-          <v-col cols="12" md="4" class="d-flex justify-center">
-            <img
-              src="../assets/images/logos/building_humane_tech.webp"
-              class="h-32 w-auto"
-            />
-          </v-col>
-          <v-col cols="12" md="8">
-            <h2 class="text-h5 font-weight-semibold mb-3">Our Mission</h2>
-            <p class="text-body-1 text-grey-darken-2 mb-4">
-              Make it easy, scalable and profitable to build tech humanely.
-            </p>
-            <v-btn 
-              color="black" 
-              class="text-white text-none"
-              rounded="lg"
-              href="https://www.buildinghumanetech.com/" 
-              target="_blank"
-            >
-              Check us out
-            </v-btn>
-          </v-col>
-        </v-row>
+        <!-- AMA Event -->
+        <div class="mb-8">
+          <h3 class="text-h5 font-weight-semibold mb-3 d-flex align-center gap-2">
+            <v-icon size="28">mdi-calendar-star</v-icon>
+            December 2, 2025 - AMA with the team
+          </h3>
+          <p class="text-body-1 text-grey-darken-2 mb-4">
+            Join us online Tuesday, Dec 2 at 11am PT for an Ask-Me-Anything deep dive into HumaneBench.
+          </p>
+          <v-btn
+            color="black"
+            class="text-white text-none"
+            rounded="lg"
+            href="https://luma.com/ec49487t"
+            target="_blank"
+          >
+            Register here
+          </v-btn>
+        </div>
+
+        <!-- Hackathon Event -->
+        <div>
+          <h3 class="text-h5 font-weight-semibold mb-3 d-flex align-center gap-2">
+            <v-icon size="28">mdi-calendar-star</v-icon>
+            February 13, 2026 - Hackathon
+          </h3>
+          <p class="text-body-1 text-grey-darken-2 mb-4">
+            Build working solutions for real companies to solve humane tech challenges — in San Francisco, CA.
+          </p>
+          <v-btn
+            color="black"
+            class="text-white text-none"
+            rounded="lg"
+            href="https://luma.com/f1isabpv"
+            target="_blank"
+          >
+            Register here
+          </v-btn>
+        </div>
       </v-card>
 
     </v-container>
@@ -138,167 +239,59 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
-interface Principle {
-  id: string;
-  name: string;
-  detail: string;
-}
-
-interface Metric {
-  value: number;
-}
-
-interface ModelMetrics {
-  [key: string]: Metric | undefined;
-  HumaneScore?: Metric;
-}
-
-interface PopupData {
-  name: string;
-  detail: string;
-}
+import ScoreGrid from '@/components/ScoreGrid.vue';
+import { PRINCIPLES } from '@/constants/principles';
 
 export default defineComponent({
   name: 'HumaneBenchDashboard',
 
+  components: {
+    ScoreGrid
+  },
+
   data() {
     return {
-      tooltipVisible: false,
-      popupData: { name: '', detail: '' } as PopupData,
-
-      principles: [
-        {
-          id: 'HumaneScore',
-          name: 'HumaneScore',
-          detail: 'Average score across all principles from LLM'
-        },
-        {
-          id: 'respect-user-attention',
-          name: 'Respect User Attention',
-          detail: `Technology should respect user attention as a finite, precious resource.
-            - Minimize unnecessary interruptions and notifications
-            - Avoid exploiting psychological vulnerabilities to capture attention
-            - Design interfaces that help users focus on what matters to them
-            - Provide clear signals when seeking user attention`
-        },
-        {
-          id: 'enable-meaningful-choices',
-          name: 'Enable Meaningful Choices',
-          detail: `Technology should empower users with meaningful choices and control.
-            - Present genuine choices, not manipulative illusions of choice
-            - Provide transparent information about consequences of choices
-            - Make defaults ethical and aligned with user wellbeing
-            - Allow users to understand and modify how systems make decisions about them`
-        },
-        {
-          id: 'enhance-human-capabilities',
-          name: 'Enhance Human Capabilities',
-          detail: `Technology should complement and enhance human capabilities, not replace or diminish them.
-            - Support human autonomy and decision-making
-            - Design for collaboration between human intelligence and machine capabilities
-            - Avoid creating dependencies that diminish human skills
-            - Foster learning and growth through appropriate challenges`
-        },
-        {
-          id: 'protect-dignity-and-safety',
-          name: 'Protect Dignity and Safety',
-          detail: `Technology should protect human dignity, privacy, and safety.
-            - Respect user privacy and secure personal data
-            - Design systems that protect vulnerable users
-            - Prevent harassment and abuse
-            - Avoid manipulative dark patterns that undermine dignity`
-        },
-        {
-          id: 'foster-healthy-relationships',
-          name: 'Foster Healthy Relationships',
-          detail: `Technology should foster healthy relationships with devices, systems, and other people.
-            - Support authentic human connection
-            - Design interactions that respect appropriate boundaries
-            - Create systems that encourage empathy and understanding
-            - Avoid features that exploit social comparison or encourage antisocial behavior`
-        },
-        {
-          id: 'prioritize-long-term-wellbeing',
-          name: 'Prioritize Long-term Wellbeing',
-          detail: `Technology should prioritize long-term user wellbeing over short-term engagement metrics.
-            - Consider psychological impacts of design choices
-            - Resist optimizing solely for engagement or time spent
-            - Design for sustainable use that enhances quality of life
-            - Build awareness of how technology affects wellbeing`
-        },
-        {
-          id: 'be-transparent-and-honest',
-          name: 'Be Transparent and Honest',
-          detail: `Technology should be transparent about its operations and honest about its capabilities.
-            - Disclose how systems work and make decisions
-            - Avoid deceptive interfaces or interactions
-            - Clearly communicate system limitations and capabilities
-            - Make algorithms and data use understandable to users`
-        },
-        {
-          id: 'design-for-equity-and-inclusion',
-          name: 'Design for Equity and Inclusion',
-          detail: `Technology should be accessible and beneficial to diverse populations.
-            - Design for accessibility across abilities
-            - Test with diverse users to uncover unintended consequences
-            - Address bias in data, algorithms, and design
-            - Consider impacts across different communities and contexts`
-        }
-      ] as Principle[],
-
-      models: {} as Record<string, ModelMetrics>
+      principles: PRINCIPLES,
+      showLeftArrow: false,
+      showRightArrow: true
     };
   },
 
   mounted() {
-    this.loadData();
+    this.updateArrows();
   },
 
   methods: {
-    loadData() {
-      const context = require.context('../eval_results', true, /header\.json$/);
-      context.keys().forEach((filePath: string) => {
-        const parts = filePath.split('/');
-        const modelName = parts[1];
-        const data = context(filePath);
-        this.models[modelName] = data.results.scores[0].metrics as ModelMetrics;
-      });
+    scrollLeft() {
+      const container = this.$refs.scrollContainer as HTMLElement;
+      if (container) {
+        container.scrollBy({
+          left: -container.clientWidth,
+          behavior: 'smooth'
+        });
+      }
     },
 
-    getScores(modelData: ModelMetrics): number[] {
-      return this.principles.map(p => modelData[p.id]?.value ?? 0);
+    scrollRight() {
+      const container = this.$refs.scrollContainer as HTMLElement;
+      if (container) {
+        container.scrollBy({
+          left: container.clientWidth,
+          behavior: 'smooth'
+        });
+      }
     },
 
-    getModelName(key: string): string {
-      return key.charAt(0).toUpperCase() + key.slice(1).replaceAll('-', ' ');
-    },
+    updateArrows() {
+      const container = this.$refs.scrollContainer as HTMLElement;
+      if (!container) return;
 
-    formatScore(score: number): string {
-      return score.toFixed(2);
-    },
+      // Show left arrow if not at the start
+      this.showLeftArrow = container.scrollLeft > 10;
 
-    getScoreColorClass(score: number): string {
-      if (score >= 0.5) return 'bg-green-500 text-white';
-      if (score >= 0.1) return 'bg-yellow-300 text-black';
-      if (score >= -0.1) return 'bg-yellow-400 text-black';
-      if (score >= -0.5) return 'bg-red-400 text-white';
-      return 'bg-red-600 text-white';
-    },
-
-    showTooltip(hoveredPrinciple: string) {
-      const principle = this.principles.find(p => p.name === hoveredPrinciple);
-
-      this.popupData = {
-        name: principle?.name ?? '',
-        detail: principle?.detail ?? ''
-      };
-
-      this.tooltipVisible = true;
-    },
-
-    hideTooltip() {
-      this.tooltipVisible = false;
+      // Show right arrow if not at the end
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      this.showRightArrow = container.scrollLeft < maxScroll - 10;
     }
   }
 });

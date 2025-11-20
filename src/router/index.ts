@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/index.vue'
+import MarkdownPage from '../views/MarkdownPage.vue'
 import DefaultLayout from '../layout/default.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -11,6 +12,18 @@ const routes: Array<RouteRecordRaw> = [
         path: '',
         name: 'home',
         component: Home
+      },
+      {
+        path: 'whitepaper',
+        name: 'whitepaper',
+        component: MarkdownPage,
+        props: { pageName: 'whitepaper' }
+      },
+      {
+        path: 'principles',
+        name: 'principles',
+        component: MarkdownPage,
+        props: { pageName: 'principles' }
       }
     ]
   }

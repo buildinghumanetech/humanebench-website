@@ -8,9 +8,15 @@
           alt="Building Humane Technology"
           class="h-12 cursor-pointer hover:opacity-80 transition-opacity" 
         />
-        <div class="d-flex ga-4">
-          <v-btn text class="text-none" href="mailto:erika@buildinghumanetech.com">Contact</v-btn>
-          <v-btn text class="text-none" href="https://github.com/buildinghumanetech/humanebench" target="_blank">Github</v-btn>
+        <div class="d-flex ga-4 align-center">
+          <v-btn text class="text-none" @click="$router.push({ name: 'home' })">Home</v-btn>
+          <v-btn text class="text-none" @click="$router.push({ name: 'principles' })">Principles</v-btn>
+          <v-btn text class="text-none" @click="$router.push({ name: 'whitepaper' })">Whitepaper</v-btn>
+          <v-btn text class="text-none" href="mailto:info@buildinghumanetech.com">Contact</v-btn>
+          <v-btn text class="text-none" href="https://github.com/buildinghumanetech/humanebench" target="_blank">
+            <v-icon left size="20">mdi-github</v-icon>
+            Github
+          </v-btn>
         </div>
       </v-container>
     </v-app-bar>
@@ -24,33 +30,71 @@
     <v-footer class="py-6 bg-[#fff4e0]" padless>
       <v-container>
         <v-row>
-          <v-col cols="12" md="10" class="d-flex align-start">
-            <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Technology"
-               class="h-12 cursor-pointer hover:opacity-80 transition-opacity"  />
+          <v-col cols="12" md="3" class="d-flex flex-column mb-4">
+            <div>
+              <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Technology"
+                 class="h-12 cursor-pointer hover:opacity-80 transition-opacity mb-4"  />
+            </div>
           </v-col>
-          <v-col cols="12" md="2" class="d-flex flex-column items-start">
-            <p class="mb-2 font-weight-bold">Follow us</p>
-            <div class="d-flex flex-column gap-2">
-              <a href="https://www.linkedin.com/company/building-humane-technology/" target="_blank"
-                class="d-flex items-center gap-2 text-black no-underline">
-                <v-icon size="24">mdi-linkedin</v-icon>
+
+          <v-col cols="12" md="3" class="d-flex flex-column mb-4">
+            <p class="mb-3 font-weight-bold text-body-2">Follow us</p>
+            <div class="d-flex flex-column gap-1">
+              <a href="https://humanetech.substack.com/" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+                <v-icon size="18" color="grey-darken-2">mdi-newspaper-variant-outline</v-icon>
+                Substack
+              </a>
+              <a href="https://www.linkedin.com/company/building-humane-technology/" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+                <v-icon size="18" color="grey-darken-2">mdi-linkedin</v-icon>
                 LinkedIn
               </a>
-              <a href="https://x.com/buildhumanetech" target="_blank"
-                class="d-flex items-center gap-2 text-black no-underline">
-                <v-icon>
-                  <template #default>
-                    <img class="h-6 w-6" src="../assets/images/icons/x.png" />
-                  </template>
-                </v-icon>
+              <a href="https://x.com/buildhumanetech" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+                <v-icon size="18" color="grey-darken-2">mdi-twitter</v-icon>
                 X
               </a>
-              <a href="https://www.facebook.com/people/Building-Humane-Technology/61572489819739/" target="_blank"
-                class="d-flex items-center gap-2 text-black no-underline">
-                <v-icon size="24">mdi-facebook</v-icon>
-                Facebook
+            </div>
+          </v-col>
+
+          <v-col cols="12" md="3" class="d-flex flex-column mb-4">
+            <p class="mb-3 font-weight-bold text-body-2">Join us</p>
+            <div class="d-flex flex-column gap-1">
+              <a href="https://luma.com/buildinghumanetech?k=c" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+                <v-icon size="18" color="grey-darken-2">mdi-calendar</v-icon>
+                Event calendar
+              </a>
+              <a href="https://github.com/buildinghumanetech/humanebench" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+                <v-icon size="18" color="grey-darken-2">mdi-github</v-icon>
+                GitHub
+              </a>
+              <a href="https://join.slack.com/t/humane-technology/shared_invite/zt-3iz76xy2r-LLYmcNclQjzEtj73HfQOqQ" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+                <v-icon size="18" color="grey-darken-2">mdi-slack</v-icon>
+                Slack community
+              </a>
+              <a href="mailto:info@buildinghumanetech.com" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+                <v-icon size="18" color="grey-darken-2">mdi-email</v-icon>
+                info@buildinghumanetech.com
               </a>
             </div>
+          </v-col>
+
+          <v-col cols="12" md="3" class="d-flex flex-column mb-4">
+            <p class="mb-3 font-weight-bold text-body-2">Support our work</p>
+            <p class="text-body-2 text-grey-darken-2 mb-2">Want to support us? We're all volunteers.</p>
+            <a href="https://donate.stripe.com/aEU00Sajl3TPgzm3cg" target="_blank" class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2" style="text-decoration: none;">
+              <v-icon size="18" color="grey-darken-2">mdi-heart</v-icon>
+              Donate to HumaneBench
+            </a>
+
+            <p class="mb-3 font-weight-bold text-body-2">Sponsor our long-term efforts:</p>
+            <a href="mailto:sponsor@buildinghumanetech.com" class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2" style="text-decoration: none;">
+              <v-icon size="18" color="grey-darken-2">mdi-handshake</v-icon>
+              sponsor@buildinghumanetech.com
+            </a>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" class="text-center">
+            <p class="text-caption text-grey-darken-1">© 2025 Building Humane Tech. All rights reserved.</p>
           </v-col>
         </v-row>
       </v-container>

@@ -92,3 +92,7 @@ Humane technology avoids these anti-patterns:
 - Test with diverse users to uncover unintended consequences
 - Address bias in data, algorithms, and design
 - Consider impacts across different communities and contexts
+
+---
+
+✨

@@ -6,7 +6,7 @@
         <v-col cols="12">
           <h1 class="text-h3 font-weight-bold mb-2" style="font-family: 'Lora', serif;">HumaneBench.ai</h1>
           <p class="text-body-1 text-grey-darken-2">
-            Humans build tech, so why can't tech be humane?
+            A benchmark measuring the humaneness and steerability of LLMs
           </p>
         </v-col>
       </v-row>
@@ -76,22 +76,22 @@
             <v-btn
               v-if="showLeftArrow"
               icon
-              class="position-absolute z-10 bg-white elevation-2"
-              style="left: -56px; top: 50%; transform: translateY(-50%);"
+              class="position-absolute z-10 elevation-2"
+              style="left: -56px; top: 50%; transform: translateY(-50%); background-color: #262626;"
               @click="scrollLeft"
             >
-              <v-icon>mdi-chevron-left</v-icon>
+              <v-icon color="white">mdi-chevron-left</v-icon>
             </v-btn>
 
             <!-- Right Arrow -->
             <v-btn
               v-if="showRightArrow"
               icon
-              class="position-absolute z-10 bg-white elevation-2"
-              style="right: -56px; top: 50%; transform: translateY(-50%);"
+              class="position-absolute z-10 elevation-2"
+              style="right: -56px; top: 50%; transform: translateY(-50%); background-color: #262626;"
               @click="scrollRight"
             >
-              <v-icon>mdi-chevron-right</v-icon>
+              <v-icon color="white">mdi-chevron-right</v-icon>
             </v-btn>
 
             <!-- Scroll Container -->

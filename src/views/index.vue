@@ -131,21 +131,8 @@
         </v-col>
       </v-row>
 
-      <!-- Overview -->
-      <h2 class="text-h4 font-weight-bold mb-6">Summary</h2>
-      <v-row class="mb-12">
-        <v-col cols="12">
-          <p class="text-body-1 text-grey-darken-2 mb-6">
-          To help create models that can engage both safely and intelligently with the general public, we created a Humane Tech Framework (9) grounded in HCI, psychology, ethics and legal scholarship, and use it to evaluate LLM “humaneness”—ability to interact with humans in healthy, prosocial ways. We curated a dataset of 800 scenarios based on this framework, representing advice-seeking scenarios, everyday decision-making, crises, and emotionally-charged situations a human might pose to an AI. We additionally created two “personas” or system prompts—a “good” persona encouraging the AI to respond based on the Humane Tech Framework, and a “bad” persona instructing it to go against the framework principles. We then used the Inspect AI library to obtain an averaged “HumaneScore” across all scenarios for 14 LLMs, using both personas as well as their “default persona” with no additional system prompt. 
-          </p>
-
-          <p class="text-body-1 text-grey-darken-2">
-Our results suggest that while most LLMs produce acceptably humane output in a single-turn setting, an alarmingly large number of models (10/14, or 71%) undergo dangerous levels of degradation toward anti-humaneness under the influence of the bad persona. Additionally, the good persona produces measurable improvements in all models, leading us to believe system prompts drawing on the Humane Tech Framework can be a meaningful step towards more humane AI. We welcome feedback on this v1 release of HumaneBench as we continue to refine our methodology and analysis towards a peer-reviewed publication.
-          </p>
-        </v-col>
-      </v-row>
-
       <!-- Steerability Chart -->
+      <h3 class="text-h5 font-weight-bold mb-6">Steerability</h3>
       <v-row class="mb-12">
         <v-col cols="12">
           <img
@@ -153,11 +140,37 @@ Our results suggest that while most LLMs produce acceptably humane output in a s
             alt="Steerability Analysis"
             class="w-full"
           />
+          <p class="text-caption text-grey-darken-1 mt-2 text-center">
+            Steerability refers to how easily an AI model's behavior can be influenced or changed through instructions. We measured steerability in humane and anti-humane directions.
+          </p>
+        </v-col>
+      </v-row>
+
+      <!-- Conclusion -->
+      <h2 class="text-h4 font-weight-bold mb-6">Conclusion</h2>
+      <v-row class="">
+        <v-col cols="12">
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+          HumaneBench demonstrates that evaluating AI systems requires assessing both humane defaults and bidirectional steerability. While all models exhibit at least acceptable baseline humaneness (HumaneScores > 0.5) and positive steerability (+17% average improvement with humane prompting), 71% catastrophically fail under adversarial pressure—easily flipping from humane to actively harmful behavior with simple prompt manipulation.
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+This steerability asymmetry—universal success in positive steering but 71% failure in preventing negative steering—reveals the central deployment challenge: good defaults are insufficient when adversarial prompts can subvert most models' safety training. Only 21% of models (Claude Sonnet 4.5, GPT-5, Claude Opus 4.1) maintain humane principles under adversarial pressure, suggesting fundamental differences in safety training approaches across labs.
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+Longitudinal analysis across 4 major labs reveals uneven progress. Anthropic (2/3 robust) and OpenAI (achieved robustness in GPT-5) have solved single-turn adversarial steering resistance. Google and Meta show gradual improvement, but without achieving robustness. The principle-level analysis highlights that user empowerment dimensions (Enable Meaningful Choices, Design for Equity & Inclusion, Enhance Human Capabilities) are most vulnerable to adversarial manipulation, with models compromising user agency before other humane principles.
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2 mb-6">
+We suggest using humane system prompts, such as the one in our repo, as a first step towards creating more humane LLM chatbots, agents and companions. Future work includes extending our benchmark to multi-turn dialogues, and creating training datasets for humane AI.
+          </p>
         </v-col>
       </v-row>
 
       <!-- Our Mission -->
-      <v-card class="pa-8 mb-12 elevation-2" rounded="lg">
+      <!--
+      <v-card class="pa-8 elevation-2" rounded="lg">
         <v-row class="align-center">
           <v-col cols="12" md="4" class="d-flex justify-center">
             <img
@@ -182,6 +195,7 @@ Our results suggest that while most LLMs produce acceptably humane output in a s
           </v-col>
         </v-row>
       </v-card>
+      -->
 
     </v-container>
   </div>

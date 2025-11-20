@@ -32,7 +32,7 @@
         <v-row>
           <v-col cols="12" md="3" class="d-flex flex-column mb-4">
             <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Technology"
-               class="h-12 cursor-pointer hover:opacity-80 transition-opacity"  />
+               class="h-12 cursor-pointer hover:opacity-80 transition-opacity mb-4"  />
           </v-col>
 
           <v-col cols="12" md="3" class="d-flex flex-column mb-4">
@@ -58,11 +58,7 @@
             <div class="d-flex flex-column gap-1">
               <a href="https://luma.com/buildinghumanetech?k=c" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
                 <v-icon size="18" color="grey-darken-2">mdi-calendar</v-icon>
-                Luma
-              </a>
-              <a href="https://luma.com/ec49487t" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
-                <v-icon size="18" color="grey-darken-2">mdi-calendar-star</v-icon>
-                Dec 2 AMA
+                Event calendar
               </a>
               <a href="https://github.com/buildinghumanetech/humanebench" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
                 <v-icon size="18" color="grey-darken-2">mdi-github</v-icon>
@@ -77,10 +73,10 @@
 
           <v-col cols="12" md="3" class="d-flex flex-column mb-4">
             <p class="mb-3 font-weight-bold text-body-2">Support our work</p>
-            <p class="text-body-2 text-grey-darken-2 mb-2">We're all volunteers.</p>
+            <p class="text-body-2 text-grey-darken-2 mb-2">Want to support us? We're all volunteers.</p>
             <a href="https://donate.stripe.com/aEU00Sajl3TPgzm3cg" target="_blank" class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2" style="text-decoration: none;">
               <v-icon size="18" color="grey-darken-2">mdi-heart</v-icon>
-              Donate to version 2
+              Donate to HumaneBench
             </a>
 
             <p class="mb-2 font-weight-bold text-body-2 mt-4">Contact</p>
@@ -88,6 +84,11 @@
               <v-icon size="18" color="grey-darken-2">mdi-email</v-icon>
               info@buildinghumanetech.com
             </a>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" class="text-center">
+            <p class="text-caption text-grey-darken-1">© 2025 Building Humane Tech. All rights reserved.</p>
           </v-col>
         </v-row>
       </v-container>

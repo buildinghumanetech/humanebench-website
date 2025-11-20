@@ -183,6 +183,20 @@ We suggest using humane system prompts, such as the one in our repo, as a first 
         </v-col>
       </v-row>
 
+      <!-- Contributors -->
+      <h3 class="text-h5 font-weight-bold mb-6 d-flex align-center gap-2">
+        <v-icon size="28">mdi-calendar-star</v-icon>
+        December 2, 2025  - AMA with the team
+      </h3>
+      <v-row class="mb-12">
+        <v-col cols="12">
+          <p class="text-body-1 text-grey-darken-2">
+            Join us on Tuesday Dec 2 at 11am PT for an ask-me-anything deep dive into HumaneBench -
+            <a href="https://luma.com/ec49487t">register here</a>.
+          </p>
+        </v-col>
+      </v-row>
+
       <!-- Our Mission -->
       <!--
       <v-card class="pa-8 elevation-2" rounded="lg">

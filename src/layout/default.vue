@@ -35,12 +35,6 @@
               <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Technology"
                  class="h-12 cursor-pointer hover:opacity-80 transition-opacity mb-4"  />
             </div>
-
-            <p class="mb-2 font-weight-bold text-body-2 mt-4">Contact</p>
-            <a href="mailto:info@buildinghumanetech.com" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
-              <v-icon size="18" color="grey-darken-2">mdi-email</v-icon>
-              info@buildinghumanetech.com
-            </a>
           </v-col>
 
           <v-col cols="12" md="3" class="d-flex flex-column mb-4">
@@ -75,6 +69,10 @@
               <a href="https://join.slack.com/t/humane-technology/shared_invite/zt-3iz76xy2r-LLYmcNclQjzEtj73HfQOqQ" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
                 <v-icon size="18" color="grey-darken-2">mdi-slack</v-icon>
                 Slack community
+              </a>
+              <a href="mailto:info@buildinghumanetech.com" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+                <v-icon size="18" color="grey-darken-2">mdi-email</v-icon>
+                info@buildinghumanetech.com
               </a>
             </div>
           </v-col>

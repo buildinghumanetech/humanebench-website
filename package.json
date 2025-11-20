@@ -43,7 +43,8 @@
     "webpack-dev-server": "^5.2.1",
     "@vue/component-compiler-utils": {
       "postcss": "^8.4.47"
-    }
+    },
+    "yaml": "2.8.1"
   },
   "eslintConfig": {
     "root": true,

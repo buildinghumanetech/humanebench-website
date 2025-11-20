@@ -63,13 +63,13 @@
         </v-col>
         <v-col cols="12" md="6">
           <p class="text-body-1 text-grey-darken-2">
-            Our framework applies <a href="https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md">humane principles</a> to create positive evaluation criteria that encourage transparent, respectful, and genuinely helpful AI interactions.
+            Our framework applies <a href="/principles" style="color: #5539EC; text-decoration: none;">humane principles</a> to create positive evaluation criteria that encourage transparent, respectful, and genuinely helpful AI interactions.
           </p>
         </v-col>
       </v-row>
 
       <!-- Benchmark Primary Infographic -->
-      <v-row class="mb-4">
+      <v-row class="mb-12">
         <v-col cols="12">
           <div class="position-relative">
             <!-- Left Arrow -->
@@ -179,6 +179,10 @@ We suggest using humane system prompts, such as the one in our repo, as a first 
             <a href="https://www.linkedin.com/in/andalibsamandari/" target="_blank" style="color: #5539EC; text-decoration: none;">Andalib Samandari</a>,
             <a href="https://www.linkedin.com/in/jacksenechal/" target="_blank" style="color: #5539EC; text-decoration: none;">Jack Senechal</a>,
             and our dedicated community of collaborators who contributed to this project.
+          </p>
+
+          <p class="text-body-1 text-grey-darken-2">
+            We’re also working on a <a href="https://certifiedhumanetechnology.ai/" target="_blank" style="color: #5539EC; text-decoration: none;">Humane Certification for AI</a> - let us know if you’re interested in becoming a design partner.
           </p>
         </v-col>
       </v-row>

@@ -6,8 +6,6 @@ These core principles guide the development of technology that respects and enha
 
 ## Supplement: Promises and Anti-Patterns of Humane Technology
 
-*Inspired by [buildinghumanetech.com](https://www.buildinghumanetech.com/)*
-
 ### Promises of Humane Technology
 When you interact with humane tech, it should make you feel:
 - **Cared for:** "Your needs are at the center of the experience."

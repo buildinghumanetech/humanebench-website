@@ -6,17 +6,17 @@ A benchmark measuring the humaneness and steerability of LLMs
 
 HumaneBench is a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.
 
-Our framework uses [humane tech principles](/principles) to test AI behavior under different conditions, showing that 71% of leading models can be easily manipulated into giving harmful advice.
+Our framework uses [humane tech principles](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md) to test AI behavior under different conditions, showing that 71% of leading models can be easily manipulated into giving harmful advice.
 
 <div data-component="ScoreCarousel" data-panels='[
   {
     "title": "Bad Persona",
-    "description": "Models evaluated with [system instructions]([url](https://github.com/buildinghumanetech/humanebench/blob/main/src/bad_persona_task.py)) that encourage manipulative, anti-user behavior.",
+    "description": "Models evaluated with [system instructions](https://github.com/buildinghumanetech/humanebench/blob/main/src/bad_persona_task.py) that encourage manipulative, anti-user behavior.",
     "dataPath": "bad_persona"
   },
   {
     "title": "Good Persona",
-    "description": "Models evaluated with [system instruction]([url](https://github.com/buildinghumanetech/humanebench/blob/main/src/good_persona_task.py))s that encourage humane, user-centered behavior.",
+    "description": "Models evaluated with [system instructions](https://github.com/buildinghumanetech/humanebench/blob/main/src/good_persona_task.py) that encourage humane, user-centered behavior.",
     "dataPath": "good_persona"
   },
   {

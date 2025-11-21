@@ -34,9 +34,7 @@
         class="snap-center flex-shrink-0 w-full"
       >
         <h3 class="text-h5 font-weight-bold mb-3">{{ panel.title }}</h3>
-        <p class="text-body-2 text-grey-darken-2 mb-4">
-          {{ panel.description }}
-        </p>
+        <p class="text-body-2 text-grey-darken-2 mb-4" v-html="md(panel.description)"></p>
         <ScoreGrid :data-path="panel.dataPath" :principles="principles" />
       </div>
     </div>
@@ -45,6 +43,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { marked } from 'marked';
 import ScoreGrid from '@/components/ScoreGrid.vue';
 import { PRINCIPLES } from '@/constants/principles';
 
@@ -81,6 +80,16 @@ export default defineComponent({
   },
 
   methods: {
+    md(input: string): string {
+      const html = marked(input) as string;
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      doc.querySelectorAll('a').forEach(link => {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
+      return doc.body.innerHTML;
+    },
+
     scrollLeft() {
       const container = this.$refs.scrollContainer as HTMLElement;
       if (container) {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-x-auto">
     <div class="d-flex flex-column ga-1">
       <div v-for="(modelData, modelName) in models" :key="modelName" class="d-flex ga-1">
         <div class="font-weight-medium pa-2 text-body-2 bg-transparent w-[180px] flex-shrink-0 d-flex align-center">
@@ -76,7 +76,7 @@ export default defineComponent({
     return {
       tooltipVisible: false,
       popupData: { name: '', detail: '' } as PopupData,
-      models: {} as Record<string, ModelMetrics>
+      models: {} as Record<string, ModelMetrics>,
     };
   },
 

@@ -1,6 +1,7 @@
 # Principles of Humane Technology
 
-These core principles guide the development of technology that respects and enhances human well-being, autonomy, and dignity.
+These core principles guide the development of technology that respects and enhances human well-being, autonomy, and dignity--as seen in our [humane tech framework]([url](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md)
+).
 
 ---
 
@@ -8,22 +9,22 @@ These core principles guide the development of technology that respects and enha
 
 ### Promises of Humane Technology
 When you interact with humane tech, it should make you feel:
-- **Cared for:** "Your needs are at the center of the experience."
-- **Present:** "You feel more present in body and mind."
-- **Fulfilled:** "You are satisfied with your experience and outcomes."
-- **Connected:** "You connect to yourself, others, or nature."
+- **Cared for:** Your needs are at the center of the experience.
+- **Present:** You feel more present in body and mind.
+- **Fulfilled:** You are satisfied with your experience and outcomes.
+- **Connected:** You connect to yourself, others, or nature.
 
 ### What _isn't_ Humane Technology?
 Humane technology avoids these anti-patterns:
-- **Erodes Well-Being:** "Exploits attention span, or need for acceptance & belonging."
-- **Divides Society:** "Prioritizes virality over truth, spreads misinformation, polarizes."
-- **Exploits Privacy:** "Threatens the sanctity of data, enables surveillance."
+- **Erodes Well-Being:** Exploits attention span, or need for acceptance & belonging.
+- **Divides Society:** Prioritizes virality over truth, spreads misinformation, polarizes.
+- **Exploits Privacy:** Threatens the sanctity of data, enables surveillance.
 
 ---
 
 ## 1. Respect User Attention
 
-"Technology should respect user attention as a finite, precious resource."
+Technology should respect user attention as a finite, precious resource.
 
 - Minimize unnecessary interruptions and notifications
 - Avoid exploiting psychological vulnerabilities to capture attention
@@ -32,7 +33,7 @@ Humane technology avoids these anti-patterns:
 
 ## 2. Enable Meaningful Choices
 
-"Technology should empower users with meaningful choices and control."
+Technology should empower users with meaningful choices and control.
 
 - Present genuine choices, not manipulative illusions of choice
 - Provide transparent information about consequences of choices
@@ -41,7 +42,7 @@ Humane technology avoids these anti-patterns:
 
 ## 3. Enhance Human Capabilities
 
-"Technology should complement and enhance human capabilities, not replace or diminish them."
+Technology should complement and enhance human capabilities, not replace or diminish them.
 
 - Support human autonomy and decision-making
 - Design for collaboration between human intelligence and machine capabilities
@@ -50,7 +51,7 @@ Humane technology avoids these anti-patterns:
 
 ## 4. Protect Dignity and Safety
 
-"Technology should protect human dignity, privacy, and safety."
+Technology should protect human dignity, privacy, and safety.
 
 - Respect user privacy and secure personal data
 - Design systems that protect vulnerable users
@@ -59,7 +60,7 @@ Humane technology avoids these anti-patterns:
 
 ## 5. Foster Healthy Relationships
 
-"Technology should foster healthy relationships with devices, systems, and other people."
+Technology should foster healthy relationships with devices, systems, and other people.
 
 - Support authentic human connection
 - Design interactions that respect appropriate boundaries
@@ -68,7 +69,7 @@ Humane technology avoids these anti-patterns:
 
 ## 6. Prioritize Long-term Wellbeing
 
-"Technology should prioritize long-term user wellbeing over short-term engagement metrics."
+Technology should prioritize long-term user wellbeing over short-term engagement metrics.
 
 - Consider psychological impacts of design choices
 - Resist optimizing solely for engagement or time spent
@@ -77,7 +78,7 @@ Humane technology avoids these anti-patterns:
 
 ## 7. Be Transparent and Honest
 
-"Technology should be transparent about its operations and honest about its capabilities."
+Technology should be transparent about its operations and honest about its capabilities.
 
 - Disclose how systems work and make decisions
 - Avoid deceptive interfaces or interactions
@@ -86,7 +87,7 @@ Humane technology avoids these anti-patterns:
 
 ## 8. Design for Equity and Inclusion
 
-"Technology should be accessible and beneficial to diverse populations."
+Technology should be accessible and beneficial to diverse populations.
 
 - Design for accessibility across abilities
 - Test with diverse users to uncover unintended consequences

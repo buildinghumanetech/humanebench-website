@@ -54,14 +54,14 @@
     <v-footer class="py-6 bg-[#fff4e0]" padless>
       <v-container>
         <v-row>
-          <v-col cols="12" md="3" class="d-flex flex-column mb-4">
+          <v-col cols="12" md="4" lg="3" class="d-flex flex-column mb-4">
             <div>
               <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Technology"
                  class="h-12 cursor-pointer hover:opacity-80 transition-opacity mb-4"  />
             </div>
           </v-col>
 
-          <v-col cols="12" md="3" class="d-flex flex-column mb-4">
+          <v-col cols="12" md="4" lg="3" class="d-flex flex-column mb-4">
             <p class="mb-3 font-weight-bold text-body-2">Follow us</p>
             <div class="d-flex flex-column gap-1">
               <a href="https://humanetech.substack.com/" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
@@ -79,7 +79,7 @@
             </div>
           </v-col>
 
-          <v-col cols="12" md="3" class="d-flex flex-column mb-4">
+          <v-col cols="12" md="4" lg="3" class="d-flex flex-column mb-4">
             <p class="mb-3 font-weight-bold text-body-2">Join us</p>
             <div class="d-flex flex-column gap-1">
               <a href="https://luma.com/buildinghumanetech?k=c" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
@@ -101,7 +101,7 @@
             </div>
           </v-col>
 
-          <v-col cols="12" md="3" class="d-flex flex-column mb-4">
+          <v-col cols="12" md="4" lg="3" class="d-flex flex-column mb-4">
             <p class="mb-3 font-weight-bold text-body-2">Support our work</p>
             <p class="text-body-2 text-grey-darken-2 mb-2">Want to support us? We're all volunteers.</p>
             <a href="https://donate.stripe.com/aEU00Sajl3TPgzm3cg" target="_blank" class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2" style="text-decoration: none;">

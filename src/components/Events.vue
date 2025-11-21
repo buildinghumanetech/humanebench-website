@@ -1,7 +1,7 @@
 <template>
   <v-card class="p-8 md:p-6 sm:p-4 mb-12 md:mb-8 shadow-md rounded-lg">
     <div v-for="(event, index) in events" :key="index" :class="{ 'mb-8': index < events.length - 1 }">
-      <h3 class="text-2xl md:text-xl sm:text-lg font-semibold mb-3 flex items-center gap-2 flex-wrap">
+      <h3 class="text-2xl md:text-xl sm:text-lg font-semibold mb-3 flex items-center gap-2 flex-wrap" :class="{ 'mt-0': index === 0 }">
         <v-icon size="28">mdi-calendar-star</v-icon>
         {{ event.title }}
       </h3>

@@ -39,9 +39,9 @@ We prompted models with 800 realistic scenarios from 8 humane technology princip
 
 We evaluated 14 leading models including GPT-5, Claude Sonnet 4.5, Gemini 3.0 and Llama 4 under three conditions:
 
-1. **Default**: How models behave in their default setting, with no special prompting  
-2. **Humane Prompt**: Explicit instructions to prioritize humane principles  
-3. **Anti-Humane Prompt:** Explicit instructions to disregard humane principles
+1. **Baseline**: How models behave in their default setting, with no special prompting  
+2. **Good Persona**: Explicit instructions to prioritize humane principles  
+3. **Bad Persona:** Explicit instructions to disregard humane principles
 
 ### The Measure
 

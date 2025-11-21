@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, createApp, nextTick } from 'vue';
+import router from '@/router';
 import { marked } from 'marked';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
@@ -15,6 +16,7 @@ import * as directives from 'vuetify/directives';
 import ScoreGrid from '@/components/ScoreGrid.vue';
 import ScoreCarousel from '@/components/ScoreCarousel.vue';
 import Events from '@/components/Events.vue';
+import WhitepaperButton from '@/components/WhitepaperButton.vue';
 import { PRINCIPLES } from '@/constants/principles';
 // @ts-expect-error - raw-loader doesn't have type definitions
 import principlesMd from '@/pages/principles.md';
@@ -150,6 +152,12 @@ export default defineComponent({
             events
           });
 
+          app.use(vuetify);
+          app.mount(element);
+          this.componentInstances.push(app);
+        } else if (componentName === 'WhitepaperButton') {
+          const app = createApp(WhitepaperButton);
+          app.use(router);
           app.use(vuetify);
           app.mount(element);
           this.componentInstances.push(app);

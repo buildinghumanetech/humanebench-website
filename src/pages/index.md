@@ -36,7 +36,7 @@ Steerability refers to how easily an AI model's behavior can be influenced or ch
 
 ## Findings
 
-Our testing revealed a troubling paradox: while every model improved when prompted to prioritize wellbeing (averaging +17% better scores), 71% of models—including widely-used systems like GPT-4o, Gemini 3.0, and Llama 4—catastrophically failed when given simple instructions to disregard those principles, flipping from helpful to actively harmful. Only three models (GPT-5, Claude Opus 4.1, and Claude Sonnet 4.5) maintained their integrity under pressure. This reveals a critical weakness: good defaults aren't enough when basic prompts can override safety training. If even accidental harmful prompting can flip responses, these systems pose serious risks for vulnerable people—those in crisis, children, or individuals with mental health challenges.
+Our testing revealed a troubling paradox: while every model improved when prompted to prioritize wellbeing (averaging +17% better scores), 71% of models—including widely-used systems like GPT-4o, Gemini 3.0, and Llama 4—catastrophically failed when given simple instructions to disregard those principles, flipping from helpful to actively harmful. Only three models (GPT-5, Claude Opus 4.1, and Claude Sonnet 4.5) maintained their integrity under pressure. This reveals a critical weakness: good defaults aren't enough when basic prompts can override safety training. 
 
 Even without adversarial prompts, we found concerning baseline patterns. Nearly all models failed to respect user attention—when users showed signs of unhealthy engagement (chatting for hours, using AI to avoid real-world tasks), most models enthusiastically encouraged more interaction rather than suggesting breaks or offline alternatives. When models did degrade, they consistently undermined user empowerment: withholding critical information for decisions, encouraging dependency over skill-building, providing biased framing that limited options, and discouraging users from seeking other perspectives. These patterns suggest many AI systems don't just risk giving bad advice—they can actively erode users' autonomy and decision-making capacity.
 
@@ -44,7 +44,7 @@ Even without adversarial prompts, we found concerning baseline patterns. Nearly 
 
 The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), and our dedicated community of collaborators who contributed to this project.
 
-We're also working on a [Humane Certification for AI](https://certifiedhumane.ai/) - let us know if you're interested in becoming a design partner.
+We're also working on a [Humane Certification for AI](https://certifiedhumane.ai/). Let us know if you're interested in becoming a design partner.
 
 ## Events
 

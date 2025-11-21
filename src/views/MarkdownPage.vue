@@ -81,7 +81,13 @@ export default defineComponent({
         if (!markdown) {
           throw new Error(`Markdown page not found: ${this.pageName}`);
         }
-        this.renderedMarkdown = await marked(markdown);
+        const html = await marked(markdown);
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        doc.querySelectorAll('a').forEach(link => {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        });
+        this.renderedMarkdown = doc.body.innerHTML;
 
         // Wait for DOM to update, then mount Vue components
         await nextTick();

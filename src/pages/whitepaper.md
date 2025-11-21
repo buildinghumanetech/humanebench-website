@@ -186,4 +186,4 @@ We thank the [DarkBench](https://darkbench.ai/) authors for open-sourcing their 
 
 We thank Tenzin Tseten Changten and Katy Graf for significant contributions to the codebase.
 
-We thank the following members of the [Building Humane Tech](https://www.buildinghumanetech.com/) community who helped us refine the human rating process: John Brennan, Selina Bian, Amarpreet Kaur, Manisha Jain, Sahithi, Julia Zhou, Sachin Keswani, Gabija Parnarauskaite, Lydia Huang, Lenz Dagohoy, Diego Lopez, Alan Rainbow, Belinda, Yaoli Mao, Wayne Boatwright, Yelyzaveta Radionova, Mark Lovell, Seth Caldwell, Evode Manirahari, Manjul Sachan, Value Economy, Travis F W
+We thank the following members of the [Building Humane Tech](https://www.buildinghumanetech.com/) community who helped us refine the human rating process: John Brennan, Yingxuan (Selina) Bian, Amarpreet Kaur, Manisha Jain, Sahithi Nandyala, Julia Zhou, Sachin Keswani, Gabija Parnarauskaite, Lydia Huang, Lenz Dagohoy, Diego Lopez, Alan Davis (Rainbow), Belinda Liu, Yaoli Mao, Wayne Boatwright, Yelyzaveta Radionova, Mark Lovell, Seth Caldwell, Evode Manirahari, Manjul Sachan, Amir Gur, Travis Well.

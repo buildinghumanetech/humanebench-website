@@ -1,6 +1,7 @@
-# HumaneBench.ai
-
-A benchmark measuring the humaneness and steerability of LLMs
+<div style="text-align: center;">
+<img src="/humanebench_logo.png" alt="Humane Bench Logo" style="height: 80px;" />
+<p>A benchmark measuring the humaneness and steerability of LLMs</p>
+</div>
 
 ## Overview
 

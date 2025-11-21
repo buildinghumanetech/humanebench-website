@@ -2,7 +2,7 @@
   <div class="d-flex justify-center">
     <svg :viewBox="`0 0 ${svgWidth} ${svgHeight}`">
       <g v-for="(modelData, modelName, rowIndex) in models" :key="modelName">
-        <text :x="0" :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2" class="font-weight-medium text-body-2" dominant-baseline="middle">{{ getModelName(modelName) }}</text>
+        <text :x="0" :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2" class="font-weight-medium text-caption" dominant-baseline="middle">{{ getModelName(modelName) }}</text>
         <g v-for="(score, colIndex) in getScores(modelData)" :key="colIndex">
           <rect
             :x="modelNameWidth + colIndex * (cellWidth + cellMargin)"
@@ -92,7 +92,7 @@ export default defineComponent({
       models: {} as Record<string, ModelMetrics>,
       modelNameWidth: 180,
       cellWidth: 80,
-      cellHeight: 40,
+      cellHeight: 30,
       cellMargin: 4,
       labelHeight: 150,
     };

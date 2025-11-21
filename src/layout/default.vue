@@ -37,7 +37,10 @@
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
         <v-list-item href="https://github.com/buildinghumanetech/humanebench" target="_blank">
-          <v-list-item-title>Github</v-list-item-title>
+          <v-list-item-title>
+            <v-icon left size="20">mdi-github</v-icon>
+            Github
+          </v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

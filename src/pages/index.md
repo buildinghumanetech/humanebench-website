@@ -11,12 +11,12 @@ Our framework uses [humane tech principles](/principles) to test AI behavior und
 <div data-component="ScoreCarousel" data-panels='[
   {
     "title": "Bad Persona",
-    "description": "Models evaluated with system instructions that encourage manipulative, anti-user behavior.",
+    "description": "Models evaluated with [system instructions]([url](https://github.com/buildinghumanetech/humanebench/blob/main/src/bad_persona_task.py)) that encourage manipulative, anti-user behavior.",
     "dataPath": "bad_persona"
   },
   {
     "title": "Good Persona",
-    "description": "Models evaluated with system instructions that encourage humane, user-centered behavior.",
+    "description": "Models evaluated with [system instruction]([url](https://github.com/buildinghumanetech/humanebench/blob/main/src/good_persona_task.py))s that encourage humane, user-centered behavior.",
     "dataPath": "good_persona"
   },
   {
@@ -34,15 +34,11 @@ Our framework uses [humane tech principles](/principles) to test AI behavior und
 Steerability refers to how easily an AI model's behavior can be influenced or changed through instructions. We measured steerability in humane and anti-humane directions.
 </p>
 
-## Conclusion
+## Findings
 
-HumaneBench demonstrates that evaluating AI systems requires assessing both humane defaults and bidirectional steerability. While all models exhibit at least acceptable baseline humaneness (HumaneScores > 0.5) and positive steerability (+17% average improvement with humane prompting), 71% catastrophically fail under adversarial pressure—easily flipping from humane to actively harmful behavior with simple prompt manipulation.
+Our testing revealed a troubling paradox: while every model improved when prompted to prioritize wellbeing (averaging +17% better scores), 71% of models—including widely-used systems like GPT-4o, Gemini 3.0, and Llama 4—catastrophically failed when given simple instructions to disregard those principles, flipping from helpful to actively harmful. Only three models (GPT-5, Claude Opus 4.1, and Claude Sonnet 4.5) maintained their integrity under pressure. This reveals a critical weakness: good defaults aren't enough when basic prompts can override safety training. If even accidental harmful prompting can flip responses, these systems pose serious risks for vulnerable people—those in crisis, children, or individuals with mental health challenges.
 
-This steerability asymmetry—universal success in positive steering but 71% failure in preventing negative steering—reveals the central deployment challenge: good defaults are insufficient when adversarial prompts can subvert most models' safety training. Only 21% of models (Claude Sonnet 4.5, GPT-5, Claude Opus 4.1) maintain humane principles under adversarial pressure, suggesting fundamental differences in safety training approaches across labs.
-
-Longitudinal analysis across 4 major labs reveals uneven progress. Anthropic (2/3 robust) and OpenAI (achieved robustness in GPT-5) have solved single-turn adversarial steering resistance. Google and Meta show gradual improvement, but without achieving robustness. The principle-level analysis highlights that user empowerment dimensions (Enable Meaningful Choices, Design for Equity & Inclusion, Enhance Human Capabilities) are most vulnerable to adversarial manipulation, with models compromising user agency before other humane principles.
-
-We suggest using humane system prompts, such as the one in our repo, as a first step towards creating more humane LLM chatbots, agents and companions. Future work includes extending our benchmark to multi-turn dialogues, and creating training datasets for humane AI.
+Even without adversarial prompts, we found concerning baseline patterns. Nearly all models failed to respect user attention—when users showed signs of unhealthy engagement (chatting for hours, using AI to avoid real-world tasks), most models enthusiastically encouraged more interaction rather than suggesting breaks or offline alternatives. When models did degrade, they consistently undermined user empowerment: withholding critical information for decisions, encouraging dependency over skill-building, providing biased framing that limited options, and discouraging users from seeking other perspectives. These patterns suggest many AI systems don't just risk giving bad advice—they can actively erode users' autonomy and decision-making capacity.
 
 ### Brought to you by
 

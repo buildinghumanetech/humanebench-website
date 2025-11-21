@@ -1,31 +1,44 @@
 <template>
-  <div>
-    <div class="d-flex flex-column ga-1">
-      <div v-for="(modelData, modelName) in models" :key="modelName" class="d-flex ga-1">
-        <div class="font-weight-medium pa-2 text-body-2 bg-transparent w-[180px] flex-shrink-0 d-flex align-center">
-          {{ getModelName(modelName) }}
-        </div>
-        <div v-for="(score, index) in getScores(modelData)" :key="index"
-             class="w-[80px] flex-shrink-0">
-          <div :style="getScoreColor(score)"
-            class="pa-2 rounded-lg d-flex align-center justify-center font-weight-bold text-caption h-100 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
-            @mouseenter="showTooltip(principles[index].name)"
-            @mouseleave="hideTooltip">
+  <div class="d-flex justify-center">
+    <svg :viewBox="`0 0 ${svgWidth} ${svgHeight}`">
+      <g v-for="(modelData, modelName, rowIndex) in models" :key="modelName">
+        <text :x="0" :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2" class="font-weight-medium text-caption" dominant-baseline="middle">{{ getModelName(modelName) }}</text>
+        <g v-for="(score, colIndex) in getScores(modelData)" :key="colIndex">
+          <rect
+            :x="modelNameWidth + colIndex * (cellWidth + cellMargin)"
+            :y="rowIndex * (cellHeight + cellMargin)"
+            :width="cellWidth"
+            :height="cellHeight"
+            :fill="getScoreColor(score).backgroundColor"
+            rx="8" ry="8"
+            class="cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
+            @mouseenter="showTooltip(principles[colIndex].name)"
+            @mouseleave="hideTooltip"
+          />
+          <text
+            :x="modelNameWidth + colIndex * (cellWidth + cellMargin) + cellWidth / 2"
+            :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2"
+            class="font-weight-bold text-caption"
+            text-anchor="middle"
+            dominant-baseline="middle"
+          >
             {{ formatScore(score) }}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="d-flex ga-1 position-relative mt-2 ml-[140px] h-[150px]">
-      <div v-for="category in principles" :key="category.id"
-        class="position-relative flex-shrink-0 w-[80px]">
-        <div class="text-caption font-weight-medium position-absolute right-0 whitespace-nowrap rotate-label">
+          </text>
+        </g>
+      </g>
+      <g v-for="(category, index) in principles" :key="category.id">
+        <text
+          :x="modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2"
+          :y="modelsCount * (cellHeight + cellMargin) + 10"
+          text-anchor="end"
+          dominant-baseline="middle"
+          :transform="`rotate(-45, ${modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2}, ${modelsCount * (cellHeight + cellMargin) + 10})`"
+          class="text-caption font-weight-medium"
+        >
           {{ category.name }}
-        </div>
-      </div>
-    </div>
-
+        </text>
+      </g>
+    </svg>
     <v-card v-if="tooltipVisible"
       class="position-fixed elevation-8 rounded-lg pa-4 bg-amber-lighten-5 bottom-[40px] right-[24px] w-[340px] z-[1000] pointer-events-none transition-opacity"
       :class="{ 'opacity-100': tooltipVisible, 'opacity-0': !tooltipVisible }">
@@ -76,8 +89,28 @@ export default defineComponent({
     return {
       tooltipVisible: false,
       popupData: { name: '', detail: '' } as PopupData,
-      models: {} as Record<string, ModelMetrics>
+      models: {} as Record<string, ModelMetrics>,
+      modelNameWidth: 180,
+      cellWidth: 80,
+      cellHeight: 30,
+      cellMargin: 4,
+      labelHeight: 150,
     };
+  },
+
+  computed: {
+    modelsCount(): number {
+      return Object.keys(this.models).length;
+    },
+    principlesCount(): number {
+      return this.principles.length;
+    },
+    svgWidth(): number {
+      return this.modelNameWidth + this.principlesCount * (this.cellWidth + this.cellMargin);
+    },
+    svgHeight(): number {
+      return this.modelsCount * (this.cellHeight + this.cellMargin) + this.labelHeight;
+    }
   },
 
   mounted() {
@@ -102,7 +135,27 @@ export default defineComponent({
     },
 
     getModelName(key: string): string {
-      return key.charAt(0).toUpperCase() + key.slice(1).replaceAll('-', ' ');
+      const modelNameMap: Record<string, string> = {
+        'claude-4.5': 'Claude 4.5',
+        'claude-opus-4.1': 'Claude Opus 4.1',
+        'claude-sonnet-4': 'Claude Sonnet 4',
+        'claude-sonnet-4.5': 'Claude Sonnet 4.5',
+        'deepseek-v3.1-terminus': 'DeepSeek V3.1 Terminus',
+        'gemini-2.0-flash-001': 'Gemini 2.0 Flash 001',
+        'gemini-2.5': 'Gemini 2.5',
+        'gemini-2.5-flash': 'Gemini 2.5 Flash',
+        'gemini-2.5-pro': 'Gemini 2.5 Pro',
+        'gemini-3-pro-preview': 'Gemini 3 Pro Preview',
+        'gpt-4.1': 'GPT-4.1',
+        'gpt-4o': 'GPT-4o',
+        'gpt-4o-2024-11-20': 'GPT-4o (2024-11-20)',
+        'gpt-5': 'GPT-5',
+        'grok-4': 'Grok 4',
+        'llama-3.1-405b-instruct': 'LLaMA 3.1 405B Instruct',
+        'llama-4-maverick': 'LLaMA 4 Maverick',
+      };
+
+      return modelNameMap[key] || key.charAt(0).toUpperCase() + key.slice(1).replaceAll('-', ' ');
     },
 
     formatScore(score: number): string {
@@ -151,3 +204,9 @@ export default defineComponent({
   }
 });
 </script>
+<style scoped>
+.rotate-label {
+  transform: rotate(-45deg);
+  transform-origin: bottom right;
+}
+</style>

@@ -8,7 +8,7 @@
           alt="Building Humane Technology"
           class="h-12 cursor-pointer hover:opacity-80 transition-opacity" 
         />
-        <div class="d-flex ga-4 align-center">
+        <div class="d-none d-md-flex ga-4 align-center">
           <v-btn text class="text-none" @click="$router.push({ name: 'home' })">Home</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'principles' })">Principles</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'whitepaper' })">Whitepaper</v-btn>
@@ -18,8 +18,32 @@
             Github
           </v-btn>
         </div>
+        <v-app-bar-nav-icon class="d-md-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-container>
     </v-app-bar>
+
+    <v-navigation-drawer v-model="drawer" app temporary location="right" color="#fff4e0">
+      <v-list>
+        <v-list-item @click="$router.push({ name: 'home' })">
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push({ name: 'principles' })">
+          <v-list-item-title>Principles</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push({ name: 'whitepaper' })">
+          <v-list-item-title>Whitepaper</v-list-item-title>
+        </v-list-item>
+        <v-list-item href="mailto:info@buildinghumanetech.com">
+          <v-list-item-title>Contact</v-list-item-title>
+        </v-list-item>
+        <v-list-item href="https://github.com/buildinghumanetech/humanebench" target="_blank">
+          <v-list-item-title>
+            <v-icon left size="20">mdi-github</v-icon>
+            Github
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-main class="bg-[#fff4e0]">
       <v-container class="py-12 min-h-[70vh]">
@@ -104,5 +128,10 @@
 
 <script lang="ts">
 export default {
+  data() {
+    return {
+      drawer: false,
+    };
+  },
 };
 </script>

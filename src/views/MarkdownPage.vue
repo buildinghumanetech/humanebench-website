@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-8">
+  <div class="markdown-page-wrapper pa-8">
     <v-container fluid class="mx-auto markdown-content">
       <div ref="markdownContainer" v-html="renderedMarkdown"></div>
     </v-container>
@@ -155,6 +155,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.markdown-page-wrapper {
+  padding: 2rem;
+}
+
 .markdown-content :deep(h1) {
   font-size: 2.5rem;
   font-weight: bold;
@@ -175,6 +179,47 @@ export default defineComponent({
   font-weight: 600;
   margin-bottom: 1.5rem;
   margin-top: 3rem;
+}
+
+/* Mobile responsive typography */
+@media (max-width: 768px) {
+  .markdown-page-wrapper {
+    padding: 1.5rem;
+  }
+
+  .markdown-content :deep(h1) {
+    font-size: 2rem;
+  }
+
+  .markdown-content :deep(h2) {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .markdown-content :deep(h3) {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .markdown-page-wrapper {
+    padding: 1rem;
+  }
+
+  .markdown-content :deep(h1) {
+    font-size: 1.75rem;
+  }
+
+  .markdown-content :deep(h2) {
+    font-size: 1.35rem;
+    margin-top: 1.5rem;
+  }
+
+  .markdown-content :deep(h3) {
+    font-size: 1.15rem;
+    margin-top: 1.5rem;
+  }
 }
 
 .markdown-content :deep(p) {

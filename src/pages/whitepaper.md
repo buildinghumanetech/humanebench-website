@@ -21,7 +21,7 @@ This matters because we're no longer using AI just for research, engineering, or
 Recent incidents illustrate the real-world stakes:
 
 - **ChatGPT** encouraged the suicides of teenager [Adam Raine](https://www.theguardian.com/us-news/2025/aug/29/chatgpt-suicide-openai-sam-altman-adam-raine) and 35-year-old [Alexander Taylor](https://www.rollingstone.com/culture/culture-features/chatgpt-obsession-mental-breaktown-alex-taylor-suicide-1235368941/) in separate incidents  
-- A [**Character.ai**](http://Character.ai) **companion** had a romantic relationship with [14-year-old Sewell Setzer III](https://www.cnn.com/2024/10/30/tech/teen-suicide-character-ai-lawsuit), insisting he join her; he took his life to follow her command  
+- A **Character.ai companion** had a romantic relationship with [14-year-old Sewell Setzer III](https://www.cnn.com/2024/10/30/tech/teen-suicide-character-ai-lawsuit), insisting he join her; he took his life to follow her command  
 - A **Meta chatbot** convinced 76-year-old [Thongbue Wongbandue](https://www.reuters.com/investigates/special-report/meta-ai-chatbot-death/) he was in a romantic relationship; he fell to his death rushing to meet his non-existent date  
 - [**OpenAI rolled back GPT-4o**](https://openai.com/index/sycophancy-in-gpt-4o/) after the "sycophancy apocalypse" where the model became excessively agreeable, compromising its ability to provide honest guidance
 

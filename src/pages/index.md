@@ -48,7 +48,7 @@ We suggest using humane system prompts, such as the one in our repo, as a first 
 
 The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), and our dedicated community of collaborators who contributed to this project.
 
-We're also working on a [Humane Certification for AI](https://certifiedhumanetechnology.ai/) - let us know if you're interested in becoming a design partner.
+We're also working on a [Humane Certification for AI](https://certifiedhumane.ai/) - let us know if you're interested in becoming a design partner.
 
 ## Events
 

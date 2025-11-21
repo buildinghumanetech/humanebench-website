@@ -1,11 +1,11 @@
 <template>
-  <v-card class="pa-8 mb-12 elevation-2" rounded="lg">
+  <v-card class="p-8 md:p-6 sm:p-4 mb-12 md:mb-8 shadow-md rounded-lg">
     <div v-for="(event, index) in events" :key="index" :class="{ 'mb-8': index < events.length - 1 }">
-      <h3 class="text-h5 font-weight-semibold mb-3 d-flex align-center gap-2">
+      <h3 class="text-2xl md:text-xl sm:text-lg font-semibold mb-3 flex items-center gap-2 flex-wrap">
         <v-icon size="28">mdi-calendar-star</v-icon>
         {{ event.title }}
       </h3>
-      <p class="text-body-1 text-grey-darken-2 mb-4">
+      <p class="text-base text-gray-700 mb-4">
         {{ event.description }}
       </p>
       <v-btn

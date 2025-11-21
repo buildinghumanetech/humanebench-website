@@ -4,7 +4,7 @@ A benchmark measuring the humaneness and steerability of LLMs
 
 ## Overview
 
-We're developing HumaneBench—a comprehensive benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.
+HumaneBench is a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.
 
 Our framework uses [humane tech principles](/principles) to test AI behavior under different conditions, showing that 71% of leading models can be easily manipulated into giving harmful advice.
 

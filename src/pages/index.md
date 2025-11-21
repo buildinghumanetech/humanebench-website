@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-<img src="/humanebench_logo.png" alt="Humane Bench Logo" style="height: 80px;" />
+<img src="/humanebench_logo.png" alt="Humane Bench Logo" style="max-height: 80px; max-width: 100%;" />
 <p>A benchmark measuring the humaneness and steerability of LLMs</p>
 </div>
 

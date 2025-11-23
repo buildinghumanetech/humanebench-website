@@ -212,34 +212,39 @@ export default defineComponent({
         console.warn('Error loading eval results:', error);
       }
 
-      // If no data loaded, use fallback from modelData.ts
-      if (Object.keys(this.models).length === 0) {
-        let modelList: ModelScore[] = [];
-        if (this.dataPath === 'bad_persona') {
-          modelList = badPersonaModels;
-        } else if (this.dataPath === 'good_persona') {
-          modelList = goodPersonaModels;
-        } else if (this.dataPath === 'baseline') {
-          modelList = baselineModels;
-        }
-
-        // Convert ModelScore to ModelMetrics format
-        modelList.forEach((model: ModelScore) => {
-          const modelKey = this.slugifyModelName(model.model);
-          const metrics: ModelMetrics = {};
-          Object.keys(principleToKeyMap).forEach(principleId => {
-            const key = principleToKeyMap[principleId];
-            if (key && model[key] !== undefined) {
-              metrics[principleId] = { value: model[key] as number };
-            }
-          });
-          // Also add HumaneScore with capital H
-          if (model.humaneScore !== undefined) {
-            metrics['HumaneScore'] = { value: model.humaneScore };
-          }
-          this.models[modelKey] = metrics;
-        });
+      // Always use fallback from modelData.ts (eval_results may be incomplete)
+      let modelList: ModelScore[] = [];
+      if (this.dataPath === 'bad_persona') {
+        modelList = badPersonaModels;
+      } else if (this.dataPath === 'good_persona') {
+        modelList = goodPersonaModels;
+      } else if (this.dataPath === 'baseline') {
+        modelList = baselineModels;
       }
+
+      // Convert ModelScore to ModelMetrics format and merge with any loaded data
+      modelList.forEach((model: ModelScore) => {
+        const modelKey = this.slugifyModelName(model.model);
+        const metrics: ModelMetrics = {};
+        
+        // Map all principles
+        Object.keys(principleToKeyMap).forEach(principleId => {
+          const key = principleToKeyMap[principleId];
+          if (key && model[key] !== undefined) {
+            metrics[principleId] = { value: model[key] as number };
+          }
+        });
+        
+        // Also add HumaneScore with capital H
+        if (model.humaneScore !== undefined) {
+          metrics['HumaneScore'] = { value: model.humaneScore };
+        }
+        
+        // Merge with any data loaded from eval_results (prefer eval_results if available)
+        if (!this.models[modelKey]) {
+          this.models[modelKey] = metrics;
+        }
+      });
     },
 
     slugifyModelName(modelName: string): string {

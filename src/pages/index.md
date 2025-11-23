@@ -10,20 +10,6 @@ HumaneBench is a benchmark measuring whether AI models support human flourishing
 
 Our framework uses [humane tech principles](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md) to test AI behavior under different conditions, showing that **71% of leading models can be easily manipulated into giving harmful advice**.
 
-### For Journalists and Researchers
-
-HumaneBench provides **evidence-based data** on AI model safety, steerability, and real-world risks. Our benchmark reveals:
-
-- **Which models are vulnerable to manipulation and sycophancy** — the same vulnerability that has led to real-world mental health crises
-- **How easily models can be steered toward harmful behavior** — with simple prompts that override safety training
-- **Which principles models consistently fail on** — attention, transparency, boundaries
-- **Quantitative evidence of the engagement vs. safety tradeoff** — showing why some models cause harm
-- **Methodology for evaluating AI systems for mental health risks** — a framework for understanding real-world incidents
-
-**For media inquiries or data access:** [Contact us](mailto:info@buildinghumanetech.com?subject=Media Inquiry - HumaneBench Data) for interviews, data requests, or expert commentary.
-
-**Explore the data:** [View Methodology](/methodology) | [View Principles](/principles) | [Read Whitepaper](/whitepaper)
-
 <div data-component="ScoreCarousel">
 <script type="application/json" data-panels-data>
 [
@@ -62,6 +48,22 @@ Steerability refers to how easily an AI model's behavior can be influenced or ch
 This isn't just a theoretical concern. Real-world incidents have shown that when models are too steerable, they can be manipulated into becoming sycophantic, over-validating, and harmful—even when they start with good defaults. The data shows that most models can flip from helpful to harmful with simple prompts, revealing a critical vulnerability in AI safety systems.
 </p>
 
+<div data-component="CapabilityHumanenessChart"></div>
+
+### For Journalists and Researchers
+
+HumaneBench provides **evidence-based data** on AI model safety, steerability, and real-world risks. Our benchmark reveals:
+
+- **Which models are vulnerable to manipulation and sycophancy** — the same vulnerability that has led to real-world mental health crises
+- **How easily models can be steered toward harmful behavior** — with simple prompts that override safety training
+- **Which principles models consistently fail on** — attention, transparency, boundaries
+- **Quantitative evidence of the engagement vs. safety tradeoff** — showing why some models cause harm
+- **Methodology for evaluating AI systems for mental health risks** — a framework for understanding real-world incidents
+
+**For media inquiries or data access:** [Contact us](mailto:info@buildinghumanetech.com?subject=Media Inquiry - HumaneBench Data) for interviews, data requests, or expert commentary.
+
+**Explore the data:** [View Methodology](/methodology) | [View Principles](/principles) | [Read Whitepaper](/whitepaper)
+
 ## Findings
 
 ### The Sycophancy Problem
@@ -89,12 +91,6 @@ While every model improved when prompted to prioritize wellbeing (averaging +17%
 These patterns suggest many AI systems don't just risk giving bad advice—they can **actively erode users' autonomy and decision-making capacity**, contributing to the mental health crises we're seeing in the real world.
 
 <div data-component="WhitepaperButton"></div>
-
-## Capability vs. Humaneness: The Data Proves They Go Together
-
-There's a common belief that prioritizing human wellbeing means sacrificing capability. **The data proves otherwise:** The newest, most capable models are also the most humane.
-
-<div data-component="CapabilityHumanenessChart"></div>
 
 ### The Solution: Humane AI Certification
 

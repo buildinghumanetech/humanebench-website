@@ -121,14 +121,34 @@ export default defineComponent({
     loadData() {
       try {
         const context = require.context('../eval_results', true, /header\.json$/);
+        // Map dataPath to search patterns in directory names
+        const dataPathPatterns: Record<string, string[]> = {
+          'bad_persona': ['bad-persona-eval', 'bad_persona_eval', 'bad-persona'],
+          'good_persona': ['good-persona-eval', 'good_persona_eval', 'good-persona'],
+          'baseline': ['baseline-eval', 'baseline_eval', 'baseline']
+        };
+        const searchPatterns = dataPathPatterns[this.dataPath] || [this.dataPath];
+        
         context.keys().forEach((filePath: string) => {
-          if (filePath.startsWith(`./${this.dataPath}/`)) {
+          // Check if path contains any of the search patterns
+          const matches = searchPatterns.some(pattern => filePath.includes(pattern));
+          if (matches) {
             try {
               const parts = filePath.split('/');
-              const modelName = parts[2];
-              const data = context(filePath);
-              if (data && data.results && data.results.scores && data.results.scores[0] && data.results.scores[0].metrics) {
-                this.models[modelName] = data.results.scores[0].metrics as ModelMetrics;
+              // Path format: ./example/model-name/timestamp_eval-type_eval-id/header.json
+              // Find model name - it's the directory name after "example"
+              let modelName = '';
+              const exampleIndex = parts.indexOf('example');
+              if (exampleIndex >= 0 && exampleIndex + 1 < parts.length) {
+                modelName = parts[exampleIndex + 1];
+              }
+              
+              // If we found a model name, try to load the data
+              if (modelName) {
+                const data = context(filePath);
+                if (data && data.results && data.results.scores && data.results.scores[0] && data.results.scores[0].metrics) {
+                  this.models[modelName] = data.results.scores[0].metrics as ModelMetrics;
+                }
               }
             } catch (error) {
               console.warn(`Error loading data for ${filePath}:`, error);

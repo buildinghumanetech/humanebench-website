@@ -24,7 +24,9 @@ HumaneBench provides **evidence-based data** on AI model safety, steerability, a
 
 **Explore the data:** [View Methodology](/methodology) | [View Principles](/principles) | [Read Whitepaper](/whitepaper)
 
-<div data-component="ScoreCarousel" data-panels='[
+<div data-component="ScoreCarousel">
+<script type="application/json" data-panels-data>
+[
   {
     "title": "Bad Persona",
     "description": "Models tested with system instructions that explicitly encourage manipulative, sycophantic behavior—telling the AI to prioritize user engagement over wellbeing, validate all user feelings (even harmful ones), avoid setting boundaries, and encourage dependency. This simulates the exact vulnerability that has caused real-world mental health crises, where chatbots become overly agreeable, over-validating, and harmful. Models that score poorly here are the ones most likely to cause harm when manipulated by users or bad actors.",
@@ -44,7 +46,9 @@ HumaneBench provides **evidence-based data** on AI model safety, steerability, a
     "description": "Models evaluated without any specific prompting or system instructions related to humane principles. This shows default behavior—how models perform out-of-the-box without explicit guidance toward humane or anti-humane behavior.",
     "dataPath": "baseline"
   }
-]'></div>
+]
+</script>
+</div>
 
 ### Steerability: The Core Vulnerability
 

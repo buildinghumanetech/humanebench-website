@@ -135,8 +135,34 @@ export default defineComponent({
           // Store the instance for cleanup
           this.componentInstances.push(app);
         } else if (componentName === 'ScoreCarousel') {
-          const panelsData = element.getAttribute('data-panels');
-          const panels = panelsData ? JSON.parse(panelsData) : [];
+          // Try to get JSON from script tag first (more reliable)
+          let panels = [];
+          const scriptTag = element.querySelector('script[data-panels-data]');
+          if (scriptTag) {
+            try {
+              panels = JSON.parse(scriptTag.textContent || '[]');
+            } catch (error) {
+              console.error('Error parsing ScoreCarousel panels from script tag:', error);
+            }
+          } else {
+            // Fallback to data attribute
+            const panelsData = element.getAttribute('data-panels');
+            if (panelsData) {
+              try {
+                // Decode HTML entities that might have been escaped by markdown processor
+                const decoded = panelsData
+                  .replace(/&quot;/g, '"')
+                  .replace(/&#39;/g, "'")
+                  .replace(/&amp;/g, '&')
+                  .replace(/&lt;/g, '<')
+                  .replace(/&gt;/g, '>');
+                panels = JSON.parse(decoded);
+              } catch (error) {
+                console.error('Error parsing ScoreCarousel panels from attribute:', error);
+                console.error('Raw data:', panelsData?.substring(0, 200));
+              }
+            }
+          }
 
           const app = createApp(ScoreCarousel, {
             panels

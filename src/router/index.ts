@@ -30,6 +30,16 @@ const routes: Array<RouteRecordRaw> = [
         name: 'methodology',
         component: MarkdownPage,
         props: { pageName: 'methodology' }
+      },
+      {
+        path: 'models',
+        name: 'models',
+        component: () => import('../views/ModelsPage.vue')
+      },
+      {
+        path: 'models/:slug',
+        name: 'model-detail',
+        component: () => import('../views/ModelDetailPage.vue')
       }
     ]
   }

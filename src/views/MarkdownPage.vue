@@ -25,11 +25,14 @@ import principlesMd from '@/pages/principles.md';
 import whitepaperMd from '@/pages/whitepaper.md';
 // @ts-expect-error - raw-loader doesn't have type definitions
 import indexMd from '@/pages/index.md';
+// @ts-expect-error - raw-loader doesn't have type definitions
+import methodologyMd from '@/pages/methodology.md';
 
 const markdownPages: Record<string, string> = {
   principles: principlesMd,
   whitepaper: whitepaperMd,
-  index: indexMd
+  index: indexMd,
+  methodology: methodologyMd
 };
 
 export default defineComponent({

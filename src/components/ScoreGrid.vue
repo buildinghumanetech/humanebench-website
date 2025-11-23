@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex justify-center">
     <svg :viewBox="`0 0 ${svgWidth} ${svgHeight}`" width="100%">
-      <g v-for="(modelData, modelName, rowIndex) in models" :key="modelName">
+      <g v-for="(modelData, modelName, rowIndex) in sortedModels" :key="modelName">
         <text :x="0" :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2" class="font-weight-medium text-caption" dominant-baseline="middle">{{ getModelName(modelName) }}</text>
         <g v-for="(score, colIndex) in getScores(modelData)" :key="colIndex">
           <rect
@@ -27,15 +27,30 @@
         </g>
       </g>
       <g v-for="(category, index) in principles" :key="category.id">
+        <rect
+          :x="modelNameWidth + index * (cellWidth + cellMargin)"
+          :y="modelsCount * (cellHeight + cellMargin)"
+          :width="cellWidth"
+          :height="labelHeight"
+          fill="transparent"
+          class="cursor-pointer hover:opacity-50"
+          @click="handleSort(category.id)"
+        />
         <text
           :x="modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2"
           :y="modelsCount * (cellHeight + cellMargin) + 10"
           text-anchor="end"
           dominant-baseline="middle"
           :transform="`rotate(-45, ${modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2}, ${modelsCount * (cellHeight + cellMargin) + 10})`"
-          class="text-caption font-weight-medium"
+          :class="[
+            'text-caption font-weight-medium',
+            sortColumn === category.id ? 'fill-blue-600 font-bold' : 'fill-current'
+          ]"
         >
           {{ category.name }}
+          <template v-if="sortColumn === category.id">
+            {{ sortDirection === 'desc' ? ' ↓' : ' ↑' }}
+          </template>
         </text>
       </g>
     </svg>
@@ -95,12 +110,14 @@ export default defineComponent({
       cellHeight: 30,
       cellMargin: 4,
       labelHeight: 150,
+      sortColumn: null as string | null,
+      sortDirection: 'desc' as 'asc' | 'desc',
     };
   },
 
   computed: {
     modelsCount(): number {
-      return Object.keys(this.models).length;
+      return Object.keys(this.sortedModels).length;
     },
     principlesCount(): number {
       return this.principles.length;
@@ -110,6 +127,18 @@ export default defineComponent({
     },
     svgHeight(): number {
       return this.modelsCount * (this.cellHeight + this.cellMargin) + this.labelHeight;
+    },
+    sortedModels(): Record<string, ModelMetrics> {
+      if (!this.sortColumn) {
+        return this.models;
+      }
+      const entries = Object.entries(this.models);
+      entries.sort(([, dataA], [, dataB]) => {
+        const scoreA = dataA[this.sortColumn!]?.value ?? 0;
+        const scoreB = dataB[this.sortColumn!]?.value ?? 0;
+        return this.sortDirection === 'desc' ? scoreB - scoreA : scoreA - scoreB;
+      });
+      return Object.fromEntries(entries);
     }
   },
 
@@ -231,6 +260,17 @@ export default defineComponent({
 
     hideTooltip() {
       this.tooltipVisible = false;
+    },
+
+    handleSort(principleId: string) {
+      if (this.sortColumn === principleId) {
+        // Toggle direction if clicking the same column
+        this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
+      } else {
+        // Set new column and default to descending (best to worst)
+        this.sortColumn = principleId;
+        this.sortDirection = 'desc';
+      }
     }
   }
 });

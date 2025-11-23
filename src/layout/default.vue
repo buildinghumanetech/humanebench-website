@@ -10,6 +10,7 @@
         />
         <div class="d-none d-md-flex ga-4 align-center">
           <v-btn text class="text-none" @click="$router.push({ name: 'home' })">Home</v-btn>
+          <v-btn text class="text-none" @click="$router.push({ name: 'models' })">Models</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'principles' })">Principles</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'methodology' })">Methodology</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'whitepaper' })">Whitepaper</v-btn>
@@ -27,6 +28,9 @@
       <v-list>
         <v-list-item @click="$router.push({ name: 'home' })">
           <v-list-item-title>Home</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push({ name: 'models' })">
+          <v-list-item-title>Models</v-list-item-title>
         </v-list-item>
         <v-list-item @click="$router.push({ name: 'principles' })">
           <v-list-item-title>Principles</v-list-item-title>

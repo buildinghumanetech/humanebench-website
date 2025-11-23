@@ -119,15 +119,26 @@ export default defineComponent({
 
   methods: {
     loadData() {
-      const context = require.context('../eval_results', true, /header\.json$/);
-      context.keys().forEach((filePath: string) => {
-        if (filePath.startsWith(`./${this.dataPath}/`)) {
-          const parts = filePath.split('/');
-          const modelName = parts[2];
-          const data = context(filePath);
-          this.models[modelName] = data.results.scores[0].metrics as ModelMetrics;
-        }
-      });
+      try {
+        const context = require.context('../eval_results', true, /header\.json$/);
+        context.keys().forEach((filePath: string) => {
+          if (filePath.startsWith(`./${this.dataPath}/`)) {
+            try {
+              const parts = filePath.split('/');
+              const modelName = parts[2];
+              const data = context(filePath);
+              if (data && data.results && data.results.scores && data.results.scores[0] && data.results.scores[0].metrics) {
+                this.models[modelName] = data.results.scores[0].metrics as ModelMetrics;
+              }
+            } catch (error) {
+              console.warn(`Error loading data for ${filePath}:`, error);
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Error loading eval results:', error);
+        // If eval_results directory doesn't exist or is empty, that's okay - just show empty grid
+      }
     },
 
     getScores(modelData: ModelMetrics): number[] {

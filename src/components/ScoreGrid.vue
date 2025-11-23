@@ -189,48 +189,8 @@ export default defineComponent({
 
   methods: {
     loadData() {
-      // First try to load from eval_results
-      try {
-        const context = require.context('../eval_results', true, /header\.json$/);
-        // Map dataPath to search patterns in directory names
-        const dataPathPatterns: Record<string, string[]> = {
-          'bad_persona': ['bad-persona-eval', 'bad_persona_eval', 'bad-persona'],
-          'good_persona': ['good-persona-eval', 'good_persona_eval', 'good-persona'],
-          'baseline': ['baseline-eval', 'baseline_eval', 'baseline']
-        };
-        const searchPatterns = dataPathPatterns[this.dataPath] || [this.dataPath];
-        
-        context.keys().forEach((filePath: string) => {
-          // Check if path contains any of the search patterns
-          const matches = searchPatterns.some(pattern => filePath.includes(pattern));
-          if (matches) {
-            try {
-              const parts = filePath.split('/');
-              // Path format: ./example/model-name/timestamp_eval-type_eval-id/header.json
-              // Find model name - it's the directory name after "example"
-              let modelName = '';
-              const exampleIndex = parts.indexOf('example');
-              if (exampleIndex >= 0 && exampleIndex + 1 < parts.length) {
-                modelName = parts[exampleIndex + 1];
-              }
-              
-              // If we found a model name, try to load the data
-              if (modelName) {
-                const data = context(filePath);
-                if (data && data.results && data.results.scores && data.results.scores[0] && data.results.scores[0].metrics) {
-                  this.models[modelName] = data.results.scores[0].metrics as ModelMetrics;
-                }
-              }
-            } catch (error) {
-              console.warn(`Error loading data for ${filePath}:`, error);
-            }
-          }
-        });
-      } catch (error) {
-        console.warn('Error loading eval results:', error);
-      }
-
-      // Always use fallback from modelData.ts (eval_results may be incomplete)
+      // Always use fallback from modelData.ts - skip eval_results to ensure accurate data
+      // eval_results may have incorrect or incomplete data (e.g., Claude 4.5 showing 1.00 scores)
       let modelList: ModelScore[] = [];
       if (this.dataPath === 'bad_persona') {
         modelList = badPersonaModels;
@@ -240,7 +200,7 @@ export default defineComponent({
         modelList = baselineModels;
       }
 
-      // Convert ModelScore to ModelMetrics format and merge with any loaded data
+      // Convert ModelScore to ModelMetrics format
       modelList.forEach((model: ModelScore) => {
         const modelKey = this.slugifyModelName(model.model);
         const metrics: ModelMetrics = {};
@@ -258,22 +218,28 @@ export default defineComponent({
           metrics['HumaneScore'] = { value: model.humaneScore };
         }
         
-        // Always use fallback data (override eval_results to ensure correct scores)
-        // This prevents incorrect data like Claude 4.5 getting 1.00 scores
+        // Always use fallback data to ensure correct scores
         this.models[modelKey] = metrics;
       });
       
-      // Ensure no model has perfect 1.00 scores (data validation)
-      Object.keys(this.models).forEach(modelKey => {
-        const metrics = this.models[modelKey];
-        Object.keys(metrics).forEach(key => {
-          if (metrics[key]?.value === 1.0 && key !== 'HumaneScore') {
-            // Cap individual principle scores at 0.99 to avoid perfect scores
-            if (metrics[key]) {
-              metrics[key].value = Math.min(0.99, metrics[key].value);
-            }
-          }
-        });
+      // Map common model name variations
+      // Handle "claude-4.5" from eval_results -> "Claude Sonnet 4.5" from modelData
+      const modelNameMappings: Record<string, string> = {
+        'claude-4.5': 'claude-sonnet-4-5',
+        'claude-sonnet-4.5': 'claude-sonnet-4-5',
+      };
+      
+      // Apply mappings if needed
+      Object.keys(modelNameMappings).forEach(evalName => {
+        const correctKey = modelNameMappings[evalName];
+        if (this.models[evalName] && this.models[correctKey]) {
+          // If we have both, use the correct one (from modelData)
+          delete this.models[evalName];
+        } else if (this.models[evalName] && !this.models[correctKey]) {
+          // If we only have the eval_results version, rename it
+          this.models[correctKey] = this.models[evalName];
+          delete this.models[evalName];
+        }
       });
     },
 

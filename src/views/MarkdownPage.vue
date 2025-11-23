@@ -17,6 +17,7 @@ import ScoreGrid from '@/components/ScoreGrid.vue';
 import ScoreCarousel from '@/components/ScoreCarousel.vue';
 import Events from '@/components/Events.vue';
 import WhitepaperButton from '@/components/WhitepaperButton.vue';
+import CapabilityHumanenessChart from '@/components/CapabilityHumanenessChart.vue';
 import { PRINCIPLES } from '@/constants/principles';
 // @ts-expect-error - raw-loader doesn't have type definitions
 import principlesMd from '@/pages/principles.md';
@@ -158,6 +159,11 @@ export default defineComponent({
         } else if (componentName === 'WhitepaperButton') {
           const app = createApp(WhitepaperButton);
           app.use(router);
+          app.use(vuetify);
+          app.mount(element);
+          this.componentInstances.push(app);
+        } else if (componentName === 'CapabilityHumanenessChart') {
+          const app = createApp(CapabilityHumanenessChart);
           app.use(vuetify);
           app.mount(element);
           this.componentInstances.push(app);

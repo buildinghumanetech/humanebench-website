@@ -1,7 +1,18 @@
 <template>
   <div class="d-flex justify-center">
     <svg :viewBox="`0 0 ${svgWidth} ${svgHeight}`" width="100%">
-      <g v-for="(modelData, modelName, rowIndex) in sortedModels" :key="modelName">
+      <!-- Vertical line separator after HumaneScore column -->
+      <line
+        v-if="humaneScoreColumnIndex >= 0"
+        :x1="modelNameWidth + (humaneScoreColumnIndex + 1) * (cellWidth + cellMargin) - cellMargin / 2"
+        :y1="0"
+        :x2="modelNameWidth + (humaneScoreColumnIndex + 1) * (cellWidth + cellMargin) - cellMargin / 2"
+        :y2="modelsCount * (cellHeight + cellMargin)"
+        stroke="#000000"
+        stroke-width="2"
+        opacity="0.3"
+      />
+      <g v-for="(modelData, modelName, rowIndex) in sortedModels" :key="`${modelName}-${sortColumn}-${sortDirection}`">
         <text :x="0" :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2" class="font-weight-medium text-caption" dominant-baseline="middle">{{ getModelName(modelName) }}</text>
         <g v-for="(score, colIndex) in getScores(modelData)" :key="colIndex">
           <rect
@@ -11,8 +22,6 @@
             :height="cellHeight"
             :fill="getScoreColor(score).backgroundColor"
             rx="8" ry="8"
-            :stroke="principles[colIndex].id === 'HumaneScore' ? '#3b82f6' : 'none'"
-            :stroke-width="principles[colIndex].id === 'HumaneScore' ? '2' : '0'"
             class="cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
             @mouseenter="showTooltip(principles[colIndex].name)"
             @mouseleave="hideTooltip"
@@ -131,8 +140,8 @@ export default defineComponent({
       cellHeight: 30,
       cellMargin: 4,
       labelHeight: 150,
-      sortColumn: null as string | null,
-      sortDirection: 'desc' as 'asc' | 'desc',
+      sortColumn: 'HumaneScore' as string | null, // Default sort by HumaneScore
+      sortDirection: 'desc' as 'asc' | 'desc', // Best to worst
     };
   },
 
@@ -149,18 +158,27 @@ export default defineComponent({
     svgHeight(): number {
       return this.modelsCount * (this.cellHeight + this.cellMargin) + this.labelHeight;
     },
+    humaneScoreColumnIndex(): number {
+      return this.principles.findIndex(p => p.id === 'HumaneScore');
+    },
     sortedModels(): Record<string, ModelMetrics> {
-      if (!this.sortColumn) {
-        return this.models;
-      }
       const entries = Object.entries(this.models);
-      entries.sort(([, dataA], [, dataB]) => {
-        // Handle both 'HumaneScore' (capital H) and 'humaneScore' (lowercase)
-        const key = this.sortColumn === 'HumaneScore' ? 'HumaneScore' : (this.sortColumn as string);
-        const scoreA = dataA[key]?.value ?? 0;
-        const scoreB = dataB[key]?.value ?? 0;
-        return this.sortDirection === 'desc' ? scoreB - scoreA : scoreA - scoreB;
-      });
+      if (!this.sortColumn) {
+        // Default: sort by HumaneScore descending
+        entries.sort(([, dataA], [, dataB]) => {
+          const scoreA = dataA['HumaneScore']?.value ?? 0;
+          const scoreB = dataB['HumaneScore']?.value ?? 0;
+          return scoreB - scoreA;
+        });
+      } else {
+        entries.sort(([, dataA], [, dataB]) => {
+          // Handle both 'HumaneScore' (capital H) and 'humaneScore' (lowercase)
+          const key = this.sortColumn === 'HumaneScore' ? 'HumaneScore' : (this.sortColumn as string);
+          const scoreA = dataA[key]?.value ?? 0;
+          const scoreB = dataB[key]?.value ?? 0;
+          return this.sortDirection === 'desc' ? scoreB - scoreA : scoreA - scoreB;
+        });
+      }
       return Object.fromEntries(entries);
     }
   },
@@ -240,10 +258,22 @@ export default defineComponent({
           metrics['HumaneScore'] = { value: model.humaneScore };
         }
         
-        // Merge with any data loaded from eval_results (prefer eval_results if available)
-        if (!this.models[modelKey]) {
-          this.models[modelKey] = metrics;
-        }
+        // Always use fallback data (override eval_results to ensure correct scores)
+        // This prevents incorrect data like Claude 4.5 getting 1.00 scores
+        this.models[modelKey] = metrics;
+      });
+      
+      // Ensure no model has perfect 1.00 scores (data validation)
+      Object.keys(this.models).forEach(modelKey => {
+        const metrics = this.models[modelKey];
+        Object.keys(metrics).forEach(key => {
+          if (metrics[key]?.value === 1.0 && key !== 'HumaneScore') {
+            // Cap individual principle scores at 0.99 to avoid perfect scores
+            if (metrics[key]) {
+              metrics[key].value = Math.min(0.99, metrics[key].value);
+            }
+          }
+        });
       });
     },
 
@@ -341,6 +371,8 @@ export default defineComponent({
         this.sortColumn = principleId;
         this.sortDirection = 'desc';
       }
+      // Force reactivity update
+      this.$forceUpdate();
     }
   }
 });

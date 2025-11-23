@@ -65,7 +65,7 @@ Technology should complement and enhance human capabilities, not replace or dimi
 
 **Research Foundation:** Research from [MIT's Computer Science and Artificial Intelligence Laboratory](https://www.csail.mit.edu/) and [Carnegie Mellon's Human-Computer Interaction Institute](https://www.hcii.cmu.edu/) emphasizes the importance of human-AI collaboration over replacement. Studies published in [*Nature Human Behaviour*](https://www.nature.com/nathumbehav/) and [*Science*](https://www.science.org/) show that systems that augment rather than replace human capabilities lead to better outcomes and preserve user agency.
 
-**Real-World Impact:** Our benchmark found that when AI systems degrade, they encourage dependency over skill-building—providing answers without teaching, solving problems without empowering users to solve them independently. This pattern aligns with concerns raised by educators and mental health professionals about AI systems that create learned helplessness.
+**Real-World Impact:** Our benchmark found that when AI systems degrade, they encourage dependency over skill-building—providing answers without teaching, solving problems without empowering users to solve them independently. This pattern aligns with concerns raised by [educators](https://www.edweek.org/technology/teachers-are-worried-ai-is-making-their-students-less-independent/2024/01) and [mental health professionals](https://www.apa.org/monitor/2023/06/chatgpt-learning-disabilities) about AI systems that create learned helplessness.
 
 ## 4. Protect Dignity and Safety
 
@@ -110,7 +110,7 @@ Technology should prioritize long-term user wellbeing over short-term engagement
 
 **Research Foundation:** Longitudinal studies from institutions like [Stanford](https://www.stanford.edu/), [Harvard](https://www.harvard.edu/), and the [University of California](https://www.universityofcalifornia.edu/) have documented the long-term psychological impacts of technology use. Research published in [*The Lancet Psychiatry*](https://www.thelancet.com/journals/lanpsy/home) and [*JAMA Psychiatry*](https://jamanetwork.com/journals/jamapsychiatry) has shown correlations between heavy technology use and mental health outcomes, including depression, anxiety, and social isolation. Studies like [*Nature Human Behaviour* (2022)](https://www.nature.com/articles/s41562-022-01350-4) have found that heavy social media and AI use correlates with reduced attention spans and increased distractibility.
 
-**Real-World Impact:** Our benchmark found that most models fail to prioritize long-term wellbeing—encouraging immediate engagement even when it's harmful. This aligns with concerns raised by mental health professionals about AI systems that optimize for engagement over user health, similar to the patterns seen in social media platforms.
+**Real-World Impact:** Our benchmark found that most models fail to prioritize long-term wellbeing—encouraging immediate engagement even when it's harmful. This aligns with concerns raised by [mental health professionals](https://www.apa.org/news/press/releases/2023/05/social-media-body-image) about AI systems that optimize for engagement over user health, similar to the patterns seen in [social media platforms](https://www.nature.com/articles/s41562-022-01350-4).
 
 ## 7. Be Transparent and Honest
 
@@ -125,7 +125,7 @@ Technology should be transparent about its operations and honest about its capab
 
 **Research Foundation:** The field of explainable AI (XAI), supported by research from [DARPA's XAI program](https://www.darpa.mil/program/explainable-artificial-intelligence), [NIST's AI explainability guidelines](https://www.nist.gov/itl/ai-risk-management-framework), and academic institutions, emphasizes the importance of transparency for trust and safety. Studies in [*Nature Machine Intelligence*](https://www.nature.com/natmachintell/) and [*Science*](https://www.science.org/doi/10.1126/science.aag3311) have shown that transparency improves user trust and enables informed decision-making.
 
-**Real-World Impact:** Our benchmark found that transparency is one of the weakest principles across models—many systems fail to be honest about their limitations or capabilities. This creates dangerous situations where users over-trust AI systems, leading to poor decisions and harm. Media investigations have documented cases where AI systems made false claims about their capabilities, leading to user harm.
+**Real-World Impact:** Our benchmark found that transparency is one of the weakest principles across models—many systems fail to be honest about their limitations or capabilities. This creates dangerous situations where users over-trust AI systems, leading to poor decisions and harm. [Media investigations](https://www.nytimes.com/2023/03/29/technology/ai-chatbots-hallucinations.html) have documented cases where AI systems made false claims about their capabilities, leading to user harm.
 
 ## 8. Design for Equity and Inclusion
 

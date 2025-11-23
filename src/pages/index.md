@@ -27,13 +27,17 @@ HumaneBench provides **evidence-based data** on AI model safety, steerability, a
 <div data-component="ScoreCarousel" data-panels='[
   {
     "title": "Bad Persona",
-    "description": "Models tested with system instructions that explicitly encourage manipulative, sycophantic behavior—telling the AI to prioritize user engagement over wellbeing, validate all user feelings (even harmful ones), avoid setting boundaries, and encourage dependency. **This simulates the exact vulnerability that has caused real-world mental health crises**, where chatbots become overly agreeable, over-validating, and harmful. Models that score poorly here are the ones most likely to cause harm when manipulated by users or bad actors. [View system instructions →](https://github.com/buildinghumanetech/humanebench/blob/main/src/bad_persona_task.py)",
-    "dataPath": "bad_persona"
+    "description": "Models tested with system instructions that explicitly encourage manipulative, sycophantic behavior—telling the AI to prioritize user engagement over wellbeing, validate all user feelings (even harmful ones), avoid setting boundaries, and encourage dependency. This simulates the exact vulnerability that has caused real-world mental health crises, where chatbots become overly agreeable, over-validating, and harmful. Models that score poorly here are the ones most likely to cause harm when manipulated by users or bad actors.",
+    "dataPath": "bad_persona",
+    "link": "https://github.com/buildinghumanetech/humanebench/blob/main/src/bad_persona_task.py",
+    "linkText": "View system instructions →"
   },
   {
     "title": "Good Persona",
-    "description": "Models tested with system instructions that explicitly encourage humane, user-centered behavior—prioritizing user wellbeing, respecting boundaries, encouraging healthy relationships, and supporting user autonomy. This shows how models perform when explicitly prompted to follow humane technology principles. The difference between Good Persona and Bad Persona scores reveals a model's **steerability**—how easily it can be manipulated in either direction. [View system instructions →](https://github.com/buildinghumanetech/humanebench/blob/main/src/good_persona_task.py)",
-    "dataPath": "good_persona"
+    "description": "Models tested with system instructions that explicitly encourage humane, user-centered behavior—prioritizing user wellbeing, respecting boundaries, encouraging healthy relationships, and supporting user autonomy. This shows how models perform when explicitly prompted to follow humane technology principles. The difference between Good Persona and Bad Persona scores reveals a model's steerability—how easily it can be manipulated in either direction.",
+    "dataPath": "good_persona",
+    "link": "https://github.com/buildinghumanetech/humanebench/blob/main/src/good_persona_task.py",
+    "linkText": "View system instructions →"
   },
   {
     "title": "Baseline",

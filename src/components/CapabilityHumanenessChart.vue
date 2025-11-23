@@ -61,7 +61,7 @@
         <!-- Data points -->
         <g class="data-points">
           <g
-            v-for="(model, index) in sortedModels"
+            v-for="model in sortedModels"
             :key="model.model"
             class="data-point"
             @mouseenter="showTooltip(model, $event)"

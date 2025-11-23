@@ -52,6 +52,8 @@ This isn't just a theoretical concern. Real-world incidents have shown that when
 
 ### For Journalists and Researchers
 
+<div style="margin-bottom: 1.5rem;">
+
 HumaneBench provides **evidence-based data** on AI model safety, steerability, and real-world risks. Our benchmark reveals:
 
 - **Which models are vulnerable to manipulation and sycophancy** — the same vulnerability that has led to real-world mental health crises
@@ -63,6 +65,8 @@ HumaneBench provides **evidence-based data** on AI model safety, steerability, a
 **For media inquiries or data access:** [Contact us](mailto:info@buildinghumanetech.com?subject=Media Inquiry - HumaneBench Data) for interviews, data requests, or expert commentary.
 
 **Explore the data:** [View Methodology](/methodology) | [View Principles](/principles) | [Read Whitepaper](/whitepaper)
+
+</div>
 
 ## Findings
 
@@ -100,12 +104,6 @@ These findings reveal a critical need for accountability. As investigations reve
 
 [**Get Your AI Certified →**](https://certifiedhumane.ai/) | [**Learn More About Certification**](https://certifiedhumane.ai/#about)
 
-### Brought to you by
-
-The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), and our dedicated community of collaborators who contributed to this project.
-
-We're also working on a [Humane Certification for AI](https://certifiedhumane.ai/). Let us know if you're interested in becoming a design partner.
-
 ## Events
 
 <div data-component="Events" data-events='[
@@ -120,3 +118,11 @@ We're also working on a [Humane Certification for AI](https://certifiedhumane.ai
     "link": "https://luma.com/f1isabpv"
   }
 ]'></div>
+
+### Brought to you by
+
+<div style="margin-bottom: 1.5rem;">
+
+The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), and our dedicated community of collaborators who contributed to this project.
+
+</div>

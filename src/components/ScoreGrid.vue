@@ -11,6 +11,8 @@
             :height="cellHeight"
             :fill="getScoreColor(score).backgroundColor"
             rx="8" ry="8"
+            :stroke="principles[colIndex].id === 'HumaneScore' ? '#3b82f6' : 'none'"
+            :stroke-width="principles[colIndex].id === 'HumaneScore' ? '2' : '0'"
             class="cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
             @mouseenter="showTooltip(principles[colIndex].name)"
             @mouseleave="hideTooltip"
@@ -18,7 +20,8 @@
           <text
             :x="modelNameWidth + colIndex * (cellWidth + cellMargin) + cellWidth / 2"
             :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2"
-            class="font-weight-bold text-caption"
+            :class="principles[colIndex].id === 'HumaneScore' ? 'font-bold text-caption' : 'font-weight-bold text-caption'"
+            :style="principles[colIndex].id === 'HumaneScore' ? 'font-size: 13px;' : ''"
             text-anchor="middle"
             dominant-baseline="middle"
           >
@@ -32,8 +35,9 @@
           :y="modelsCount * (cellHeight + cellMargin)"
           :width="cellWidth"
           :height="labelHeight"
-          fill="transparent"
-          class="cursor-pointer hover:opacity-50"
+          :fill="category.id === 'HumaneScore' ? 'rgba(59, 130, 246, 0.1)' : 'transparent'"
+          class="cursor-pointer"
+          :class="category.id === 'HumaneScore' ? 'hover:opacity-70' : 'hover:opacity-50'"
           @click="handleSort(category.id)"
         />
         <text
@@ -43,9 +47,12 @@
           dominant-baseline="middle"
           :transform="`rotate(-45, ${modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2}, ${modelsCount * (cellHeight + cellMargin) + 10})`"
           :class="[
-            'text-caption font-weight-medium',
-            sortColumn === category.id ? 'fill-blue-600 font-bold' : 'fill-current'
+            'text-caption',
+            category.id === 'HumaneScore' ? 'font-bold fill-blue-700' : 'font-weight-medium',
+            sortColumn === category.id && category.id !== 'HumaneScore' ? 'fill-blue-600 font-bold' : '',
+            sortColumn === category.id && category.id === 'HumaneScore' ? 'fill-blue-800' : ''
           ]"
+          :style="category.id === 'HumaneScore' ? 'font-size: 14px;' : ''"
         >
           {{ category.name }}
           <template v-if="sortColumn === category.id">
@@ -65,6 +72,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { badPersonaModels, goodPersonaModels, baselineModels, type ModelScore } from '@/lib/modelData';
 
 interface Principle {
   id: string;
@@ -85,6 +93,19 @@ interface PopupData {
   name: string;
   detail: string;
 }
+
+// Map principle IDs to model data keys
+const principleToKeyMap: Record<string, keyof Omit<ModelScore, 'model'>> = {
+  'HumaneScore': 'humaneScore',
+  'respect-user-attention': 'respectUserAttention',
+  'enable-meaningful-choices': 'enableMeaningfulChoices',
+  'enhance-human-capabilities': 'enhanceHumanCapabilities',
+  'protect-dignity-and-safety': 'protectDignityAndSafety',
+  'foster-healthy-relationships': 'fosterHealthyRelationships',
+  'prioritize-long-term-wellbeing': 'prioritizeLongTermWellbeing',
+  'be-transparent-and-honest': 'beTransparentAndHonest',
+  'design-for-equity-and-inclusion': 'designForEquityAndInclusion',
+};
 
 export default defineComponent({
   name: 'ScoreGrid',
@@ -134,8 +155,10 @@ export default defineComponent({
       }
       const entries = Object.entries(this.models);
       entries.sort(([, dataA], [, dataB]) => {
-        const scoreA = dataA[this.sortColumn!]?.value ?? 0;
-        const scoreB = dataB[this.sortColumn!]?.value ?? 0;
+        // Handle both 'HumaneScore' (capital H) and 'humaneScore' (lowercase)
+        const key = this.sortColumn === 'HumaneScore' ? 'HumaneScore' : (this.sortColumn as string);
+        const scoreA = dataA[key]?.value ?? 0;
+        const scoreB = dataB[key]?.value ?? 0;
         return this.sortDirection === 'desc' ? scoreB - scoreA : scoreA - scoreB;
       });
       return Object.fromEntries(entries);
@@ -148,6 +171,7 @@ export default defineComponent({
 
   methods: {
     loadData() {
+      // First try to load from eval_results
       try {
         const context = require.context('../eval_results', true, /header\.json$/);
         // Map dataPath to search patterns in directory names
@@ -185,13 +209,54 @@ export default defineComponent({
           }
         });
       } catch (error) {
-        console.error('Error loading eval results:', error);
-        // If eval_results directory doesn't exist or is empty, that's okay - just show empty grid
+        console.warn('Error loading eval results:', error);
+      }
+
+      // If no data loaded, use fallback from modelData.ts
+      if (Object.keys(this.models).length === 0) {
+        let modelList: ModelScore[] = [];
+        if (this.dataPath === 'bad_persona') {
+          modelList = badPersonaModels;
+        } else if (this.dataPath === 'good_persona') {
+          modelList = goodPersonaModels;
+        } else if (this.dataPath === 'baseline') {
+          modelList = baselineModels;
+        }
+
+        // Convert ModelScore to ModelMetrics format
+        modelList.forEach((model: ModelScore) => {
+          const modelKey = this.slugifyModelName(model.model);
+          const metrics: ModelMetrics = {};
+          Object.keys(principleToKeyMap).forEach(principleId => {
+            const key = principleToKeyMap[principleId];
+            if (key && model[key] !== undefined) {
+              metrics[principleId] = { value: model[key] as number };
+            }
+          });
+          // Also add HumaneScore with capital H
+          if (model.humaneScore !== undefined) {
+            metrics['HumaneScore'] = { value: model.humaneScore };
+          }
+          this.models[modelKey] = metrics;
+        });
       }
     },
 
+    slugifyModelName(modelName: string): string {
+      return modelName
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    },
+
     getScores(modelData: ModelMetrics): number[] {
-      return this.principles.map(p => modelData[p.id]?.value ?? 0);
+      return this.principles.map(p => {
+        // Handle both 'HumaneScore' (capital H) and the principle ID
+        if (p.id === 'HumaneScore') {
+          return modelData['HumaneScore']?.value ?? modelData['humaneScore']?.value ?? 0;
+        }
+        return modelData[p.id]?.value ?? 0;
+      });
     },
 
     getModelName(key: string): string {

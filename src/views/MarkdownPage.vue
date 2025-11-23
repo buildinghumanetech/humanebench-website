@@ -163,10 +163,15 @@ export default defineComponent({
           app.mount(element);
           this.componentInstances.push(app);
         } else if (componentName === 'CapabilityHumanenessChart') {
-          const app = createApp(CapabilityHumanenessChart);
-          app.use(vuetify);
-          app.mount(element);
-          this.componentInstances.push(app);
+          try {
+            const app = createApp(CapabilityHumanenessChart);
+            app.use(vuetify);
+            app.mount(element);
+            this.componentInstances.push(app);
+          } catch (error) {
+            console.error('Error mounting CapabilityHumanenessChart:', error);
+            element.innerHTML = '<p class="text-error">Error loading chart. Please check the console for details.</p>';
+          }
         }
       });
     }

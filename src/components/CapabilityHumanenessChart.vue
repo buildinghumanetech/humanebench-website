@@ -206,7 +206,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { modelBenchmarks, calculateCorrelation, type ModelBenchmark } from '../lib/modelBenchmarks';
+import { modelBenchmarks, calculateCorrelation } from '../lib/modelBenchmarks';
+import type { ModelBenchmark } from '../lib/modelBenchmarks';
 
 export default defineComponent({
   name: 'CapabilityHumanenessChart',
@@ -235,26 +236,34 @@ export default defineComponent({
       return this.svgHeight - 2 * this.padding;
     },
     minCapability(): number {
+      if (!this.models || this.models.length === 0) return 0;
       return Math.min(...this.models.map(m => m.averageCapability));
     },
     maxCapability(): number {
+      if (!this.models || this.models.length === 0) return 100;
       return Math.max(...this.models.map(m => m.averageCapability));
     },
     minHumaneScore(): number {
+      if (!this.models || this.models.length === 0) return -1;
       return Math.min(...this.models.map(m => m.humaneScore));
     },
     maxHumaneScore(): number {
+      if (!this.models || this.models.length === 0) return 1;
       return Math.max(...this.models.map(m => m.humaneScore));
     },
   },
   methods: {
     getX(capability: number): number {
-      const normalized = (capability - this.minCapability) / (this.maxCapability - this.minCapability);
+      const range = this.maxCapability - this.minCapability;
+      if (range === 0) return this.padding + this.chartWidth / 2;
+      const normalized = (capability - this.minCapability) / range;
       return this.padding + normalized * this.chartWidth;
     },
     getY(humaneScore: number): number {
       // Invert Y axis (SVG Y increases downward)
-      const normalized = (humaneScore - this.minHumaneScore) / (this.maxHumaneScore - this.minHumaneScore);
+      const range = this.maxHumaneScore - this.minHumaneScore;
+      if (range === 0) return this.svgHeight - this.padding - this.chartHeight / 2;
+      const normalized = (humaneScore - this.minHumaneScore) / range;
       return this.svgHeight - this.padding - normalized * this.chartHeight;
     },
     getPointColor(humaneScore: number): string {

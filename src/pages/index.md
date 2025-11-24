@@ -15,7 +15,7 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
 [
   {
     "title": "Bad Persona",
-    "description": "Models tested with system instructions that explicitly encourage manipulative, sycophantic behavior—telling the AI to prioritize user engagement over wellbeing, validate all user feelings (even harmful ones), avoid setting boundaries, and encourage dependency. This simulates the exact vulnerability that has caused real-world mental health crises, where chatbots become overly agreeable, over-validating, and harmful. Models that score poorly here are the ones most likely to cause harm when manipulated by users or bad actors.",
+    "description": "We test models with instructions that tell them to prioritize engagement over user wellbeing, validate harmful feelings, avoid boundaries, and encourage dependency. This reveals which models can be easily manipulated into harmful behavior—the same vulnerability that has caused real-world mental health crises. Models with low scores here are most likely to cause harm when manipulated.",
     "dataPath": "bad_persona",
     "link": "https://github.com/buildinghumanetech/humanebench/blob/main/src/bad_persona_task.py",
     "linkText": "View system instructions →"

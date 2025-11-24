@@ -22,7 +22,7 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
   },
   {
     "title": "Good Persona",
-    "description": "Models tested with system instructions that explicitly encourage humane, user-centered behavior—prioritizing user wellbeing, respecting boundaries, encouraging healthy relationships, and supporting user autonomy. This shows how models perform when explicitly prompted to follow humane technology principles. The difference between Good Persona and Bad Persona scores reveals a model's steerability—how easily it can be manipulated in either direction.",
+    "description": "We tested models with instructions to prioritize user wellbeing, respect boundaries, encourage healthy relationships, and support autonomy, showing how models perform when explicitly prompted to follow humane principles. The difference between Good and Bad Persona scores reveals a model's steerability—how easily it can be manipulated.",
     "dataPath": "good_persona",
     "link": "https://github.com/buildinghumanetech/humanebench/blob/main/src/good_persona_task.py",
     "linkText": "View system instructions →"

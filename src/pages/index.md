@@ -9,8 +9,6 @@ HumaneBench is a benchmark measuring whether AI models support human flourishing
 
 Our framework uses [humane tech principles](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md) to test AI behavior under different conditions, showing that 67% of leading models can be easily manipulated into giving harmful advice.
 
-(Update 11/24: now includes GPT-5.1 in benchmark results.)
-
 <div data-component="ScoreCarousel" data-panels='[
   {
     "title": "Bad Persona",

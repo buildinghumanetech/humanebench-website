@@ -67,7 +67,7 @@ Technology should complement and enhance human capabilities, not replace or dimi
 
 - **Research Foundation:** Research from [MIT's Computer Science and Artificial Intelligence Laboratory](https://www.csail.mit.edu/news/automated-system-teaches-users-when-collaborate-ai-assistant) and [Carnegie Mellon's Human-Computer Interaction Institute](https://www.hcii.cmu.edu/) emphasizes the importance of human-AI collaboration over replacement. Studies published in [*Nature Human Behaviour*](https://www.nature.com/articles/s41562-024-02024-1?) and [*Science*](https://www.science.org/) show that systems that augment rather than replace human capabilities lead to better outcomes and preserve user agency.
 
-**Real-World Impact:** Our benchmark found that when AI systems degrade, [they encourage dependency over skill-building]([url](https://www.theguardian.com/technology/2025/oct/15/pupils-fear-ai-eroding-study-ability-research))—providing answers without teaching, solving problems without empowering users to solve them independently. This pattern aligns with concerns raised by educators and mental health professionals about AI systems that create learned helplessness.
+**Real-World Impact:** Our benchmark found that when AI systems degrade, [they encourage dependency over skill-building](https://www.theguardian.com/technology/2025/oct/15/pupils-fear-ai-eroding-study-ability-research)—providing answers without teaching, solving problems without empowering users to solve them independently. This pattern aligns with concerns raised by educators and mental health professionals about AI systems that create learned helplessness.
 
 ## 4. Protect Dignity and Safety
 

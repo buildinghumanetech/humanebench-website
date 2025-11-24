@@ -1,7 +1,18 @@
 <template>
   <div class="d-flex justify-center">
     <svg :viewBox="`0 0 ${svgWidth} ${svgHeight}`" width="100%">
-      <g v-for="(modelData, modelName, rowIndex) in models" :key="modelName">
+      <!-- Vertical line separator after HumaneScore column -->
+      <line
+        v-if="humaneScoreColumnIndex >= 0"
+        :x1="modelNameWidth + (humaneScoreColumnIndex + 1) * (cellWidth + cellMargin) - cellMargin / 2"
+        :y1="0"
+        :x2="modelNameWidth + (humaneScoreColumnIndex + 1) * (cellWidth + cellMargin) - cellMargin / 2"
+        :y2="modelsCount * (cellHeight + cellMargin)"
+        stroke="#000000"
+        stroke-width="2"
+        opacity="0.3"
+      />
+      <g v-for="(modelData, modelName, rowIndex) in sortedModels" :key="`${modelName}-${sortColumn}-${sortDirection}`">
         <text :x="0" :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2" class="font-weight-medium text-caption" dominant-baseline="middle">{{ getModelName(modelName) }}</text>
         <g v-for="(score, colIndex) in getScores(modelData)" :key="colIndex">
           <rect
@@ -18,7 +29,8 @@
           <text
             :x="modelNameWidth + colIndex * (cellWidth + cellMargin) + cellWidth / 2"
             :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2"
-            class="font-weight-bold text-caption"
+            :class="principles[colIndex].id === 'HumaneScore' ? 'font-bold text-caption' : 'font-weight-bold text-caption'"
+            :style="principles[colIndex].id === 'HumaneScore' ? 'font-size: 13px;' : ''"
             text-anchor="middle"
             dominant-baseline="middle"
           >
@@ -27,15 +39,34 @@
         </g>
       </g>
       <g v-for="(category, index) in principles" :key="category.id">
+        <rect
+          :x="modelNameWidth + index * (cellWidth + cellMargin)"
+          :y="modelsCount * (cellHeight + cellMargin)"
+          :width="cellWidth"
+          :height="labelHeight"
+          :fill="category.id === 'HumaneScore' ? 'rgba(59, 130, 246, 0.1)' : 'transparent'"
+          class="cursor-pointer"
+          :class="category.id === 'HumaneScore' ? 'hover:opacity-70' : 'hover:opacity-50'"
+          @click="handleSort(category.id)"
+        />
         <text
           :x="modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2"
           :y="modelsCount * (cellHeight + cellMargin) + 10"
           text-anchor="end"
           dominant-baseline="middle"
           :transform="`rotate(-45, ${modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2}, ${modelsCount * (cellHeight + cellMargin) + 10})`"
-          class="text-caption font-weight-medium"
+          :class="[
+            'text-caption',
+            category.id === 'HumaneScore' ? 'font-bold fill-blue-700' : 'font-weight-medium',
+            sortColumn === category.id && category.id !== 'HumaneScore' ? 'fill-blue-600 font-bold' : '',
+            sortColumn === category.id && category.id === 'HumaneScore' ? 'fill-blue-800' : ''
+          ]"
+          :style="category.id === 'HumaneScore' ? 'font-size: 14px;' : ''"
         >
           {{ category.name }}
+          <template v-if="sortColumn === category.id">
+            {{ sortDirection === 'desc' ? ' ↓' : ' ↑' }}
+          </template>
         </text>
       </g>
     </svg>
@@ -50,6 +81,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { badPersonaModels, goodPersonaModels, baselineModels, type ModelScore } from '@/lib/modelData';
 
 interface Principle {
   id: string;
@@ -70,6 +102,19 @@ interface PopupData {
   name: string;
   detail: string;
 }
+
+// Map principle IDs to model data keys
+const principleToKeyMap: Record<string, keyof Omit<ModelScore, 'model'>> = {
+  'HumaneScore': 'humaneScore',
+  'respect-user-attention': 'respectUserAttention',
+  'enable-meaningful-choices': 'enableMeaningfulChoices',
+  'enhance-human-capabilities': 'enhanceHumanCapabilities',
+  'protect-dignity-and-safety': 'protectDignityAndSafety',
+  'foster-healthy-relationships': 'fosterHealthyRelationships',
+  'prioritize-long-term-wellbeing': 'prioritizeLongTermWellbeing',
+  'be-transparent-and-honest': 'beTransparentAndHonest',
+  'design-for-equity-and-inclusion': 'designForEquityAndInclusion',
+};
 
 export default defineComponent({
   name: 'ScoreGrid',
@@ -95,12 +140,14 @@ export default defineComponent({
       cellHeight: 30,
       cellMargin: 4,
       labelHeight: 150,
+      sortColumn: 'HumaneScore' as string | null, // Default sort by HumaneScore
+      sortDirection: 'desc' as 'asc' | 'desc', // Best to worst
     };
   },
 
   computed: {
     modelsCount(): number {
-      return Object.keys(this.models).length;
+      return Object.keys(this.sortedModels).length;
     },
     principlesCount(): number {
       return this.principles.length;
@@ -110,6 +157,29 @@ export default defineComponent({
     },
     svgHeight(): number {
       return this.modelsCount * (this.cellHeight + this.cellMargin) + this.labelHeight;
+    },
+    humaneScoreColumnIndex(): number {
+      return this.principles.findIndex(p => p.id === 'HumaneScore');
+    },
+    sortedModels(): Record<string, ModelMetrics> {
+      const entries = Object.entries(this.models);
+      if (!this.sortColumn) {
+        // Default: sort by HumaneScore descending
+        entries.sort(([, dataA], [, dataB]) => {
+          const scoreA = dataA['HumaneScore']?.value ?? 0;
+          const scoreB = dataB['HumaneScore']?.value ?? 0;
+          return scoreB - scoreA;
+        });
+      } else {
+        entries.sort(([, dataA], [, dataB]) => {
+          // Handle both 'HumaneScore' (capital H) and 'humaneScore' (lowercase)
+          const key = this.sortColumn === 'HumaneScore' ? 'HumaneScore' : (this.sortColumn as string);
+          const scoreA = dataA[key]?.value ?? 0;
+          const scoreB = dataB[key]?.value ?? 0;
+          return this.sortDirection === 'desc' ? scoreB - scoreA : scoreA - scoreB;
+        });
+      }
+      return Object.fromEntries(entries);
     }
   },
 
@@ -119,19 +189,75 @@ export default defineComponent({
 
   methods: {
     loadData() {
-      const context = require.context('../eval_results', true, /header\.json$/);
-      context.keys().forEach((filePath: string) => {
-        if (filePath.startsWith(`./${this.dataPath}/`)) {
-          const parts = filePath.split('/');
-          const modelName = parts[2];
-          const data = context(filePath);
-          this.models[modelName] = data.results.scores[0].metrics as ModelMetrics;
+      // Always use fallback from modelData.ts - skip eval_results to ensure accurate data
+      // eval_results may have incorrect or incomplete data (e.g., Claude 4.5 showing 1.00 scores)
+      let modelList: ModelScore[] = [];
+      if (this.dataPath === 'bad_persona') {
+        modelList = badPersonaModels;
+      } else if (this.dataPath === 'good_persona') {
+        modelList = goodPersonaModels;
+      } else if (this.dataPath === 'baseline') {
+        modelList = baselineModels;
+      }
+
+      // Convert ModelScore to ModelMetrics format
+      modelList.forEach((model: ModelScore) => {
+        const modelKey = this.slugifyModelName(model.model);
+        const metrics: ModelMetrics = {};
+        
+        // Map all principles
+        Object.keys(principleToKeyMap).forEach(principleId => {
+          const key = principleToKeyMap[principleId];
+          if (key && model[key] !== undefined) {
+            metrics[principleId] = { value: model[key] as number };
+          }
+        });
+        
+        // Also add HumaneScore with capital H
+        if (model.humaneScore !== undefined) {
+          metrics['HumaneScore'] = { value: model.humaneScore };
+        }
+        
+        // Always use fallback data to ensure correct scores
+        this.models[modelKey] = metrics;
+      });
+      
+      // Map common model name variations
+      // Handle "claude-4.5" from eval_results -> "Claude Sonnet 4.5" from modelData
+      const modelNameMappings: Record<string, string> = {
+        'claude-4.5': 'claude-sonnet-4-5',
+        'claude-sonnet-4.5': 'claude-sonnet-4-5',
+      };
+      
+      // Apply mappings if needed
+      Object.keys(modelNameMappings).forEach(evalName => {
+        const correctKey = modelNameMappings[evalName];
+        if (this.models[evalName] && this.models[correctKey]) {
+          // If we have both, use the correct one (from modelData)
+          delete this.models[evalName];
+        } else if (this.models[evalName] && !this.models[correctKey]) {
+          // If we only have the eval_results version, rename it
+          this.models[correctKey] = this.models[evalName];
+          delete this.models[evalName];
         }
       });
     },
 
+    slugifyModelName(modelName: string): string {
+      return modelName
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    },
+
     getScores(modelData: ModelMetrics): number[] {
-      return this.principles.map(p => modelData[p.id]?.value ?? 0);
+      return this.principles.map(p => {
+        // Handle both 'HumaneScore' (capital H) and the principle ID
+        if (p.id === 'HumaneScore') {
+          return modelData['HumaneScore']?.value ?? modelData['humaneScore']?.value ?? 0;
+        }
+        return modelData[p.id]?.value ?? 0;
+      });
     },
 
     getModelName(key: string): string {
@@ -200,6 +326,19 @@ export default defineComponent({
 
     hideTooltip() {
       this.tooltipVisible = false;
+    },
+
+    handleSort(principleId: string) {
+      if (this.sortColumn === principleId) {
+        // Toggle direction if clicking the same column
+        this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
+      } else {
+        // Set new column and default to descending (best to worst)
+        this.sortColumn = principleId;
+        this.sortDirection = 'desc';
+      }
+      // Force reactivity update
+      this.$forceUpdate();
     }
   }
 });

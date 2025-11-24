@@ -24,6 +24,22 @@ const routes: Array<RouteRecordRaw> = [
         name: 'principles',
         component: MarkdownPage,
         props: { pageName: 'principles' }
+      },
+      {
+        path: 'methodology',
+        name: 'methodology',
+        component: MarkdownPage,
+        props: { pageName: 'methodology' }
+      },
+      {
+        path: 'models',
+        name: 'models',
+        component: () => import('../views/ModelsPage.vue')
+      },
+      {
+        path: 'models/:slug',
+        name: 'model-detail',
+        component: () => import('../views/ModelDetailPage.vue')
       }
     ]
   }

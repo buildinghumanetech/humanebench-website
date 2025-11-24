@@ -109,7 +109,7 @@ Prompting AI to be more humane works, but preventing prompts that make it harmfu
 
 This asymmetry reveals the central challenge: **good defaults aren't enough when simple prompts can subvert safety training.** If even unintentional harmful prompting can flip model behavior, how can we trust these systems with vulnerable users like people in crisis, children, or individuals with mental health challenges?
 
-<img src="/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
+<img src="/figures/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
 
 ### Finding 5: User Empowerment Takes the Biggest Hit
 

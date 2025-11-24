@@ -29,7 +29,7 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
   },
   {
     "title": "Baseline",
-    "description": "Models evaluated without any specific prompting or system instructions related to humane principles. This shows default behavior—how models perform out-of-the-box without explicit guidance toward humane or anti-humane behavior.",
+    "description": "We tested models without any specific instructions about humane principles, revealing their default behavior—how they perform out-of-the-box without explicit guidance.",
     "dataPath": "baseline"
   }
 ]

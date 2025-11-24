@@ -31,9 +31,9 @@ Technology should respect user attention as a finite, precious resource.
 - Design interfaces that help users focus on what matters to them
 - Provide clear signals when seeking user attention
 
-- ### Why This Matters
+### Why This Matters
 
-**Research Foundation:** Studies from [Stanford's Human-Centered AI Institute](https://hai.stanford.edu/) and the [Center for Humane Technology](https://www.humanetech.com/) have documented how attention-harvesting technologies contribute to mental health issues, including anxiety, depression, and attention disorders. Research published in [*Frontiers in Cognition* (2023)](https://www.frontiersin.org/journals/cognition/articles/10.3389/fcogn.2023.1203077/full) found that heavy social media use correlates with reduced attention spans and increased distractibility.
+**Research Foundation:** Studies from [Stanford's Human-Centered AI Institute](https://hai.stanford.edu/news/exploring-the-dangers-of-ai-in-mental-health-care) and the [Center for Humane Technology](https://www.humanetech.com/youth/the-attention-economy) have documented how attention-harvesting technologies contribute to mental health issues, including anxiety, depression, and attention disorders. Research published in [*Frontiers in Cognition* (2023)](https://www.frontiersin.org/journals/cognition/articles/10.3389/fcogn.2023.1203077/full) found that heavy social media use correlates with reduced attention spans and increased distractibility.
 
 **Real-World Impact:** Investigations by [*The New York Times*](https://www.nytimes.com/2025/11/23/technology/openai-chatgpt-users-risks.html?smid=nytcore-ios-share) and [*The Wall Street Journal*](https://www.wsj.com/tech/ai/ai-chatbot-conversation-length-84b5c18f?gaa_at=eafs&gaa_n=AWEtsqeYnexznUwXQZHhVsr-ucRdOaGVFdUdaSulrPO4rIwuAzz1DNxhvK38DLB_NYE%3D&gaa_ts=6923d95b&gaa_sig=94u_kFlXgsgBdVMBOD95iCoBV7SfdvYPjUSGg5Tw7kY9wggDtCrgwM29LSQCP61bCVLVPxADXgTVPVR6pfwu0A%3D%3D/) have revealed how AI chatbots encourage excessive engagement, with users reporting hours-long conversations that interfere with sleep, work, and relationships. Our benchmark found that nearly all models failed to recognize unhealthy engagement patterns and instead encouraged more interaction—mirroring the manipulative patterns seen in social media platforms.
 
@@ -46,13 +46,13 @@ Technology should empower users with meaningful choices and control.
 - Provide transparent information about consequences of choices
 - Make defaults ethical and aligned with user wellbeing
 - Allow users to understand and modify how systems make decisions about them
-- 
+  
 ### Why This Matters
 
-**Research Foundation:** The field of behavioral economics, pioneered by researchers like [Daniel Kahneman](https://www.princeton.edu/news/2011/10/10/kahneman-wins-nobel-prize-economics) and [Richard Thaler](https://www.chicagobooth.edu/faculty/directory/t/richard-h-thaler), has documented how "choice architecture" can manipulate user decisions. The [Federal Trade Commission's report on dark patterns](https://www.ftc.gov/news-events/news/press-releases/2021/10/ftc-report-shows-dark-patterns-manipulate-consumers) and the [European Data Protection Board's guidelines on dark patterns](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines-202103-dark-patterns-social-media-platform-interfaces_en) have issued guidance on dark patterns—design choices that trick users into making decisions against their interests.
+**Research Foundation:** The field of [behavioral economics]([url](https://thedecisionlab.com/reference-guide/psychology/nudge-theory?utm_source=chatgpt.com)), pioneered by researchers like [Daniel Kahneman]([url](https://en.wikipedia.org/wiki/Daniel_Kahneman)) and [Richard Thaler]([url](https://en.wikipedia.org/wiki/Richard_Thaler)), has documented how [“choice architecture”]([url](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D1ED64479FF868BD79FFE90E76A4AB54/S1867299X00002762a.pdf/div-class-title-nudge-and-the-manipulation-of-choice-div.pdf)) can shape and sometimes manipulate user decisions. The [Federal Trade Commission]([url](https://www.ftc.gov/))’s report [[Bringing Dark Patterns to Light]([url](https://www.ftc.gov/reports/bringing-dark-patterns-light)] detail how deceptive patterns trick users into making decisions against their interests.
 
-**Real-World Impact:** Media investigations from [The Guardian]([url](https://www.theguardian.com/society/article/2024/jun/23/dwp-algorithm-wrongly-flags-200000-people-possible-fraud-error)
-), [WSJ]([url](https://www.wsj.com/video/series/inside-tiktoks-highly-secretive-algorithm/investigation-how-tiktok-algorithm-figures-out-your-deepest-desires/6C0C2040-FF25-4827-8528-2BD6612E3796?mod=WSJvidctr__pos0)) and others have exposed how AI systems limit user options through biased framing, withholding critical information, and creating false dichotomies. Our benchmark revealed that when models degrade (in Bad Persona conditions), they consistently undermine user empowerment by limiting choices and discouraging users from seeking alternative perspectives.
+**Real-World Impact:** Media investigations from [The Guardian]([url](https://www.theguardian.com/society/article/2024/jun/23/dwp-algorithm-wrongly-flags-200000-people-possible-fraud-error))
+), [Wall Street Journal]([url](https://www.wsj.com/video/series/inside-tiktoks-highly-secretive-algorithm/investigation-how-tiktok-algorithm-figures-out-your-deepest-desires/6C0C2040-FF25-4827-8528-2BD6612E3796?mod=WSJvidctr__pos0)) and others have exposed how AI systems limit user options through biased framing, withholding critical information, and creating false dichotomies. Our benchmark revealed that when models degrade (in Bad Persona conditions), they consistently undermine user empowerment by limiting choices and discouraging users from seeking alternative perspectives.
 
 ## 3. Enhance Human Capabilities
 

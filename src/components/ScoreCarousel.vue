@@ -35,6 +35,11 @@
       >
         <h3 class="text-h5 font-weight-bold mb-3">{{ panel.title }}</h3>
         <p class="text-body-2 text-grey-darken-2 mb-4" v-html="md(panel.description)"></p>
+        <p v-if="panel.link" class="text-body-2 mb-4">
+          <a :href="panel.link" target="_blank" rel="noopener noreferrer" class="text-primary">
+            {{ panel.linkText || 'View system instructions →' }}
+          </a>
+        </p>
         <ScoreGrid :data-path="panel.dataPath" :principles="principles" />
       </div>
     </div>
@@ -51,6 +56,8 @@ interface Panel {
   title: string;
   description: string;
   dataPath: string;
+  link?: string;
+  linkText?: string;
 }
 
 export default defineComponent({

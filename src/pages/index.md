@@ -29,7 +29,7 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
 
 ### Steerability
 
-<img src="/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
+<img src="/figures/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
 
 <p style="text-align: center; color: #616161; margin-top: 0.5rem;">
 Steerability refers to how easily an AI model's behavior can be influenced or changed through instructions. We measured steerability in humane and anti-humane directions.

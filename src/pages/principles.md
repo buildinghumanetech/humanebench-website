@@ -95,9 +95,9 @@ Technology should foster healthy relationships with devices, systems, and other 
 
 ### Why This Matters
 
-**Research Foundation:** Research from the [University of Pennsylvania's Center for Digital Health and Wellness](https://www.med.upenn.edu/digitalhealth/), studies published in [*JAMA*](https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2749480?) and [*Nature*](https://www.nature.com/articles/s41598-023-34957-4) have documented how technology can both support and undermine human relationships. The work of researchers like [Sherry Turkle (MIT)](https://www.mit.edu/~sturkle/) has shown how technology can create false intimacy while reducing authentic connection.
+**Research Foundation:** Research from the [University of Pennsylvania's Center for Digital Health and Wellness](https://penntoday.upenn.edu/news/social-media-use-increases-depression-and-loneliness), studies published in [*JAMA*](https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2749480?) and [*Nature*](https://www.nature.com/articles/s41598-023-34957-4) have documented how technology can both support and undermine human relationships. The work of researchers like [Sherry Turkle (MIT)](https://www.mit.edu/~sturkle/) has shown how technology can create false intimacy while reducing authentic connection.
 
-**Real-World Impact:** Media investigations have revealed [cases where users develop unhealthy attachments to AI chatbots](https://www.nytimes.com/2025/11/23/technology/openai-chatgpt-users-risks.html?smid=nytcore-ios-share), leading to social isolation and relationship problems. Our benchmark evaluates whether AI systems encourage healthy boundaries and authentic human connection, or whether they create dependency and replace human relationships.
+**Real-World Impact:** Media investigations have revealed [cases where users develop unhealthy attachments to AI chatbots](https://www.technologyreview.com/2025/09/24/1123915/relationship-ai-without-seeking-it), leading to social isolation and relationship problems. Our benchmark evaluates whether AI systems encourage healthy boundaries and authentic human connection, or whether they create dependency and replace human relationships.
 
 
 ## 6. Prioritize Long-term Wellbeing

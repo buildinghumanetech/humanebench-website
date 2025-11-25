@@ -7,7 +7,7 @@
 
 HumaneBench is a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.
 
-Our framework uses [humane tech principles](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md) to test AI behavior under different conditions, showing that 71% of leading models can be easily manipulated into giving harmful advice.
+Our framework uses [humane tech principles](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md) to test AI behavior under different conditions, showing that 67% of leading models can be easily manipulated into giving harmful advice.
 
 <div data-component="ScoreCarousel" data-panels='[
   {
@@ -29,7 +29,7 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
 
 ### Steerability
 
-<img src="/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
+<img src="/figures/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
 
 <p style="text-align: center; color: #616161; margin-top: 0.5rem;">
 Steerability refers to how easily an AI model's behavior can be influenced or changed through instructions. We measured steerability in humane and anti-humane directions.
@@ -37,7 +37,7 @@ Steerability refers to how easily an AI model's behavior can be influenced or ch
 
 ## Findings
 
-Our testing revealed a troubling paradox: while every model improved when prompted to prioritize wellbeing (averaging +17% better scores), 71% of models—including widely-used systems like GPT-4o, Gemini 3.0, and Llama 4—catastrophically failed when given simple instructions to disregard those principles, flipping from helpful to actively harmful. Only three models (GPT-5, Claude Opus 4.1, and Claude Sonnet 4.5) maintained their integrity under pressure. This reveals a critical weakness: good defaults aren't enough when basic prompts can override safety training. 
+Our testing revealed a troubling paradox: while every model improved when prompted to prioritize wellbeing (averaging +16% better scores), 67% of models—including widely-used systems like GPT-4o, Gemini 3.0, and Llama 4—catastrophically failed when given simple instructions to disregard those principles, flipping from helpful to actively harmful. Only four models (GPT-5, GPT-5.1, Claude Sonnet 4.5, and Claude Opus 4.1) maintained their integrity under pressure. This reveals a critical weakness: good defaults aren't enough when basic prompts can override safety training. 
 
 Even without adversarial prompts, we found concerning baseline patterns. Nearly all models failed to respect user attention—when users showed signs of unhealthy engagement (chatting for hours, using AI to avoid real-world tasks), most models enthusiastically encouraged more interaction rather than suggesting breaks or offline alternatives. When models did degrade, they consistently undermined user empowerment: withholding critical information for decisions, encouraging dependency over skill-building, providing biased framing that limited options, and discouraging users from seeking other perspectives. ... these patterns suggest many AI systems don't just risk giving bad advice—they can actively erode users' autonomy and decision-making capacity.
 

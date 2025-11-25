@@ -49,6 +49,16 @@ The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Eri
 
 We're also working on a [Humane Certification for AI](https://certifiedhumane.ai/). Let us know if you're interested in becoming a design partner.
 
+## News
+
+<div data-component="News" data-news='[
+  {
+    "title": "A new AI benchmark tests whether chatbots protect human wellbeing",
+    "description": "TechCrunch covers HumaneBench, a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.",
+    "link": "https://techcrunch.com/2025/11/24/a-new-ai-benchmark-tests-whether-chatbots-protect-human-wellbeing/"
+  }
+]'></div>
+
 ## Events
 
 <div data-component="Events" data-events='[

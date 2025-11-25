@@ -16,6 +16,7 @@ import * as directives from 'vuetify/directives';
 import ScoreGrid from '@/components/ScoreGrid.vue';
 import ScoreCarousel from '@/components/ScoreCarousel.vue';
 import Events from '@/components/Events.vue';
+import News from '@/components/News.vue';
 import WhitepaperButton from '@/components/WhitepaperButton.vue';
 import { PRINCIPLES } from '@/constants/principles';
 // @ts-expect-error - raw-loader doesn't have type definitions
@@ -150,6 +151,17 @@ export default defineComponent({
 
           const app = createApp(Events, {
             events
+          });
+
+          app.use(vuetify);
+          app.mount(element);
+          this.componentInstances.push(app);
+        } else if (componentName === 'News') {
+          const newsData = element.getAttribute('data-news');
+          const news = newsData ? JSON.parse(newsData) : [];
+
+          const app = createApp(News, {
+            news
           });
 
           app.use(vuetify);

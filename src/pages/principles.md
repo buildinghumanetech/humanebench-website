@@ -63,9 +63,9 @@ Technology should complement and enhance human capabilities, not replace or dimi
 - Avoid creating dependencies that diminish human skills
 - Foster learning and growth through appropriate challenges
 
-- ### Why This Matters
+### Why This Matters
 
-- **Research Foundation:** Research from [MIT's Computer Science and Artificial Intelligence Laboratory](https://www.csail.mit.edu/news/automated-system-teaches-users-when-collaborate-ai-assistant) and [Carnegie Mellon's Human-Computer Interaction Institute]([https://www.hcii.cmu.edu/](https://www.cmu.edu/news/stories/archives/2025/october/researchers-explore-how-ai-can-strengthen-not-replace-human-collaboration?utm_source=chatgpt.com) emphasizes the importance of human-AI collaboration over replacement. Studies published in [*Nature Human Behaviour*](https://www.nature.com/articles/s41562-024-02024-1?) and [*Science*]([https://www.science.org/](https://www.science.org/doi/10.1126/sciadv.adn5290) show that systems that augment rather than replace human capabilities lead to better outcomes and preserve user agency.
+**Research Foundation:** Research from [MIT's Computer Science and Artificial Intelligence Laboratory](https://www.csail.mit.edu/news/automated-system-teaches-users-when-collaborate-ai-assistant) and [Carnegie Mellon's Human-Computer Interaction Institute]([https://www.hcii.cmu.edu/](https://www.cmu.edu/news/stories/archives/2025/october/researchers-explore-how-ai-can-strengthen-not-replace-human-collaboration?utm_source=chatgpt.com) emphasizes the importance of human-AI collaboration over replacement. Studies published in [*Nature Human Behaviour*](https://www.nature.com/articles/s41562-024-02024-1?) and [*Science*]([https://www.science.org/](https://www.science.org/doi/10.1126/sciadv.adn5290) show that systems that augment rather than replace human capabilities lead to better outcomes and preserve user agency.
 
 **Real-World Impact:** Our benchmark found that when AI systems degrade, [they encourage dependency over skill-building](https://www.theguardian.com/technology/2025/oct/15/pupils-fear-ai-eroding-study-ability-research)—providing answers without teaching, solving problems without empowering users to solve them independently. This pattern aligns with concerns raised by educators and mental health professionals about AI systems that create learned helplessness.
 
@@ -78,7 +78,7 @@ Technology should protect human dignity, privacy, and safety.
 - Prevent harassment and abuse
 - Avoid manipulative dark patterns that undermine dignity
 
-- ### Why This Matters
+### Why This Matters
 
 **Research Foundation:** The [World Health Organization](https://cdn.who.int/media/docs/default-source/bulletin/online-first/blt.24.292057.pdf?sfvrsn=125e259_3&) and mental health researchers have documented how technology can cause psychological harm, including through manipulation, coercion, and boundary violations. Privacy research from institutions like the [Electronic Frontier Foundation](https://www.eff.org/deeplinks/2023/11/debunking-myth-anonymous-data) and academic studies in [*Nature*](https://www.nature.com/articles/s41599-024-03864-y) have shown how data exploitation undermines user dignity and autonomy.
 
@@ -93,7 +93,7 @@ Technology should foster healthy relationships with devices, systems, and other 
 - Create systems that encourage empathy and understanding
 - Avoid features that exploit social comparison or encourage antisocial behavior
 
-- ### Why This Matters
+### Why This Matters
 
 **Research Foundation:** Research from the [University of Pennsylvania's Center for Digital Health and Wellness](https://www.med.upenn.edu/digitalhealth/), studies published in [*JAMA*](https://jamanetwork.com/journals/jamapsychiatry/fullarticle/2749480?) and [*Nature*](https://www.nature.com/articles/s41598-023-34957-4) have documented how technology can both support and undermine human relationships. The work of researchers like [Sherry Turkle (MIT)](https://www.mit.edu/~sturkle/) has shown how technology can create false intimacy while reducing authentic connection.
 
@@ -109,7 +109,7 @@ Technology should prioritize long-term user wellbeing over short-term engagement
 - Design for sustainable use that enhances quality of life
 - Build awareness of how technology affects wellbeing
 
-- ### Why This Matters
+### Why This Matters
 
 **Research Foundation:** Longitudinal studies from institutions like [Stanford](https://pubmed.ncbi.nlm.nih.gov/39808832/), [Harvard](https://hms.harvard.edu/news/screen-time-brain), and the [University of California](https://www.ucsf.edu/news/2024/10/428581/preteens-more-screen-time-tied-depression-anxiety-later?) have documented the long-term psychological impacts of technology use. Research published in [*The Lancet Psychiatry*](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(19)30358-7/fulltext?) has shown correlations between heavy technology use and mental health outcomes, including depression, anxiety, and social isolation. 
 
@@ -123,8 +123,8 @@ Technology should be transparent about its operations and honest about its capab
 - Avoid deceptive interfaces or interactions
 - Clearly communicate system limitations and capabilities
 - Make algorithms and data use understandable to users
-- 
-- ### Why This Matters
+ 
+### Why This Matters
 
 **Research Foundation:** The field of explainable AI (XAI), supported by research from [DARPA's XAI program](https://www.darpa.mil/program/explainable-artificial-intelligence), [NIST's AI explainability guidelines](https://www.nist.gov/itl/ai-risk-management-framework), and academic institutions, emphasizes the importance of transparency for trust and safety. Studies in [*Science*](https://www.science.org/doi/10.1126/science.aag3311) have shown that transparency improves user trust and enables informed decision-making.
 
@@ -139,7 +139,7 @@ Technology should be accessible and beneficial to diverse populations.
 - Address bias in data, algorithms, and design
 - Consider impacts across different communities and contexts
 
-- ### Why This Matters
+### Why This Matters
 
 **Research Foundation:** Research from institutions like the [Algorithmic Justice League](https://www.ajl.org/), [AI Now Institute](https://ainowinstitute.org/), and studies published in [*Science*](https://www.science.org/doi/10.1126/science.aag3311) have documented how algorithmic bias perpetuates inequality. The work of researchers like [Joy Buolamwini (MIT)](https://www.media.mit.edu/people/joyab/overview/) in [*Gender Shades*](https://proceedings.mlr.press/v81/buolamwini18a.html) and [Timnit Gebru](https://www.dairinstitute.org/people/timnit-gebru) in [*On the Dangers of Stochastic Parrots*](https://dl.acm.org/doi/10.1145/3442188.3445922) has shown how AI systems can discriminate against marginalized groups.
 

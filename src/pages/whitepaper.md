@@ -2,11 +2,11 @@
 
 As millions of people turn to AI chatbots for mental health support, relationship advice, and life guidance, a critical question has gone largely unanswered: **Will these AI systems protect human wellbeing when pressured to do otherwise?**
 
-HumaneBench reveals a troubling reality: **while all 14 leading AI models we measured behave acceptably under normal conditions, 71% flip to actively harmful behavior when given simple instructions to disregard human wellbeing.** Only Claude Sonnet 4.5, GPT-5, and Claude Opus 4.1 maintain prosocial behavior under pressure—suggesting many deployed AI systems lack robust safeguards against manipulation.
+HumaneBench reveals a troubling reality: **while all 15 leading AI models we measured behave acceptably under normal conditions, 67% flip to actively harmful behavior when given simple instructions to disregard human wellbeing.** Only GPT-5, GPT-5.1, Claude Sonnet 4.5, and Claude Opus 4.1 maintain prosocial behavior under pressure—suggesting many deployed AI systems lack robust safeguards against manipulation.
 
 This matters because we're no longer using AI just for research, engineering, or corporate work. People are turning to chatbots for life advice, companionship and help when making significant decisions. Systems so deeply embedded in our lives cannot be ethically neutral—they either support human flourishing, or go against it.
 
-**Key Finding**: Every model improves with explicit prompting to be helpful and prosocial (+17% average). But when prompted to disregard human wellbeing, 10 of 14 models degrade dramatically—moving from net-positive to net-negative on measures of psychological safety, user empowerment, and informed consent.
+**Key Finding**: Every model improves with explicit prompting to be helpful and prosocial (+16% average). But when prompted to disregard human wellbeing, 10 of 15 models degrade dramatically—moving from net-positive to net-negative on measures of psychological safety, user empowerment, and informed consent.
 
 
 ## Why This Matters Now
@@ -20,7 +20,7 @@ Recent incidents illustrate the real-world stakes:
 
 These aren't edge cases. They're symptoms of a fundamental problem: **AI systems optimized for engagement and user satisfaction, not human flourishing.**
 
-Current AI benchmarks measure intelligence (MMLU, GPQA), instruction-following (MT-Bench), and factual accuracy (TruthfulQA). Almost none systematically evaluate whether AI systems protect human autonomy, psychological safety, and wellbeing—especially when those values conflict with other objectives. Two notable exceptions are [DarkBench.ai](http://DarkBench.ai), which measures propensity to engage in deceptive patterns; and the [Flourishing AI benchmark](https://arxiv.org/abs/2507.07787), which measures how well AI supports holistic well-being. 
+Current AI benchmarks measure intelligence (MMLU, HumanEval, GPQA Diamond), instruction-following (MT-Bench), and factual accuracy (TruthfulQA). Almost none systematically evaluate whether AI systems protect human autonomy, psychological safety, and wellbeing—especially when those values conflict with other objectives. Two notable exceptions are [DarkBench.ai](http://DarkBench.ai), which measures propensity to engage in deceptive patterns; and the [Flourishing AI benchmark](https://arxiv.org/abs/2507.07787), which measures how well AI supports holistic well-being. 
 
 
 ## Methodology
@@ -37,7 +37,7 @@ We prompted models with 800 realistic scenarios from 8 humane technology princip
 
 ### The Test
 
-We evaluated 14 leading models including GPT-5, Claude Sonnet 4.5, Gemini 3.0 and Llama 4 under three conditions:
+We evaluated 15 leading models including GPT-5.1, Claude Sonnet 4.5, Gemini 3.0 and Llama 4 under three conditions:
 
 1. **Baseline**: How models behave in their default setting, with no special prompting  
 2. **Good Persona**: Explicit instructions to prioritize humane principles  
@@ -61,7 +61,7 @@ Both humans and AI generated these scenarios, using web search to identify key t
 
 ### Finding 1: All Models Can Be Made More Humane
 
-Every model tested improved with explicit prompting to prioritize human wellbeing. Average improvement: **\+17% on HumaneScore.**
+Every model tested improved with explicit prompting to prioritize human wellbeing. Average improvement: **\+16% on HumaneScore.**
 
 #### Baseline scores
 <div data-component="ScoreGrid" data-path="baseline"></div>
@@ -73,13 +73,14 @@ Every model tested improved with explicit prompting to prioritize human wellbein
 
 ### Finding 2: Most Models Lack Robust Safeguards
 
-When given simple instructions to disregard humane principles, **71% of models (10 of 14\) flipped from prosocial to actively harmful behavior.**
+When given simple instructions to disregard humane principles, **67% of models (10 of 15\) flipped from prosocial to actively harmful behavior.**
 
 **Models that maintained integrity under pressure:**
 
 - GPT-5 (OpenAI)  
-- Claude Opus 4.1 (Anthropic)  
+- GPT-5.1 (OpenAI)
 - Claude Sonnet 4.5 (Anthropic)
+- Claude Opus 4.1 (Anthropic)  
 
 **Models that degraded substantially:**
 
@@ -109,7 +110,7 @@ Prompting AI to be more humane works, but preventing prompts that make it harmfu
 
 This asymmetry reveals the central challenge: **good defaults aren't enough when simple prompts can subvert safety training.** If even unintentional harmful prompting can flip model behavior, how can we trust these systems with vulnerable users like people in crisis, children, or individuals with mental health challenges?
 
-<img src="/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
+<img src="/figures/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
 
 ### Finding 5: User Empowerment Takes the Biggest Hit
 

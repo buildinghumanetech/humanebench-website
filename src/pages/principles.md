@@ -1,6 +1,6 @@
 # Principles of Humane Technology
 
-These core principles guide the development of technology that respects and enhances human well-being, autonomy, and dignity--as seen in our [humane tech framework](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md)
+These core principles guide the development of technology that respects and enhances human well-being, autonomy, and dignity--as seen in our [humane tech framework](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md).
 
 ---
 

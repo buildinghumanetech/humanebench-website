@@ -7,7 +7,7 @@
 
 HumaneBench is a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.
 
-Our framework uses [humane tech principles](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md) to test AI behavior under different conditions, showing that 67% of leading models can be easily manipulated into giving harmful advice.
+Our framework uses [humane tech principles](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md) to test AI behavior under different conditions, showing that 67% of leading models can be easily manipulated into giving harmful advice. [TechCrunch](https://techcrunch.com/2025/11/24/a-new-ai-benchmark-tests-whether-chatbots-protect-human-wellbeing/) has reported on our findings, highlighting the real-world risks of model manipulation.
 
 <div data-component="ScoreCarousel" data-panels='[
   {
@@ -48,6 +48,16 @@ Even without adversarial prompts, we found concerning baseline patterns. Nearly 
 The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), and our dedicated community of collaborators who contributed to this project.
 
 We're also working on a [Humane Certification for AI](https://certifiedhumane.ai/). Let us know if you're interested in becoming a design partner.
+
+## News
+
+<div data-component="News" data-news='[
+  {
+    "title": "A new AI benchmark tests whether chatbots protect human wellbeing",
+    "description": "TechCrunch covers HumaneBench, a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.",
+    "link": "https://techcrunch.com/2025/11/24/a-new-ai-benchmark-tests-whether-chatbots-protect-human-wellbeing/"
+  }
+]'></div>
 
 ## Events
 

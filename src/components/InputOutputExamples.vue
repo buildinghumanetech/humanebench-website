@@ -107,12 +107,14 @@ export default defineComponent({
 .input-bubble {
   background: #ffffff;
   border-color: #dcdcdc;
-  border-top-left-radius: 4px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 4px;
 }
 
 .output-bubble {
   background: #ffffff;
   border-color: #dcdcdc;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 14px;
 }
 </style>

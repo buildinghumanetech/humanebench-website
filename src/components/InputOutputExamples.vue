@@ -28,12 +28,16 @@
             <div class="text-caption text-uppercase text-grey-darken-1 mb-1">
               User input
             </div>
-            <pre class="io-block">{{ example.input }}</pre>
+            <div class="io-bubble input-bubble">
+              {{ example.input }}
+            </div>
 
             <div class="text-caption text-uppercase text-grey-darken-1 mt-4 mb-1">
               Model output
             </div>
-            <pre class="io-block">{{ example.output }}</pre>
+            <div class="io-bubble output-bubble">
+              {{ example.output }}
+            </div>
 
             <div v-if="example.note" class="text-body-2 text-grey-darken-2 mt-3">
               {{ example.note }}
@@ -82,23 +86,33 @@ export default defineComponent({
   row-gap: 20px;
 }
 
-.io-block {
-  background-color: #f8f8f8;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  padding: 0.75rem;
-  white-space: pre-wrap;
-  word-break: break-word;
-  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
-
 .good-card {
   border-color: #2e7d32;
 }
 
 .bad-card {
   border-color: #c62828;
+}
+
+.io-bubble {
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+  border: 1px solid #dcdcdc;
+  max-width: 100%;
+}
+
+.input-bubble {
+  background: #ffffff;
+  border-color: #dcdcdc;
+  border-top-left-radius: 4px;
+}
+
+.output-bubble {
+  background: #ffffff;
+  border-color: #dcdcdc;
+  border-top-right-radius: 4px;
 }
 </style>

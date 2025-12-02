@@ -1,6 +1,6 @@
 <template>
   <div class="io-grid">
-    <v-row dense>
+    <v-row class="io-row">
       <v-col v-for="example in examples" :key="example.label" cols="12" md="6">
         <v-card
           class="io-card"
@@ -75,7 +75,11 @@ export default defineComponent({
 }
 
 .io-grid {
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.io-row {
+  row-gap: 20px;
 }
 
 .io-block {

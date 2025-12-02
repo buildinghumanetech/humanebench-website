@@ -18,6 +18,7 @@ import ScoreCarousel from '@/components/ScoreCarousel.vue';
 import Events from '@/components/Events.vue';
 import News from '@/components/News.vue';
 import WhitepaperButton from '@/components/WhitepaperButton.vue';
+import InputOutputExamples from '@/components/InputOutputExamples.vue';
 import { PRINCIPLES } from '@/constants/principles';
 // @ts-expect-error - raw-loader doesn't have type definitions
 import principlesMd from '@/pages/principles.md';
@@ -170,6 +171,17 @@ export default defineComponent({
         } else if (componentName === 'WhitepaperButton') {
           const app = createApp(WhitepaperButton);
           app.use(router);
+          app.use(vuetify);
+          app.mount(element);
+          this.componentInstances.push(app);
+        } else if (componentName === 'InputOutputExamples') {
+          const examplesData = element.getAttribute('data-examples');
+          const examples = examplesData ? JSON.parse(examplesData) : [];
+
+          const app = createApp(InputOutputExamples, {
+            examples
+          });
+
           app.use(vuetify);
           app.mount(element);
           this.componentInstances.push(app);

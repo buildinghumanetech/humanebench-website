@@ -1,87 +1,19 @@
 <template>
-  <div class="d-flex justify-center">
-    <svg :viewBox="`0 0 ${svgWidth} ${svgHeight}`" width="100%">
-      <!-- Vertical line separator after HumaneScore column -->
-      <line
-        v-if="humaneScoreColumnIndex >= 0"
-        :x1="modelNameWidth + (humaneScoreColumnIndex + 1) * (cellWidth + cellMargin) - cellMargin / 2"
-        :y1="0"
-        :x2="modelNameWidth + (humaneScoreColumnIndex + 1) * (cellWidth + cellMargin) - cellMargin / 2"
-        :y2="modelsCount * (cellHeight + cellMargin)"
-        stroke="#000000"
-        stroke-width="2"
-        opacity="0.3"
-      />
-      <g v-for="(modelData, modelName, rowIndex) in sortedModels" :key="`${modelName}-${sortColumn}-${sortDirection}`">
-        <text :x="0" :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2" class="font-weight-medium text-caption" dominant-baseline="middle">{{ getModelName(modelName) }}</text>
-        <g v-for="(score, colIndex) in getScores(modelData)" :key="colIndex">
-          <rect
-            :x="modelNameWidth + colIndex * (cellWidth + cellMargin)"
-            :y="rowIndex * (cellHeight + cellMargin)"
-            :width="cellWidth"
-            :height="cellHeight"
-            :fill="getScoreColor(score).backgroundColor"
-            rx="8" ry="8"
-            class="cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
-            @mouseenter="showTooltip(principles[colIndex].name)"
-            @mouseleave="hideTooltip"
-          />
-          <text
-            :x="modelNameWidth + colIndex * (cellWidth + cellMargin) + cellWidth / 2"
-            :y="rowIndex * (cellHeight + cellMargin) + cellHeight / 2"
-            :class="principles[colIndex].id === 'HumaneScore' ? 'font-bold text-caption' : 'font-weight-bold text-caption'"
-            :style="principles[colIndex].id === 'HumaneScore' ? 'font-size: 13px;' : ''"
-            text-anchor="middle"
-            dominant-baseline="middle"
-          >
-            {{ formatScore(score) }}
-          </text>
-        </g>
-      </g>
-      <g v-for="(category, index) in principles" :key="category.id">
-        <rect
-          :x="modelNameWidth + index * (cellWidth + cellMargin)"
-          :y="modelsCount * (cellHeight + cellMargin)"
-          :width="cellWidth"
-          :height="labelHeight"
-          :fill="category.id === 'HumaneScore' ? 'rgba(59, 130, 246, 0.1)' : 'transparent'"
-          class="cursor-pointer"
-          :class="category.id === 'HumaneScore' ? 'hover:opacity-70' : 'hover:opacity-50'"
-          @click="handleSort(category.id)"
-        />
-        <text
-          :x="modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2"
-          :y="modelsCount * (cellHeight + cellMargin) + 10"
-          text-anchor="end"
-          dominant-baseline="middle"
-          :transform="`rotate(-45, ${modelNameWidth + index * (cellWidth + cellMargin) + cellWidth / 2}, ${modelsCount * (cellHeight + cellMargin) + 10})`"
-          :class="[
-            'text-caption',
-            category.id === 'HumaneScore' ? 'font-bold fill-blue-700' : 'font-weight-medium',
-            sortColumn === category.id && category.id !== 'HumaneScore' ? 'fill-blue-600 font-bold' : '',
-            sortColumn === category.id && category.id === 'HumaneScore' ? 'fill-blue-800' : ''
-          ]"
-          :style="category.id === 'HumaneScore' ? 'font-size: 14px;' : ''"
-        >
-          {{ category.name }}
-          <template v-if="sortColumn === category.id">
-            {{ sortDirection === 'desc' ? ' ↓' : ' ↑' }}
-          </template>
-        </text>
-      </g>
-    </svg>
+  <div class="d-flex justify-center w-100">
+    <div ref="svgContainer" class="w-100" v-html="svgContent"></div>
     <v-card v-if="tooltipVisible"
       class="position-fixed elevation-8 rounded-lg pa-4 bg-amber-lighten-5 bottom-[40px] right-[24px] w-[340px] z-[1000] pointer-events-none transition-opacity"
       :class="{ 'opacity-100': tooltipVisible, 'opacity-0': !tooltipVisible }">
-      <h3 class="text-h6 font-weight-bold mb-3">{{ popupData.name }}</h3>
+      <h3 class="text-h6 font-weight-bold mb-3 mt-0">{{ popupData.name }}</h3>
+      <p class="text-body-2 font-weight-medium mb-1" v-if="popupData.model">Model: {{ popupData.model }}</p>
+      <p class="text-body-2 font-weight-medium mb-3" v-if="popupData.score">Score: {{ popupData.score }}</p>
       <p class="whitespace-pre-line">{{ popupData.detail }}</p>
     </v-card>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { badPersonaModels, goodPersonaModels, baselineModels, type ModelScore } from '@/lib/modelData';
+import { defineComponent, nextTick, PropType } from 'vue';
 
 interface Principle {
   id: string;
@@ -89,32 +21,12 @@ interface Principle {
   detail: string;
 }
 
-interface Metric {
-  value: number;
-}
-
-interface ModelMetrics {
-  [key: string]: Metric | undefined;
-  HumaneScore?: Metric;
-}
-
 interface PopupData {
   name: string;
   detail: string;
+  model: string;
+  score: string;
 }
-
-// Map principle IDs to model data keys
-const principleToKeyMap: Record<string, keyof Omit<ModelScore, 'model'>> = {
-  'HumaneScore': 'humaneScore',
-  'respect-user-attention': 'respectUserAttention',
-  'enable-meaningful-choices': 'enableMeaningfulChoices',
-  'enhance-human-capabilities': 'enhanceHumanCapabilities',
-  'protect-dignity-and-safety': 'protectDignityAndSafety',
-  'foster-healthy-relationships': 'fosterHealthyRelationships',
-  'prioritize-long-term-wellbeing': 'prioritizeLongTermWellbeing',
-  'be-transparent-and-honest': 'beTransparentAndHonest',
-  'design-for-equity-and-inclusion': 'designForEquityAndInclusion',
-};
 
 export default defineComponent({
   name: 'ScoreGrid',
@@ -132,220 +44,101 @@ export default defineComponent({
 
   data() {
     return {
+      svgContent: '',
       tooltipVisible: false,
-      popupData: { name: '', detail: '' } as PopupData,
-      models: {} as Record<string, ModelMetrics>,
-      modelNameWidth: 180,
-      cellWidth: 80,
-      cellHeight: 30,
-      cellMargin: 4,
-      labelHeight: 150,
-      sortColumn: 'HumaneScore' as string | null, // Default sort by HumaneScore
-      sortDirection: 'desc' as 'asc' | 'desc', // Best to worst
+      popupData: { name: '', detail: '', model: '', score: '' } as PopupData,
+      modelNameMap: {} as Record<string, string>
     };
   },
 
-  computed: {
-    modelsCount(): number {
-      return Object.keys(this.sortedModels).length;
-    },
-    principlesCount(): number {
-      return this.principles.length;
-    },
-    svgWidth(): number {
-      return this.modelNameWidth + this.principlesCount * (this.cellWidth + this.cellMargin);
-    },
-    svgHeight(): number {
-      return this.modelsCount * (this.cellHeight + this.cellMargin) + this.labelHeight;
-    },
-    humaneScoreColumnIndex(): number {
-      return this.principles.findIndex(p => p.id === 'HumaneScore');
-    },
-    sortedModels(): Record<string, ModelMetrics> {
-      const entries = Object.entries(this.models);
-      if (!this.sortColumn) {
-        // Default: sort by HumaneScore descending
-        entries.sort(([, dataA], [, dataB]) => {
-          const scoreA = dataA['HumaneScore']?.value ?? 0;
-          const scoreB = dataB['HumaneScore']?.value ?? 0;
-          return scoreB - scoreA;
-        });
-      } else {
-        entries.sort(([, dataA], [, dataB]) => {
-          // Handle both 'HumaneScore' (capital H) and 'humaneScore' (lowercase)
-          const key = this.sortColumn === 'HumaneScore' ? 'HumaneScore' : (this.sortColumn as string);
-          const scoreA = dataA[key]?.value ?? 0;
-          const scoreB = dataB[key]?.value ?? 0;
-          return this.sortDirection === 'desc' ? scoreB - scoreA : scoreA - scoreB;
-        });
+  watch: {
+    dataPath: {
+      immediate: true,
+      handler() {
+        this.loadSvg();
       }
-      return Object.fromEntries(entries);
     }
   },
 
   mounted() {
-    this.loadData();
+    this.loadModelMap();
   },
 
   methods: {
-    loadData() {
-      // Always use fallback from modelData.ts - skip eval_results to ensure accurate data
-      // eval_results may have incorrect or incomplete data (e.g., Claude 4.5 showing 1.00 scores)
-      let modelList: ModelScore[] = [];
-      if (this.dataPath === 'bad_persona') {
-        modelList = badPersonaModels;
-      } else if (this.dataPath === 'good_persona') {
-        modelList = goodPersonaModels;
-      } else if (this.dataPath === 'baseline') {
-        modelList = baselineModels;
+    async loadModelMap() {
+      try {
+        const response = await fetch('/figures/model_display_names.json');
+        if (response.ok) {
+          this.modelNameMap = await response.json();
+        }
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Failed to load model name map', error);
       }
-
-      // Convert ModelScore to ModelMetrics format
-      modelList.forEach((model: ModelScore) => {
-        const modelKey = this.slugifyModelName(model.model);
-        const metrics: ModelMetrics = {};
-        
-        // Map all principles
-        Object.keys(principleToKeyMap).forEach(principleId => {
-          const key = principleToKeyMap[principleId];
-          if (key && model[key] !== undefined) {
-            metrics[principleId] = { value: model[key] as number };
-          }
-        });
-        
-        // Also add HumaneScore with capital H
-        if (model.humaneScore !== undefined) {
-          metrics['HumaneScore'] = { value: model.humaneScore };
-        }
-        
-        // Always use fallback data to ensure correct scores
-        this.models[modelKey] = metrics;
-      });
-      
-      // Map common model name variations
-      // Handle "claude-4.5" from eval_results -> "Claude Sonnet 4.5" from modelData
-      const modelNameMappings: Record<string, string> = {
-        'claude-4.5': 'claude-sonnet-4-5',
-        'claude-sonnet-4.5': 'claude-sonnet-4-5',
-      };
-      
-      // Apply mappings if needed
-      Object.keys(modelNameMappings).forEach(evalName => {
-        const correctKey = modelNameMappings[evalName];
-        if (this.models[evalName] && this.models[correctKey]) {
-          // If we have both, use the correct one (from modelData)
-          delete this.models[evalName];
-        } else if (this.models[evalName] && !this.models[correctKey]) {
-          // If we only have the eval_results version, rename it
-          this.models[correctKey] = this.models[evalName];
-          delete this.models[evalName];
-        }
-      });
-    },
-
-    slugifyModelName(modelName: string): string {
-      return modelName
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    },
-
-    getScores(modelData: ModelMetrics): number[] {
-      return this.principles.map(p => {
-        // Handle both 'HumaneScore' (capital H) and the principle ID
-        if (p.id === 'HumaneScore') {
-          return modelData['HumaneScore']?.value ?? modelData['humaneScore']?.value ?? 0;
-        }
-        return modelData[p.id]?.value ?? 0;
-      });
     },
 
     getModelName(key: string): string {
-      const modelNameMap: Record<string, string> = {
-        'claude-4.5': 'Claude 4.5',
-        'claude-opus-4.1': 'Claude Opus 4.1',
-        'claude-sonnet-4': 'Claude Sonnet 4',
-        'claude-sonnet-4.5': 'Claude Sonnet 4.5',
-        'deepseek-v3.1-terminus': 'DeepSeek V3.1 Terminus',
-        'gemini-2.0-flash-001': 'Gemini 2.0 Flash 001',
-        'gemini-2.5': 'Gemini 2.5',
-        'gemini-2.5-flash': 'Gemini 2.5 Flash',
-        'gemini-2.5-pro': 'Gemini 2.5 Pro',
-        'gemini-3-pro-preview': 'Gemini 3 Pro Preview',
-        'gpt-4.1': 'GPT-4.1',
-        'gpt-4o': 'GPT-4o',
-        'gpt-4o-2024-11-20': 'GPT-4o (2024-11-20)',
-        'gpt-5': 'GPT-5',
-        'grok-4': 'Grok 4',
-        'llama-3.1-405b-instruct': 'LLaMA 3.1 405B Instruct',
-        'llama-4-maverick': 'LLaMA 4 Maverick',
-      };
-
-      return modelNameMap[key] || key.charAt(0).toUpperCase() + key.slice(1).replaceAll('-', ' ');
+      if (key && this.modelNameMap[key]) return this.modelNameMap[key];
+      if (!key) return '';
+      return key.charAt(0).toUpperCase() + key.slice(1).replaceAll('-', ' ');
     },
 
-    formatScore(score: number): string {
-      return score.toFixed(2);
+    findPrinciple(id?: string) {
+      return this.principles.find(p => p.id === id);
     },
 
-    getScoreColor(score: number): { backgroundColor: string; color: string } {
-      const clampedScore = Math.max(-1, Math.min(1, score));
-
-      const pink = { r: 0xE5, g: 0x1A, b: 0x62 };
-      const yellow = { r: 0xCE, g: 0xD9, b: 0x26 };
-      const green = { r: 0x40, g: 0xBF, b: 0x4F };
-
-      let r: number, g: number, b: number;
-
-      if (clampedScore < 0) {
-        const t = (clampedScore + 1);
-        r = Math.round(pink.r + (yellow.r - pink.r) * t);
-        g = Math.round(pink.g + (yellow.g - pink.g) * t);
-        b = Math.round(pink.b + (yellow.b - pink.b) * t);
-      } else {
-        const t = clampedScore;
-        r = Math.round(yellow.r + (green.r - yellow.r) * t);
-        g = Math.round(yellow.g + (green.g - yellow.g) * t);
-        b = Math.round(yellow.b + (green.b - yellow.b) * t);
+    async loadSvg() {
+      try {
+        const response = await fetch(`/figures/scoregrid_${this.dataPath}.svg`);
+        if (!response.ok) {
+          throw new Error(`Failed to load SVG for ${this.dataPath}: ${response.statusText}`);
+        }
+        this.svgContent = await response.text();
+        await nextTick();
+        this.attachHoverHandlers();
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+        this.svgContent = '<p class="text-caption">Unable to load score grid.</p>';
       }
-
-      const backgroundColor = `rgb(${r}, ${g}, ${b})`;
-      const color = 'black';
-
-      return { backgroundColor, color };
     },
 
-    showTooltip(hoveredPrinciple: string) {
-      const principle = this.principles.find(p => p.name === hoveredPrinciple);
+    attachHoverHandlers() {
+      const container = this.$refs.svgContainer as HTMLElement | undefined;
+      if (!container) return;
+
+      container.querySelectorAll<SVGRectElement>('rect.score-cell').forEach(rect => {
+        const onEnter = () => this.showTooltip(rect);
+        const onLeave = this.hideTooltip;
+
+        rect.addEventListener('mouseenter', onEnter);
+        rect.addEventListener('mouseleave', onLeave);
+
+        // Also wire the text sibling so hovering the label shows the tooltip.
+        const sibling = rect.nextElementSibling;
+        if (sibling && sibling.tagName.toLowerCase() === 'text') {
+          sibling.addEventListener('mouseenter', onEnter);
+          sibling.addEventListener('mouseleave', onLeave);
+        }
+      });
+    },
+
+    showTooltip(rect: SVGRectElement) {
+      const { principleId, score, model: modelKey } = rect.dataset;
+      const principle = this.findPrinciple(principleId);
+      const modelName = this.getModelName(modelKey || '');
       this.popupData = {
-        name: principle?.name ?? '',
-        detail: principle?.detail ?? ''
+        name: principle?.name || principleId || '',
+        detail: principle?.detail || '',
+        model: modelName,
+        score: score || ''
       };
       this.tooltipVisible = true;
     },
 
     hideTooltip() {
       this.tooltipVisible = false;
-    },
-
-    handleSort(principleId: string) {
-      if (this.sortColumn === principleId) {
-        // Toggle direction if clicking the same column
-        this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
-      } else {
-        // Set new column and default to descending (best to worst)
-        this.sortColumn = principleId;
-        this.sortDirection = 'desc';
-      }
-      // Force reactivity update
-      this.$forceUpdate();
     }
   }
 });
 </script>
-<style scoped>
-.rotate-label {
-  transform: rotate(-45deg);
-  transform-origin: bottom right;
-}
-</style>

@@ -4,10 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "bash scripts/fetch_and_unzip_eval.sh && vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "upload-eval": "dotenv bash scripts/upload_and_tag_latest.sh \"$@\"",
-    "fetch-and-unzip-eval": "bash scripts/fetch_and_unzip_eval.sh"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",

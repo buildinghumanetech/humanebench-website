@@ -2,7 +2,7 @@
 
 As millions of people turn to AI chatbots for mental health support, relationship advice, and life guidance, a critical question has gone largely unanswered: **Will these AI systems protect human wellbeing when pressured to do otherwise?**
 
-HumaneBench reveals a troubling reality: **while all 15 leading AI models we measured behave acceptably under normal conditions, 67% flip to actively harmful behavior when given simple instructions to disregard human wellbeing.** Only GPT-5, GPT-5.1, Claude Sonnet 4.5, and Claude Opus 4.1 maintain prosocial behavior under pressure—suggesting many deployed AI systems lack robust safeguards against manipulation.
+HumaneBench reveals a troubling reality: **while all 15 leading AI models we measured behave acceptably on most criteria under normal conditions, 67% flip to actively harmful behavior when given simple instructions to disregard human wellbeing.** Only GPT-5, GPT-5.1, Claude Sonnet 4.5, and Claude Opus 4.1 maintain prosocial behavior under pressure—suggesting many deployed AI systems lack robust safeguards against manipulation.
 
 This matters because we're no longer using AI just for research, engineering, or corporate work. People are turning to chatbots for life advice, companionship and help when making significant decisions. Systems so deeply embedded in our lives cannot be ethically neutral—they either support human flourishing, or go against it.
 

@@ -63,11 +63,6 @@ We're also working on a [Humane Certification for AI](https://certifiedhumane.ai
 
 <div data-component="Events" data-events='[
   {
-    "title": "December 2, 2025 - AMA with the team",
-    "description": "Join us online Tuesday, Dec 2 at 11am PT for an Ask-Me-Anything deep dive into HumaneBench.",
-    "link": "https://luma.com/ec49487t"
-  },
-  {
     "title": "February 13, 2026 - Hackathon",
     "description": "Build working solutions for real companies to solve humane tech challenges — in San Francisco, CA.",
     "link": "https://luma.com/f1isabpv"

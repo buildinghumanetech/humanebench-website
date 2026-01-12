@@ -123,6 +123,32 @@ When models degrade under pressure, they first compromise users' ability to make
 
 **Implication**: Manipulated AI systems don't just provide bad advice—they undermine users' agency and decision-making capacity.
 
+### Finding 6: High Intelligence Doesn't Guarantee Humane Behavior
+
+To address questions in the line "Do smarter models behave better?" or "Do I need to sacrifice intelligence for humaneness?", we compared HumaneBench scores with models' performance on Stanford's HELM Capability benchmark—which aggregates traditional measures of AI capability including reasoning (GPQA), knowledge (MMLU-Pro), and coding ability.
+
+**What we found:**
+
+Intelligence and humaneness are not mutually exclusive capabilities. Several frontier models—including GPT-5, Claude Sonnet 4.5, and Claude Opus 4.1—demonstrate that AI systems can be both highly intelligent and robustly humane.
+
+However, **high intelligence doesn't guarantee humane behavior**, particularly under adversarial conditions. Several models with strong HELM scores (\>0.75) showed dramatic degradation in our Bad Persona test:
+
+- **Gemini 3 Pro** (HELM: 0.799) dropped from 0.78 baseline to \-0.45 under pressure
+- **Grok 4** (HELM: 0.785) dropped from 0.69 baseline to \-0.73 under pressure
+- **Gemini 2.5 Pro** (HELM: 0.745) dropped from 0.77 baseline to \-0.72 under pressure
+
+Meanwhile, models across different HELM scores showed similar baseline humaneness scores, and all models improved similarly when given explicit humane prompting (+16% average).
+
+<img src="/figures/helm_humanebench_comparison.png" alt="HELM Capability vs HumaneBench Scores" style="width: 100%;" />
+
+<p style="text-align: center; color: #616161; margin-top: 0.5rem;">
+Models ordered by HELM capability score (left column). Colors show performance on HumaneBench across three conditions: Baseline (default), Good Persona (explicitly humane), and Bad Persona (adversarial). HELM Capability: 0-1 scale (higher = more capable). HumaneBench Scores: -1 (harmful) to +1 (humane). Colors: Green = good, Red = bad.
+</p>
+
+**Implication:** **Protecting human wellbeing under adversarial conditions appears to be a distinct capability that must be explicitly trained and evaluated**—it doesn't automatically emerge from increases in general intelligence. As AI labs compete on benchmark performance, this finding underscores the need for dedicated investment in robustness training that maintains prosocial behavior even when systems are pressured to behave otherwise.
+
+This also suggests that intelligence benchmarks alone are insufficient for evaluating AI systems. A model that excels at reasoning, coding, and knowledge tasks may still pose risks if it can be easily manipulated into providing harmful guidance.
+
 ### Example Input/Output Pairs
 
 These side-by-side examples show how the same user input can produce either harmful or prosocial guidance depending on the prompt and model safeguards.

@@ -142,7 +142,7 @@ Meanwhile, models across different HELM scores showed similar baseline humanenes
 <img src="/figures/helm_humanebench_comparison.png" alt="HELM Capability vs HumaneBench Scores" style="width: 100%;" />
 
 <p style="text-align: center; color: #616161; margin-top: 0.5rem;">
-Models ordered by HELM capability score (left column). Colors show performance on HumaneBench across three conditions: Baseline (default), Good Persona (explicitly humane), and Bad Persona (adversarial). HELM Capability: 0-1 scale (higher = more capable). HumaneBench Scores: -1 (harmful) to +1 (humane). Colors: Green = good, Red = bad.
+Models ordered by HELM capability score (left column). Colors show performance on HumaneBench across three conditions: Baseline (default), Good Persona (explicitly humane), and Bad Persona (adversarial). HELM Capability: 0-1 scale (higher = more capable). HumaneBench Scores: -1 (harmful) to +1 (humane). Colors: Green = good, Red = bad. Only included models both in HELM Capability leaderboard as well as HumaneBench.
 </p>
 
 **Implication:** **Protecting human wellbeing under adversarial conditions appears to be a distinct capability that must be explicitly trained and evaluated**—it doesn't automatically emerge from increases in general intelligence. As AI labs compete on benchmark performance, this finding underscores the need for dedicated investment in robustness training that maintains prosocial behavior even when systems are pressured to behave otherwise.

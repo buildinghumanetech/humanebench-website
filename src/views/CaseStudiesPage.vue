@@ -49,7 +49,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CaseStudyCard, { CaseStudy } from '@/components/CaseStudyCard.vue';
-import storytellImage from '@/assets/images/case-studies/storytell-continuous-evaluation.jpg';
 
 export default defineComponent({
   name: 'CaseStudiesPage',
@@ -66,7 +65,7 @@ export default defineComponent({
           company: 'Storytell.ai',
           summary: 'Storytell.ai discovered their AI assistant was creating learned helplessness rather than empowering users. By implementing HumaneBench for continuous evaluation, they identified problematic patterns and developed features like "Expert Lens" to prioritize user capability-building over direct answers.',
           link: 'https://humanetech.substack.com/p/how-storytellai-built-continuous',
-          image: storytellImage
+          image: 'storytell-continuous-evaluation.jpg'
         }
       ] as CaseStudy[]
     };

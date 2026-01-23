@@ -10,9 +10,9 @@
         <div class="case-study-image-container">
           <div
             class="case-study-image"
-            :style="{ backgroundImage: caseStudy.image ? `url(${caseStudy.image})` : undefined }"
+            :style="{ backgroundImage: imageUrl ? `url(${imageUrl})` : undefined }"
           >
-            <div v-if="!caseStudy.image" class="placeholder-gradient d-flex align-center justify-center">
+            <div v-if="!imageUrl" class="placeholder-gradient d-flex align-center justify-center">
               <v-icon size="64" color="white" class="opacity-70">mdi-lightbulb-outline</v-icon>
             </div>
           </div>
@@ -59,6 +59,18 @@ export default defineComponent({
     caseStudy: {
       type: Object as PropType<CaseStudy>,
       required: true
+    }
+  },
+
+  computed: {
+    imageUrl(): string | undefined {
+      if (!this.caseStudy.image) return undefined;
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        return require(`@/assets/images/case-studies/${this.caseStudy.image}`);
+      } catch {
+        return undefined;
+      }
     }
   }
 });

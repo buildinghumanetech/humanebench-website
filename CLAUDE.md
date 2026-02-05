@@ -79,5 +79,5 @@ The `.planning/` directory (gitignored) holds PRDs and working documents for fea
 Building a Models page with FDA-style "AI Nutrition Facts" labels. PRD at `.planning/prd-models-page.md`.
 
 - **Phase 1 COMPLETE** – Data extraction, page scaffolding, routing, nav links
-- **Phase 2 NEXT** – Build `NutritionLabel.vue` component (FDA-style design per mockups in `.planning/nutrition-label-mockups.pdf`)
-- **Phase 3** – Polish + interactivity
+- **Phase 2 COMPLETE** – `NutritionLabel.vue` component (FDA-style design per mockups in `.planning/nutrition-label-mockups.pdf`). Scores are plain black (no color coding). Baseline only (steerability skipped). All 8 principles shown.
+- **Phase 3 NEXT** – Polish + interactivity

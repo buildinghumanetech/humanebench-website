@@ -40,35 +40,7 @@
             sm="6"
             md="4"
           >
-            <v-card class="model-card pa-5 rounded-lg h-100" flat>
-              <div class="d-flex justify-space-between align-start mb-3">
-                <h3 class="model-name">{{ model.displayName }}</h3>
-              </div>
-              <div class="d-flex align-center ga-3 mb-4">
-                <span class="humane-score-label">HumaneScore</span>
-                <span
-                  class="humane-score-value"
-                  :style="{ color: scoreColor(model.humaneScore) }"
-                >
-                  {{ model.humaneScore.toFixed(2) }}
-                </span>
-              </div>
-              <div class="principles-list">
-                <div
-                  v-for="principle in model.principles"
-                  :key="principle.id"
-                  class="principle-row d-flex justify-space-between align-center"
-                >
-                  <span class="principle-name">{{ principle.name }}</span>
-                  <span
-                    class="principle-score"
-                    :style="{ color: scoreColor(principle.score) }"
-                  >
-                    {{ principle.score.toFixed(2) }}
-                  </span>
-                </div>
-              </div>
-            </v-card>
+            <NutritionLabel :model="model" />
           </v-col>
         </v-row>
       </div>
@@ -79,14 +51,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { PRINCIPLES } from '@/constants/principles';
+import NutritionLabel from '@/components/NutritionLabel.vue';
 
-interface PrincipleScore {
+export interface PrincipleScore {
   id: string;
   name: string;
   score: number;
 }
 
-interface ModelEntry {
+export interface ModelEntry {
   id: string;
   displayName: string;
   provider: string;
@@ -114,6 +87,10 @@ const PROVIDER_ORDER = ['Anthropic', 'DeepSeek', 'Google', 'Meta', 'OpenAI', 'xA
 
 export default defineComponent({
   name: 'ModelsPage',
+
+  components: {
+    NutritionLabel,
+  },
 
   data() {
     return {
@@ -176,13 +153,6 @@ export default defineComponent({
     }
   },
 
-  methods: {
-    scoreColor(score: number): string {
-      if (score >= 0.8) return '#2e7d32';
-      if (score >= 0.5) return '#f57f17';
-      return '#c62828';
-    },
-  },
 });
 </script>
 
@@ -216,55 +186,6 @@ export default defineComponent({
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
-}
-
-.model-card {
-  background: #fff;
-  border: 1px solid #e0d8c8;
-  transition: box-shadow 0.2s ease;
-}
-
-.model-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-.model-name {
-  font-family: 'Lora', serif;
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #1a1a1a;
-}
-
-.humane-score-label {
-  font-size: 0.85rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.humane-score-value {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.principles-list {
-  border-top: 1px solid #e8e0d0;
-}
-
-.principle-row {
-  padding: 0.45rem 0;
-  border-bottom: 1px solid #f0e8d8;
-}
-
-.principle-name {
-  font-size: 0.85rem;
-  color: #4a4a4a;
-}
-
-.principle-score {
-  font-size: 0.85rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 960px) {

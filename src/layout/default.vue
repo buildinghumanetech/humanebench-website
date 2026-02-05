@@ -13,6 +13,7 @@
           <v-btn text class="text-none" @click="$router.push({ name: 'principles' })">Principles</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'whitepaper' })">Whitepaper</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'case-studies' })">Case Studies</v-btn>
+          <v-btn text class="text-none" @click="$router.push({ name: 'models' })">Models</v-btn>
           <v-btn text class="text-none" href="mailto:info@buildinghumanetech.com">Contact</v-btn>
           <v-btn text class="text-none" href="https://github.com/buildinghumanetech/humanebench" target="_blank">
             <v-icon left size="20">mdi-github</v-icon>
@@ -36,6 +37,9 @@
         </v-list-item>
         <v-list-item @click="$router.push({ name: 'case-studies' })">
           <v-list-item-title>Case Studies</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="$router.push({ name: 'models' })">
+          <v-list-item-title>Models</v-list-item-title>
         </v-list-item>
         <v-list-item href="mailto:info@buildinghumanetech.com">
           <v-list-item-title>Contact</v-list-item-title>

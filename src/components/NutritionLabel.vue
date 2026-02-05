@@ -1,5 +1,5 @@
 <template>
-  <div class="nutrition-label">
+  <div class="nutrition-label" :class="{ 'nutrition-label--clickable': clickable }">
     <!-- Title -->
     <div class="nutrition-title">AI Nutrition Facts</div>
 
@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import { defineComponent, type PropType } from 'vue';
-import type { ModelEntry } from '@/views/ModelsPage.vue';
+import type { ModelEntry } from '@/utils/modelData';
 
 export default defineComponent({
   name: 'NutritionLabel',
@@ -55,6 +55,10 @@ export default defineComponent({
     model: {
       type: Object as PropType<ModelEntry>,
       required: true,
+    },
+    clickable: {
+      type: Boolean,
+      default: false,
     },
   },
 });
@@ -73,6 +77,14 @@ export default defineComponent({
 
 .nutrition-label:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.nutrition-label--clickable {
+  cursor: pointer;
+}
+
+.nutrition-label--clickable:hover {
+  border-color: #5539EC;
 }
 
 .nutrition-title {

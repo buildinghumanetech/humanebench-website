@@ -39,6 +39,7 @@ Current routes:
 - `/principles` – Principles (MarkdownPage, pageName: 'principles')
 - `/case-studies` – Case Studies (CaseStudiesPage)
 - `/models` – Models (ModelsPage)
+- `/models/:modelId` – Model Detail (ModelDetailPage, props: true)
 
 **To add a new page:** Create a view component in `src/views/`, add a route in `src/router/index.ts` as a child of the DefaultLayout route, and add a nav link in `src/layout/default.vue` (both the desktop nav buttons and the mobile navigation drawer).
 
@@ -80,4 +81,14 @@ Building a Models page with FDA-style "AI Nutrition Facts" labels. PRD at `.plan
 
 - **Phase 1 COMPLETE** – Data extraction, page scaffolding, routing, nav links
 - **Phase 2 COMPLETE** – `NutritionLabel.vue` component (FDA-style design per mockups in `.planning/nutrition-label-mockups.pdf`). Scores are plain black (no color coding). Baseline only (steerability skipped). All 8 principles shown.
-- **Phase 3 NEXT** – Polish + interactivity
+- **Phase 3 COMPLETE** – Individual model detail pages (`/models/:modelId`), nav dropdown, steerability analysis, detailed scores table, auto-generated insights, shared data utility (`src/utils/modelData.ts`)
+- **Phase 4 NEXT** – Visual redesign pass based on Erika's inspirational HTML mockup
+
+### Key architecture (Phase 3)
+
+- `src/utils/modelData.ts` – Shared data layer (types, fetch functions, steerability calc, insights). All model-related components import from here.
+- `src/views/ModelDetailPage.vue` – Individual model page (breadcrumbs, score cards, steerability analysis, detailed table, insights, sticky sidebar NutritionLabel)
+- `src/components/ModelNotFound.vue` – 404 fallback for invalid model IDs
+- `src/views/ModelsPage.vue` – Index/hub page with clickable NutritionLabels linking to detail pages
+- `src/layout/default.vue` – Nav dropdown (desktop `v-menu`, mobile `v-list-group`) listing all models by provider
+- Route: `/models/:modelId` (name: `model-detail`, props: true)

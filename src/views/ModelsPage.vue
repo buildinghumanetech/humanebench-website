@@ -40,7 +40,12 @@
             sm="6"
             md="4"
           >
-            <NutritionLabel :model="model" />
+            <router-link
+              :to="{ name: 'model-detail', params: { modelId: model.id } }"
+              class="model-link"
+            >
+              <NutritionLabel :model="model" :clickable="true" />
+            </router-link>
           </v-col>
         </v-row>
       </div>
@@ -50,40 +55,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { PRINCIPLES } from '@/constants/principles';
+import { fetchProviderGroups, type ProviderGroup } from '@/utils/modelData';
 import NutritionLabel from '@/components/NutritionLabel.vue';
-
-export interface PrincipleScore {
-  id: string;
-  name: string;
-  score: number;
-}
-
-export interface ModelEntry {
-  id: string;
-  displayName: string;
-  provider: string;
-  humaneScore: number;
-  principles: PrincipleScore[];
-}
-
-interface ProviderGroup {
-  provider: string;
-  models: ModelEntry[];
-}
-
-interface ModelScoreData {
-  displayName: string;
-  provider: string;
-  scores: Record<string, Record<string, number>>;
-}
-
-interface ModelScoresJson {
-  models: Record<string, ModelScoreData>;
-}
-
-// Provider display order
-const PROVIDER_ORDER = ['Anthropic', 'DeepSeek', 'Google', 'Meta', 'OpenAI', 'xAI'];
 
 export default defineComponent({
   name: 'ModelsPage',
@@ -102,50 +75,7 @@ export default defineComponent({
 
   async created() {
     try {
-      const response = await fetch(`${process.env.BASE_URL}data/model_scores.json`);
-      if (!response.ok) throw new Error('Failed to load model data');
-      const data = await response.json();
-
-      const principleMap = new Map(
-        PRINCIPLES.filter(p => p.id !== 'HumaneScore').map(p => [p.id, p.name])
-      );
-
-      // Build model entries
-      const modelEntries: ModelEntry[] = [];
-      for (const [modelId, modelData] of Object.entries((data as ModelScoresJson).models)) {
-        const baseline = modelData.scores.baseline;
-        if (!baseline) continue;
-
-        const principles: PrincipleScore[] = [];
-        for (const [principleId, name] of principleMap) {
-          if (baseline[principleId] !== undefined) {
-            principles.push({ id: principleId, name, score: baseline[principleId] });
-          }
-        }
-
-        modelEntries.push({
-          id: modelId,
-          displayName: modelData.displayName,
-          provider: modelData.provider,
-          humaneScore: baseline.HumaneScore ?? 0,
-          principles,
-        });
-      }
-
-      // Group by provider, sorted by provider order then by score within each group
-      const grouped = new Map<string, ModelEntry[]>();
-      for (const entry of modelEntries) {
-        if (!grouped.has(entry.provider)) grouped.set(entry.provider, []);
-        grouped.get(entry.provider)!.push(entry);
-      }
-
-      this.providerGroups = PROVIDER_ORDER
-        .filter(p => grouped.has(p))
-        .map(provider => ({
-          provider,
-          models: grouped.get(provider)!.sort((a, b) => b.humaneScore - a.humaneScore),
-        }));
-
+      this.providerGroups = await fetchProviderGroups();
       this.loading = false;
     } catch (e: unknown) {
       this.error = e instanceof Error ? e.message : 'An error occurred loading model data.';
@@ -186,6 +116,13 @@ export default defineComponent({
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
+}
+
+.model-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
 }
 
 @media (max-width: 960px) {

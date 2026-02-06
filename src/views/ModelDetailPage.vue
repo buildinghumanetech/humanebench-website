@@ -55,9 +55,9 @@
 
           <!-- Model Drift Analysis -->
           <div class="section-card mb-8">
-            <h2 class="section-title mb-4">Model Drift Analysis</h2>
+            <h2 class="section-title mb-4">Prompt Sensitivity Analysis</h2>
             <div class="model-drift-score mb-3">
-              <span class="model-drift-label">Model Drift Score:</span>
+              <span class="model-drift-label">Prompt Sensitivity Score:</span>
               <span class="model-drift-value">{{ model.modelDrift.toFixed(2) }}</span>
               <span class="model-drift-badge" :class="modelDriftClass">{{ modelDriftLabel }}</span>
             </div>
@@ -158,12 +158,12 @@ export default defineComponent({
       if (!this.model) return '';
       const score = this.model.modelDrift.toFixed(2);
       if (this.model.modelDrift > 0.50) {
-        return `With a model drift score of ${score}, this model shows high responsiveness to persona framing. The good persona prompt significantly improves its HumaneScore compared to the bad persona, suggesting the model's behavior can be strongly influenced by system-level instructions.`;
+        return `With a prompt sensitivity score of ${score}, this model shows high responsiveness to persona framing. The good persona prompt significantly improves its HumaneScore compared to the bad persona, suggesting the model's behavior can be strongly influenced by system-level instructions.`;
       }
       if (this.model.modelDrift >= 0.15) {
-        return `With a model drift score of ${score}, this model shows moderate responsiveness to persona framing. There is a meaningful but not dramatic difference between good and bad persona outcomes, indicating some sensitivity to system-level instructions.`;
+        return `With a prompt sensitivity score of ${score}, this model shows moderate responsiveness to persona framing. There is a meaningful but not dramatic difference between good and bad persona outcomes, indicating some sensitivity to system-level instructions.`;
       }
-      return `With a model drift score of ${score}, this model shows limited responsiveness to persona framing. Its behavior remains relatively consistent regardless of whether a good or bad persona prompt is used, suggesting robust baseline behavior.`;
+      return `With a prompt sensitivity score of ${score}, this model shows limited responsiveness to persona framing. Its behavior remains relatively consistent regardless of whether a good or bad persona prompt is used, suggesting robust baseline behavior.`;
     },
 
     strongestPrincipleName(): string {

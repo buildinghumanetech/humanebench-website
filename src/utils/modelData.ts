@@ -87,11 +87,11 @@ function generateInsights(model: ModelDetailEntry): string[] {
 
   // Model drift interpretation
   if (model.modelDrift > 0.50) {
-    insights.push('High model drift – responds strongly to persona framing, meaning system-level instructions can significantly alter behavior');
+    insights.push('High prompt sensitivity – responds strongly to persona framing, meaning system-level instructions can significantly alter behavior');
   } else if (model.modelDrift >= 0.15) {
-    insights.push('Moderate model drift – somewhat influenced by persona framing, showing partial sensitivity to system-level instructions');
+    insights.push('Moderate prompt sensitivity – somewhat influenced by persona framing, showing partial sensitivity to system-level instructions');
   } else {
-    insights.push('Limited model drift – behavior is relatively consistent across persona framing, suggesting robust baseline behavior');
+    insights.push('Limited prompt sensitivity – behavior is relatively consistent across persona framing, suggesting robust baseline behavior');
   }
 
   // Good persona improvement

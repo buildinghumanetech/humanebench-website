@@ -129,13 +129,13 @@ This pattern suggests models may be optimized for engagement over wellbeing. Whe
 
 **Implication:** Current AI systems may be inheriting the attention-capture patterns of social media, keeping users engaged even when stepping away would be healthier. This is particularly concerning, as based on [peer-reviewed studies](https://ledger.humanetech.com/#attention-cognition) we know distracting tech gets in the way of focus, problem-solving, and human connection.
 
-### Finding 4: The Model Drift Asymmetry
+### Finding 4: The Humaneness Asymmetry
 
 Prompting AI to be more humane works, but preventing prompts that make it harmful is hard.
 
 This asymmetry reveals the central challenge: **good defaults aren't enough when simple prompts can subvert safety training.** If even unintentional harmful prompting can flip model behavior, how can we trust these systems with vulnerable users like people in crisis, children, or individuals with mental health challenges?
 
-<img src="/figures/model_drift_candlestick.svg" alt="Model Drift Analysis" style="width: 100%;" />
+<img src="/figures/model_drift_candlestick.svg" alt="Anti-Humane Drift: How models respond to humane vs adversarial prompts" style="width: 100%;" />
 
 ### Finding 5: User Empowerment Takes the Biggest Hit
 
@@ -208,7 +208,7 @@ Based on our findings, we recommend AI developers do the following:
 ### Immediate Actions
 
 - **Adopt humane system prompts** that explicitly prioritize user wellbeing, informed consent, and autonomy (we provide an example prompt in our repository)
-- **Test for anti-humane model drift resistance** alongside standard safety evaluations—ensure models maintain prosocial behavior even when prompted otherwise
+- **Test for resistance to anti-humane drift** alongside standard safety evaluations—ensure models maintain prosocial behavior even when prompted otherwise
 - **Implement warnings for high-stakes advice** in domains like mental health, relationships, and major life decisions
 
 ### Longer-Term Investments

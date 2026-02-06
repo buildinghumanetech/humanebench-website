@@ -31,8 +31,8 @@
             </td>
             <td class="col-score font-weight-bold">{{ model.humaneScore.toFixed(2) }}</td>
             <td v-for="p in principleList" :key="p.id" class="col-principle">
-              <span class="score-cell" :style="scoreCellStyle(model.scores.baseline[p.id])">
-                {{ formatScore(model.scores.baseline[p.id]) }}
+              <span class="score-cell" :style="scoreCellStyle(model.scores.composite?.[p.id] ?? model.scores.baseline[p.id])">
+                {{ formatScore(model.scores.composite?.[p.id] ?? model.scores.baseline[p.id]) }}
               </span>
             </td>
           </tr>
@@ -110,8 +110,8 @@ export default defineComponent({
           bVal = b.provider.toLowerCase();
         } else {
           // Principle ID
-          aVal = a.scores.baseline[key] ?? -999;
-          bVal = b.scores.baseline[key] ?? -999;
+          aVal = a.scores.composite?.[key] ?? a.scores.baseline[key] ?? -999;
+          bVal = b.scores.composite?.[key] ?? b.scores.baseline[key] ?? -999;
         }
 
         if (aVal < bVal) return -1 * dir;

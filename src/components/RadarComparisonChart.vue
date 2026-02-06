@@ -83,7 +83,7 @@ export default defineComponent({
         labels: this.principleLabels,
         datasets: this.selectedModels.map((model, i) => ({
           label: model.displayName,
-          data: this.principleIds.map(pid => model.scores.baseline[pid] ?? 0),
+          data: this.principleIds.map(pid => model.scores.composite?.[pid] ?? model.scores.baseline[pid] ?? 0),
           backgroundColor: `${CHART_COLORS[i]}20`,
           borderColor: CHART_COLORS[i],
           borderWidth: 2,

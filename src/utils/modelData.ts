@@ -19,6 +19,7 @@ export interface ModelDetailEntry extends ModelEntry {
     baseline: Record<string, number>;
     good_persona: Record<string, number>;
     bad_persona: Record<string, number>;
+    composite: Record<string, number>;
   };
   steerability: number;
   insights: string[];
@@ -95,7 +96,7 @@ function generateInsights(model: ModelDetailEntry): string[] {
 
   // Good persona improvement
   const goodHumane = model.scores.good_persona.HumaneScore ?? 0;
-  const baselineHumane = model.humaneScore;
+  const baselineHumane = model.scores.baseline.HumaneScore ?? 0;
   const improvement = goodHumane - baselineHumane;
   if (improvement > 0.05) {
     insights.push('Good persona prompting meaningfully boosts the HumaneScore over baseline');
@@ -110,9 +111,9 @@ function generateInsights(model: ModelDetailEntry): string[] {
     insights.push('Bad persona causes a moderate drop from baseline, indicating some vulnerability to adversarial framing');
   }
 
-  // High baseline score
-  if (baselineHumane >= 0.8) {
-    insights.push('Baseline HumaneScore is among the highest tested, reflecting strong default humane behavior');
+  // High composite score
+  if (model.humaneScore >= 0.7) {
+    insights.push('Composite HumaneScore is among the highest tested, reflecting strong overall humane behavior');
   }
 
   return insights;
@@ -141,6 +142,7 @@ export async function fetchAllModels(): Promise<ModelDetailEntry[]> {
     const baseline = modelData.scores.baseline;
     const goodPersona = modelData.scores.good_persona;
     const badPersona = modelData.scores.bad_persona;
+    const composite = modelData.scores.composite;
     if (!baseline) continue;
 
     const steerability = goodPersona && badPersona
@@ -151,12 +153,13 @@ export async function fetchAllModels(): Promise<ModelDetailEntry[]> {
       id: modelId,
       displayName: modelData.displayName,
       provider: modelData.provider,
-      humaneScore: baseline.HumaneScore ?? 0,
-      principles: buildPrinciples(baseline),
+      humaneScore: composite?.HumaneScore ?? baseline.HumaneScore ?? 0,
+      principles: buildPrinciples(composite ?? baseline),
       scores: {
         baseline,
         good_persona: goodPersona ?? {},
         bad_persona: badPersona ?? {},
+        composite: composite ?? {},
       },
       steerability,
       insights: [],

@@ -170,7 +170,7 @@ Meanwhile, models across different HELM scores showed similar baseline humanenes
 Models ordered by HELM capability score (left column). The Composite HumaneScore column shows each model's average humaneness across all three conditions. HELM Capability: 0-1 scale (higher = more capable). Composite HumaneScore: -1 (harmful) to +1 (humane). Colors: Green = good, Red = bad. Only includes models present in both HELM Capability leaderboard and HumaneBench.
 </p>
 
-**Implication:** **Protecting human wellbeing under adversarial conditions appears to be a distinct capability that must be explicitly trained and evaluated**—it doesn't automatically emerge from increases in general intelligence. As AI labs compete on benchmark performance, this finding underscores the need for dedicated investment in robustness training that maintains prosocial behavior even when systems are pressured to behave otherwise.
+**Implication:** **The resilience to maintain humaneness appears to be a distinct capability that must be explicitly trained and evaluated**—it doesn't automatically emerge from increases in general intelligence. As AI labs compete on benchmark performance, this finding underscores the need for dedicated investment in robustness training that maintains prosocial behavior even when systems are pressured to behave otherwise.
 
 This also suggests that intelligence benchmarks alone are insufficient for evaluating AI systems. A model that excels at reasoning, coding, and knowledge tasks may still pose risks if it can be easily manipulated into providing harmful guidance.
 

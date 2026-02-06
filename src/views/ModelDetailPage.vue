@@ -26,24 +26,24 @@
             <p class="detail-provider">{{ model.provider }}</p>
           </div>
 
-          <!-- Score Summary Cards -->
+          <!-- Top 3 Stat Cards -->
           <v-row class="mb-8">
             <v-col cols="12" sm="4">
-              <div class="score-card">
-                <div class="score-card-label">Bad Persona</div>
-                <div class="score-card-value">{{ model.scores.bad_persona.HumaneScore?.toFixed(2) ?? 'N/A' }}</div>
+              <div class="stat-card">
+                <div class="stat-card-label">HumaneScore</div>
+                <div class="stat-card-value">{{ model.humaneScore.toFixed(2) }}</div>
               </div>
             </v-col>
             <v-col cols="12" sm="4">
-              <div class="score-card">
-                <div class="score-card-label">Baseline</div>
-                <div class="score-card-value">{{ model.humaneScore.toFixed(2) }}</div>
+              <div class="stat-card">
+                <div class="stat-card-label">Overall Rank</div>
+                <div class="stat-card-value">#{{ modelRank }} <span class="stat-card-context">of {{ totalModels }}</span></div>
               </div>
             </v-col>
             <v-col cols="12" sm="4">
-              <div class="score-card">
-                <div class="score-card-label">Good Persona</div>
-                <div class="score-card-value">{{ model.scores.good_persona.HumaneScore?.toFixed(2) ?? 'N/A' }}</div>
+              <div class="stat-card">
+                <div class="stat-card-label">Strongest Principle</div>
+                <div class="stat-card-value stat-card-text">{{ strongestPrincipleName }}</div>
               </div>
             </v-col>
           </v-row>
@@ -61,41 +61,20 @@
               <span class="steerability-value">{{ model.steerability.toFixed(2) }}</span>
               <span class="steerability-badge" :class="steerabilityClass">{{ steerabilityLabel }}</span>
             </div>
-            <p class="section-text">{{ steerabilityDescription }}</p>
+            <p class="section-text mb-4">{{ steerabilityDescription }}</p>
+            <SteerabilityAxis
+              :baseline="model.humaneScore"
+              :good-persona="model.scores.good_persona.HumaneScore ?? 0"
+              :bad-persona="model.scores.bad_persona.HumaneScore ?? 0"
+            />
           </div>
 
-          <!-- Detailed Scores Table -->
+          <!-- Detailed Scores by Principle -->
           <div class="section-card mb-8">
-            <h2 class="section-title mb-4">Detailed Scores by Principle</h2>
-            <v-table density="comfortable" class="scores-table">
-              <thead>
-                <tr>
-                  <th>Principle</th>
-                  <th class="text-right">Bad Persona</th>
-                  <th class="text-right">Baseline</th>
-                  <th class="text-right">Good Persona</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="principle in principleRows" :key="principle.id">
-                  <td>{{ principle.name }}</td>
-                  <td class="text-right font-weight-medium tabular-nums">{{ principle.badPersona }}</td>
-                  <td class="text-right font-weight-medium tabular-nums">{{ principle.baseline }}</td>
-                  <td class="text-right font-weight-medium tabular-nums">{{ principle.goodPersona }}</td>
-                </tr>
-              </tbody>
-            </v-table>
+            <h2 class="section-title mb-4">Scores by Principle</h2>
+            <PrincipleScoreBars :model="model" />
           </div>
 
-          <!-- Key Insights -->
-          <div class="section-card mb-8">
-            <h2 class="section-title mb-4">Key Insights</h2>
-            <ul class="insights-list">
-              <li v-for="(insight, index) in model.insights" :key="index" class="insight-item">
-                {{ insight }}
-              </li>
-            </ul>
-          </div>
         </v-col>
 
         <!-- Sidebar: Nutrition Label (desktop) -->
@@ -111,18 +90,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { fetchModelById, type ModelDetailEntry } from '@/utils/modelData';
-import { PRINCIPLES } from '@/constants/principles';
+import {
+  fetchModelById,
+  fetchRankedModels,
+  getStrongestPrinciple,
+  type ModelDetailEntry,
+  type RankedModelEntry,
+} from '@/utils/modelData';
 import NutritionLabel from '@/components/NutritionLabel.vue';
 import ModelNotFound from '@/components/ModelNotFound.vue';
-
-interface PrincipleRow {
-  id: string;
-  name: string;
-  badPersona: string;
-  baseline: string;
-  goodPersona: string;
-}
+import SteerabilityAxis from '@/components/SteerabilityAxis.vue';
+import PrincipleScoreBars from '@/components/PrincipleScoreBars.vue';
 
 export default defineComponent({
   name: 'ModelDetailPage',
@@ -130,6 +108,8 @@ export default defineComponent({
   components: {
     NutritionLabel,
     ModelNotFound,
+    SteerabilityAxis,
+    PrincipleScoreBars,
   },
 
   props: {
@@ -143,6 +123,8 @@ export default defineComponent({
     return {
       loading: true,
       model: null as ModelDetailEntry | null,
+      modelRank: 0,
+      totalModels: 0,
     };
   },
 
@@ -160,40 +142,34 @@ export default defineComponent({
 
     steerabilityClass(): string {
       if (!this.model) return '';
-      if (this.model.steerability > 0.15) return 'steerability-high';
-      if (this.model.steerability >= 0.05) return 'steerability-moderate';
+      if (this.model.steerability > 0.50) return 'steerability-high';
+      if (this.model.steerability >= 0.15) return 'steerability-moderate';
       return 'steerability-limited';
     },
 
     steerabilityLabel(): string {
       if (!this.model) return '';
-      if (this.model.steerability > 0.15) return 'High';
-      if (this.model.steerability >= 0.05) return 'Moderate';
+      if (this.model.steerability > 0.50) return 'High';
+      if (this.model.steerability >= 0.15) return 'Moderate';
       return 'Limited';
     },
 
     steerabilityDescription(): string {
       if (!this.model) return '';
       const score = this.model.steerability.toFixed(2);
-      if (this.model.steerability > 0.15) {
+      if (this.model.steerability > 0.50) {
         return `With a steerability score of ${score}, this model shows high responsiveness to persona framing. The good persona prompt significantly improves its HumaneScore compared to the bad persona, suggesting the model's behavior can be strongly influenced by system-level instructions.`;
       }
-      if (this.model.steerability >= 0.05) {
+      if (this.model.steerability >= 0.15) {
         return `With a steerability score of ${score}, this model shows moderate responsiveness to persona framing. There is a meaningful but not dramatic difference between good and bad persona outcomes, indicating some sensitivity to system-level instructions.`;
       }
       return `With a steerability score of ${score}, this model shows limited responsiveness to persona framing. Its behavior remains relatively consistent regardless of whether a good or bad persona prompt is used, suggesting robust baseline behavior.`;
     },
 
-    principleRows(): PrincipleRow[] {
-      if (!this.model) return [];
-      const principleList = PRINCIPLES.filter(p => p.id !== 'HumaneScore');
-      return principleList.map(p => ({
-        id: p.id,
-        name: p.name,
-        badPersona: this.formatScore(this.model!.scores.bad_persona[p.id]),
-        baseline: this.formatScore(this.model!.scores.baseline[p.id]),
-        goodPersona: this.formatScore(this.model!.scores.good_persona[p.id]),
-      }));
+    strongestPrincipleName(): string {
+      if (!this.model) return 'N/A';
+      const strongest = getStrongestPrinciple(this.model);
+      return strongest ? strongest.name : 'N/A';
     },
   },
 
@@ -202,16 +178,16 @@ export default defineComponent({
       immediate: true,
       async handler(id: string) {
         this.loading = true;
-        this.model = await fetchModelById(id);
+        const [model, ranked] = await Promise.all([
+          fetchModelById(id),
+          fetchRankedModels(),
+        ]);
+        this.model = model;
+        this.totalModels = ranked.length;
+        const found = ranked.find((m: RankedModelEntry) => m.id === id);
+        this.modelRank = found ? found.rank : 0;
         this.loading = false;
       },
-    },
-  },
-
-  methods: {
-    formatScore(value: number | undefined): string {
-      if (value === undefined) return 'N/A';
-      return value.toFixed(2);
     },
   },
 });
@@ -236,7 +212,7 @@ export default defineComponent({
   color: #666;
 }
 
-.score-card {
+.stat-card {
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -244,7 +220,7 @@ export default defineComponent({
   text-align: center;
 }
 
-.score-card-label {
+.stat-card-label {
   font-size: 0.85rem;
   color: #666;
   margin-bottom: 0.5rem;
@@ -252,11 +228,22 @@ export default defineComponent({
   letter-spacing: 0.03em;
 }
 
-.score-card-value {
+.stat-card-value {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #5539EC;
   font-variant-numeric: tabular-nums;
+}
+
+.stat-card-text {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.stat-card-context {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #999;
 }
 
 .section-card {
@@ -308,54 +295,18 @@ export default defineComponent({
 }
 
 .steerability-high {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background: #f3e5f5;
+  color: #7b1fa2;
 }
 
 .steerability-moderate {
-  background: #fff3e0;
-  color: #e65100;
+  background: #f3e5f5;
+  color: #7b1fa2;
 }
 
 .steerability-limited {
   background: #f3e5f5;
   color: #7b1fa2;
-}
-
-.scores-table {
-  background: transparent !important;
-}
-
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-}
-
-.insights-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.insight-item {
-  padding: 0.6rem 0;
-  padding-left: 1.25rem;
-  position: relative;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #4a4a4a;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.insight-item:last-child {
-  border-bottom: none;
-}
-
-.insight-item::before {
-  content: '\2022';
-  position: absolute;
-  left: 0;
-  color: #5539EC;
-  font-weight: 700;
 }
 
 .sticky-sidebar {
@@ -378,7 +329,7 @@ export default defineComponent({
     font-size: 1.5rem;
   }
 
-  .score-card-value {
+  .stat-card-value {
     font-size: 1.5rem;
   }
 

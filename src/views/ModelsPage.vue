@@ -23,31 +23,27 @@
       <p class="text-grey-darken-2">{{ error }}</p>
     </div>
 
-    <!-- Model Groups -->
+    <!-- Content -->
     <div v-else>
-      <div
-        v-for="group in providerGroups"
-        :key="group.provider"
-        class="provider-group mb-10"
-      >
-        <h2 class="provider-title mb-4">{{ group.provider }}</h2>
+      <!-- Top 5 Models -->
+      <div class="mb-10">
+        <h2 class="section-title mb-4 text-center">Top Performing Models</h2>
+        <TopModelsBar :models="topModels" />
+      </div>
 
-        <v-row>
-          <v-col
-            v-for="model in group.models"
-            :key="model.id"
-            cols="12"
-            sm="6"
-            md="4"
-          >
-            <router-link
-              :to="{ name: 'model-detail', params: { modelId: model.id } }"
-              class="model-link"
-            >
-              <NutritionLabel :model="model" :clickable="true" />
-            </router-link>
-          </v-col>
-        </v-row>
+      <!-- Radar Comparison Chart -->
+      <div class="section-card mb-10">
+        <h2 class="section-title mb-4">Principle Comparison</h2>
+        <p class="section-desc mb-4">Select up to 3 models to compare across all 8 humane technology principles.</p>
+        <RadarComparisonChart :all-models="rankedModels" />
+      </div>
+
+      <!-- All Models Table -->
+      <div class="section-card mb-10">
+        <h2 class="section-title mb-4">All Models</h2>
+        <p class="section-desc mb-2">Scores reflect baseline model behavior (no persona prompting).</p>
+        <p class="section-desc mb-4">Click column headers to sort. Click a model name to view details.</p>
+        <ModelsTable :models="rankedModels" />
       </div>
     </div>
   </div>
@@ -55,34 +51,43 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { fetchProviderGroups, type ProviderGroup } from '@/utils/modelData';
-import NutritionLabel from '@/components/NutritionLabel.vue';
+import { fetchRankedModels, type RankedModelEntry } from '@/utils/modelData';
+import TopModelsBar from '@/components/TopModelsBar.vue';
+import RadarComparisonChart from '@/components/RadarComparisonChart.vue';
+import ModelsTable from '@/components/ModelsTable.vue';
 
 export default defineComponent({
   name: 'ModelsPage',
 
   components: {
-    NutritionLabel,
+    TopModelsBar,
+    RadarComparisonChart,
+    ModelsTable,
   },
 
   data() {
     return {
       loading: true,
       error: null as string | null,
-      providerGroups: [] as ProviderGroup[],
+      rankedModels: [] as RankedModelEntry[],
     };
+  },
+
+  computed: {
+    topModels(): RankedModelEntry[] {
+      return this.rankedModels.slice(0, 5);
+    },
   },
 
   async created() {
     try {
-      this.providerGroups = await fetchProviderGroups();
+      this.rankedModels = await fetchRankedModels();
       this.loading = false;
     } catch (e: unknown) {
       this.error = e instanceof Error ? e.message : 'An error occurred loading model data.';
       this.loading = false;
     }
   },
-
 });
 </script>
 
@@ -111,18 +116,23 @@ export default defineComponent({
   max-width: 700px;
 }
 
-.provider-title {
+.section-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.section-title {
   font-family: 'Lora', serif;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: #1a1a1a;
 }
 
-.model-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  height: 100%;
+.section-desc {
+  font-size: 0.9rem;
+  color: #666;
 }
 
 @media (max-width: 960px) {
@@ -152,8 +162,8 @@ export default defineComponent({
     font-size: 1rem;
   }
 
-  .provider-title {
-    font-size: 1.25rem;
+  .section-card {
+    padding: 1rem;
   }
 }
 </style>

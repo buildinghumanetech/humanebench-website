@@ -24,6 +24,10 @@ export interface ModelDetailEntry extends ModelEntry {
   insights: string[];
 }
 
+export interface RankedModelEntry extends ModelDetailEntry {
+  rank: number;
+}
+
 export interface ProviderGroup {
   provider: string;
   models: ModelEntry[];
@@ -71,22 +75,22 @@ function generateInsights(model: ModelDetailEntry): string[] {
   // Best principle
   const best = [...baseline].sort((a, b) => b.score - a.score)[0];
   if (best) {
-    insights.push(`Strongest principle: ${best.name} (${best.score.toFixed(2)})`);
+    insights.push(`Strongest principle is ${best.name}, indicating a clear strength in this area`);
   }
 
   // Worst principle
   const worst = [...baseline].sort((a, b) => a.score - b.score)[0];
   if (worst) {
-    insights.push(`Weakest principle: ${worst.name} (${worst.score.toFixed(2)})`);
+    insights.push(`Weakest principle is ${worst.name}, suggesting room for improvement`);
   }
 
   // Steerability interpretation
-  if (model.steerability > 0.15) {
-    insights.push(`High steerability (${model.steerability.toFixed(2)}) – responds strongly to persona framing`);
-  } else if (model.steerability >= 0.05) {
-    insights.push(`Moderate steerability (${model.steerability.toFixed(2)}) – somewhat influenced by persona framing`);
+  if (model.steerability > 0.50) {
+    insights.push('High steerability – responds strongly to persona framing, meaning system-level instructions can significantly alter behavior');
+  } else if (model.steerability >= 0.15) {
+    insights.push('Moderate steerability – somewhat influenced by persona framing, showing partial sensitivity to system-level instructions');
   } else {
-    insights.push(`Limited steerability (${model.steerability.toFixed(2)}) – behavior is relatively consistent across persona framing`);
+    insights.push('Limited steerability – behavior is relatively consistent across persona framing, suggesting robust baseline behavior');
   }
 
   // Good persona improvement
@@ -94,24 +98,29 @@ function generateInsights(model: ModelDetailEntry): string[] {
   const baselineHumane = model.humaneScore;
   const improvement = goodHumane - baselineHumane;
   if (improvement > 0.05) {
-    insights.push(`Good persona boosts HumaneScore by ${improvement.toFixed(2)} over baseline`);
+    insights.push('Good persona prompting meaningfully boosts the HumaneScore over baseline');
   }
 
   // Bad persona drop
   const badHumane = model.scores.bad_persona.HumaneScore ?? 0;
   const drop = baselineHumane - badHumane;
   if (drop > 0.3) {
-    insights.push(`Bad persona causes a significant ${drop.toFixed(2)} point drop from baseline`);
+    insights.push('Bad persona causes a significant drop from baseline, indicating vulnerability to adversarial framing');
   } else if (drop > 0.1) {
-    insights.push(`Bad persona causes a moderate ${drop.toFixed(2)} point drop from baseline`);
+    insights.push('Bad persona causes a moderate drop from baseline, indicating some vulnerability to adversarial framing');
   }
 
   // High baseline score
   if (baselineHumane >= 0.8) {
-    insights.push('Baseline HumaneScore is among the highest tested');
+    insights.push('Baseline HumaneScore is among the highest tested, reflecting strong default humane behavior');
   }
 
   return insights;
+}
+
+export function getStrongestPrinciple(model: ModelDetailEntry): PrincipleScore | null {
+  if (!model.principles.length) return null;
+  return [...model.principles].sort((a, b) => b.score - a.score)[0];
 }
 
 let cachedData: ModelScoresJson | null = null;
@@ -197,4 +206,11 @@ export async function fetchDetailProviderGroups(): Promise<DetailProviderGroup[]
       provider,
       models: grouped.get(provider)!.sort((a, b) => b.humaneScore - a.humaneScore),
     }));
+}
+
+export async function fetchRankedModels(): Promise<RankedModelEntry[]> {
+  const models = await fetchAllModels();
+  return models
+    .sort((a, b) => b.humaneScore - a.humaneScore)
+    .map((m, i) => ({ ...m, rank: i + 1 }));
 }

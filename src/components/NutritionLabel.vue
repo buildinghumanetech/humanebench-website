@@ -3,8 +3,8 @@
     <!-- Title -->
     <div class="nutrition-title">AI Nutrition Facts</div>
 
-    <!-- Thick divider -->
-    <div class="thick-divider"></div>
+    <!-- thick1 line under title -->
+    <div class="line-thick1"></div>
 
     <!-- Model row -->
     <div class="model-row">
@@ -18,11 +18,17 @@
       <span class="humane-score-value">{{ model.humaneScore.toFixed(2) }}</span>
     </div>
 
-    <!-- Thick divider -->
-    <div class="thick-divider"></div>
+    <!-- thick2 line (heavy separator) -->
+    <div class="line-thick2"></div>
 
     <!-- Principles section header -->
-    <div class="principles-header">Principles of Humane Technology</div>
+    <div class="principles-header">
+      <span class="principles-header-label">Principles of Humane Technology</span>
+      <span class="principles-header-score">Score</span>
+    </div>
+
+    <!-- thick1 line under principles header -->
+    <div class="line-thick1"></div>
 
     <!-- Principle rows -->
     <div class="principles-list">
@@ -88,67 +94,78 @@ export default defineComponent({
 }
 
 .nutrition-title {
-  font-family: 'Lora', serif;
-  font-size: 1.75rem;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 2.1rem;
   font-weight: 700;
   color: #000;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
 }
 
-.thick-divider {
-  height: 8px;
-  background: #000;
-  margin: 6px -4px;
+.line-thick1 {
+  border-bottom: 4px solid #000;
+  margin-bottom: 8px;
+}
+
+.line-thick2 {
+  border-bottom: 12px solid #000;
+  margin-bottom: 8px;
 }
 
 .model-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 6px 0 4px;
+  padding: 4px 0;
+  font-size: 0.9rem;
 }
 
 .model-label {
-  font-size: 0.85rem;
-  color: #000;
+  color: #333;
 }
 
 .model-value {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #000;
-  text-align: right;
+  font-weight: 700;
 }
 
 .humane-score-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 4px 0 6px;
+  padding: 6px 0 8px;
 }
 
 .humane-score-label {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #000;
 }
 
 .humane-score-value {
-  font-size: 1.5rem;
+  font-size: 1.85rem;
   font-weight: 700;
   color: #000;
   font-variant-numeric: tabular-nums;
 }
 
 .principles-header {
-  background: #000;
-  color: #fff;
-  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+}
+
+.principles-header-label {
+  font-size: 0.88rem;
   font-weight: 700;
-  padding: 4px 20px;
-  margin: 0 -20px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  color: #000;
+}
+
+.principles-header-score {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #000;
 }
 
 .principles-list {
@@ -159,7 +176,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 6px 0;
+  padding: 7px 0;
   border-bottom: 1px solid #000;
 }
 
@@ -168,13 +185,13 @@ export default defineComponent({
 }
 
 .principle-name {
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   color: #000;
 }
 
 .principle-score {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.84rem;
+  font-weight: 700;
   color: #000;
   font-variant-numeric: tabular-nums;
 }
@@ -189,11 +206,11 @@ export default defineComponent({
 
 @media (max-width: 960px) {
   .nutrition-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .humane-score-value {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -203,16 +220,11 @@ export default defineComponent({
   }
 
   .nutrition-title {
-    font-size: 1.35rem;
+    font-size: 1.6rem;
   }
 
   .humane-score-value {
-    font-size: 1.2rem;
-  }
-
-  .principles-header {
-    margin: 0 -16px;
-    padding: 4px 16px;
+    font-size: 1.35rem;
   }
 }
 </style>

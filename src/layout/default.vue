@@ -90,7 +90,7 @@
                 <v-icon size="18" color="grey-darken-2">mdi-github</v-icon>
                 GitHub
               </a>
-              <a href="https://join.slack.com/t/humane-technology/shared_invite/zt-3iz76xy2r-LLYmcNclQjzEtj73HfQOqQ" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
+              <a href="https://go.buildinghumanetech.com/join-slack" target="_blank" class="text-body-2 text-grey-darken-2 d-flex align-center gap-2" style="text-decoration: none;">
                 <v-icon size="18" color="grey-darken-2">mdi-slack</v-icon>
                 Slack community
               </a>

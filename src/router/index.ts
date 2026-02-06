@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import MarkdownPage from '../views/MarkdownPage.vue'
+import CaseStudiesPage from '../views/CaseStudiesPage.vue'
+import ModelsPage from '../views/ModelsPage.vue'
+import ModelDetailPage from '../views/ModelDetailPage.vue'
 import DefaultLayout from '../layout/default.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -24,6 +27,22 @@ const routes: Array<RouteRecordRaw> = [
         name: 'principles',
         component: MarkdownPage,
         props: { pageName: 'principles' }
+      },
+      {
+        path: 'case-studies',
+        name: 'case-studies',
+        component: CaseStudiesPage
+      },
+      {
+        path: 'models',
+        name: 'models',
+        component: ModelsPage
+      },
+      {
+        path: 'models/:modelId',
+        name: 'model-detail',
+        component: ModelDetailPage,
+        props: true
       }
     ]
   }

@@ -1,0 +1,589 @@
+{
+  "models": {
+    "claude-opus-4.1": {
+      "displayName": "Claude Opus 4.1",
+      "provider": "Anthropic",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.68,
+          "respect-user-attention": -0.04,
+          "enable-meaningful-choices": 0.75,
+          "enhance-human-capabilities": 0.94,
+          "protect-dignity-and-safety": 0.81,
+          "foster-healthy-relationships": 0.85,
+          "prioritize-long-term-wellbeing": 0.92,
+          "be-transparent-and-honest": 0.39,
+          "design-for-equity-and-inclusion": 0.83
+        },
+        "good_persona": {
+          "HumaneScore": 0.84,
+          "respect-user-attention": 0.52,
+          "enable-meaningful-choices": 0.85,
+          "enhance-human-capabilities": 0.97,
+          "protect-dignity-and-safety": 0.86,
+          "foster-healthy-relationships": 0.88,
+          "prioritize-long-term-wellbeing": 0.97,
+          "be-transparent-and-honest": 0.79,
+          "design-for-equity-and-inclusion": 0.9
+        },
+        "bad_persona": {
+          "HumaneScore": 0.66,
+          "respect-user-attention": 0.34,
+          "enable-meaningful-choices": 0.61,
+          "enhance-human-capabilities": 0.81,
+          "protect-dignity-and-safety": 0.75,
+          "foster-healthy-relationships": 0.66,
+          "prioritize-long-term-wellbeing": 0.82,
+          "be-transparent-and-honest": 0.59,
+          "design-for-equity-and-inclusion": 0.69
+        }
+      }
+    },
+    "claude-sonnet-4": {
+      "displayName": "Claude Sonnet 4",
+      "provider": "Anthropic",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.69,
+          "respect-user-attention": -0.06,
+          "enable-meaningful-choices": 0.77,
+          "enhance-human-capabilities": 0.92,
+          "protect-dignity-and-safety": 0.8,
+          "foster-healthy-relationships": 0.92,
+          "prioritize-long-term-wellbeing": 0.95,
+          "be-transparent-and-honest": 0.4,
+          "design-for-equity-and-inclusion": 0.81
+        },
+        "good_persona": {
+          "HumaneScore": 0.84,
+          "respect-user-attention": 0.6,
+          "enable-meaningful-choices": 0.86,
+          "enhance-human-capabilities": 0.97,
+          "protect-dignity-and-safety": 0.83,
+          "foster-healthy-relationships": 0.88,
+          "prioritize-long-term-wellbeing": 0.94,
+          "be-transparent-and-honest": 0.78,
+          "design-for-equity-and-inclusion": 0.89
+        },
+        "bad_persona": {
+          "HumaneScore": 0.51,
+          "respect-user-attention": 0.32,
+          "enable-meaningful-choices": 0.4,
+          "enhance-human-capabilities": 0.75,
+          "protect-dignity-and-safety": 0.48,
+          "foster-healthy-relationships": 0.28,
+          "prioritize-long-term-wellbeing": 0.63,
+          "be-transparent-and-honest": 0.45,
+          "design-for-equity-and-inclusion": 0.73
+        }
+      }
+    },
+    "claude-sonnet-4.5": {
+      "displayName": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.75,
+          "respect-user-attention": 0.26,
+          "enable-meaningful-choices": 0.77,
+          "enhance-human-capabilities": 0.92,
+          "protect-dignity-and-safety": 0.79,
+          "foster-healthy-relationships": 0.88,
+          "prioritize-long-term-wellbeing": 0.95,
+          "be-transparent-and-honest": 0.65,
+          "design-for-equity-and-inclusion": 0.81
+        },
+        "good_persona": {
+          "HumaneScore": 0.89,
+          "respect-user-attention": 0.71,
+          "enable-meaningful-choices": 0.93,
+          "enhance-human-capabilities": 0.98,
+          "protect-dignity-and-safety": 0.89,
+          "foster-healthy-relationships": 0.9,
+          "prioritize-long-term-wellbeing": 0.94,
+          "be-transparent-and-honest": 0.89,
+          "design-for-equity-and-inclusion": 0.87
+        },
+        "bad_persona": {
+          "HumaneScore": 0.77,
+          "respect-user-attention": 0.71,
+          "enable-meaningful-choices": 0.66,
+          "enhance-human-capabilities": 0.79,
+          "protect-dignity-and-safety": 0.83,
+          "foster-healthy-relationships": 0.8,
+          "prioritize-long-term-wellbeing": 0.89,
+          "be-transparent-and-honest": 0.65,
+          "design-for-equity-and-inclusion": 0.82
+        }
+      }
+    },
+    "deepseek-v3.1-terminus": {
+      "displayName": "DeepSeek V3.1 Terminus",
+      "provider": "DeepSeek",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.75,
+          "respect-user-attention": -0.03,
+          "enable-meaningful-choices": 0.82,
+          "enhance-human-capabilities": 0.98,
+          "protect-dignity-and-safety": 0.91,
+          "foster-healthy-relationships": 0.91,
+          "prioritize-long-term-wellbeing": 0.98,
+          "be-transparent-and-honest": 0.59,
+          "design-for-equity-and-inclusion": 0.86
+        },
+        "good_persona": {
+          "HumaneScore": 0.84,
+          "respect-user-attention": 0.56,
+          "enable-meaningful-choices": 0.88,
+          "enhance-human-capabilities": 0.98,
+          "protect-dignity-and-safety": 0.88,
+          "foster-healthy-relationships": 0.9,
+          "prioritize-long-term-wellbeing": 0.95,
+          "be-transparent-and-honest": 0.69,
+          "design-for-equity-and-inclusion": 0.87
+        },
+        "bad_persona": {
+          "HumaneScore": -0.35,
+          "respect-user-attention": -0.79,
+          "enable-meaningful-choices": -0.3,
+          "enhance-human-capabilities": 0.13,
+          "protect-dignity-and-safety": -0.33,
+          "foster-healthy-relationships": -0.54,
+          "prioritize-long-term-wellbeing": -0.15,
+          "be-transparent-and-honest": -0.9,
+          "design-for-equity-and-inclusion": 0.05
+        }
+      }
+    },
+    "gemini-2.0-flash-001": {
+      "displayName": "Gemini 2.0 Flash 001",
+      "provider": "Google",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.75,
+          "respect-user-attention": -0.04,
+          "enable-meaningful-choices": 0.88,
+          "enhance-human-capabilities": 0.97,
+          "protect-dignity-and-safety": 0.91,
+          "foster-healthy-relationships": 0.91,
+          "prioritize-long-term-wellbeing": 0.99,
+          "be-transparent-and-honest": 0.59,
+          "design-for-equity-and-inclusion": 0.76
+        },
+        "good_persona": {
+          "HumaneScore": 0.82,
+          "respect-user-attention": 0.61,
+          "enable-meaningful-choices": 0.86,
+          "enhance-human-capabilities": 0.92,
+          "protect-dignity-and-safety": 0.87,
+          "foster-healthy-relationships": 0.91,
+          "prioritize-long-term-wellbeing": 0.95,
+          "be-transparent-and-honest": 0.63,
+          "design-for-equity-and-inclusion": 0.78
+        },
+        "bad_persona": {
+          "HumaneScore": -0.71,
+          "respect-user-attention": -0.94,
+          "enable-meaningful-choices": -0.73,
+          "enhance-human-capabilities": -0.48,
+          "protect-dignity-and-safety": -0.68,
+          "foster-healthy-relationships": -0.85,
+          "prioritize-long-term-wellbeing": -0.59,
+          "be-transparent-and-honest": -0.85,
+          "design-for-equity-and-inclusion": -0.53
+        }
+      }
+    },
+    "gemini-2.5-flash": {
+      "displayName": "Gemini 2.5 Flash",
+      "provider": "Google",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.72,
+          "respect-user-attention": -0.11,
+          "enable-meaningful-choices": 0.84,
+          "enhance-human-capabilities": 0.97,
+          "protect-dignity-and-safety": 0.91,
+          "foster-healthy-relationships": 0.92,
+          "prioritize-long-term-wellbeing": 0.96,
+          "be-transparent-and-honest": 0.5,
+          "design-for-equity-and-inclusion": 0.78
+        },
+        "good_persona": {
+          "HumaneScore": 0.77,
+          "respect-user-attention": 0.46,
+          "enable-meaningful-choices": 0.8,
+          "enhance-human-capabilities": 0.89,
+          "protect-dignity-and-safety": 0.74,
+          "foster-healthy-relationships": 0.87,
+          "prioritize-long-term-wellbeing": 0.92,
+          "be-transparent-and-honest": 0.7,
+          "design-for-equity-and-inclusion": 0.74
+        },
+        "bad_persona": {
+          "HumaneScore": -0.68,
+          "respect-user-attention": -0.9,
+          "enable-meaningful-choices": -0.68,
+          "enhance-human-capabilities": -0.41,
+          "protect-dignity-and-safety": -0.66,
+          "foster-healthy-relationships": -0.83,
+          "prioritize-long-term-wellbeing": -0.56,
+          "be-transparent-and-honest": -0.9,
+          "design-for-equity-and-inclusion": -0.53
+        }
+      }
+    },
+    "gemini-2.5-pro": {
+      "displayName": "Gemini 2.5 Pro",
+      "provider": "Google",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.77,
+          "respect-user-attention": -0.01,
+          "enable-meaningful-choices": 0.82,
+          "enhance-human-capabilities": 0.96,
+          "protect-dignity-and-safety": 0.92,
+          "foster-healthy-relationships": 0.92,
+          "prioritize-long-term-wellbeing": 0.98,
+          "be-transparent-and-honest": 0.66,
+          "design-for-equity-and-inclusion": 0.87
+        },
+        "good_persona": {
+          "HumaneScore": 0.9,
+          "respect-user-attention": 0.77,
+          "enable-meaningful-choices": 0.92,
+          "enhance-human-capabilities": 0.99,
+          "protect-dignity-and-safety": 0.9,
+          "foster-healthy-relationships": 0.95,
+          "prioritize-long-term-wellbeing": 0.99,
+          "be-transparent-and-honest": 0.81,
+          "design-for-equity-and-inclusion": 0.9
+        },
+        "bad_persona": {
+          "HumaneScore": -0.72,
+          "respect-user-attention": -0.93,
+          "enable-meaningful-choices": -0.78,
+          "enhance-human-capabilities": -0.34,
+          "protect-dignity-and-safety": -0.73,
+          "foster-healthy-relationships": -0.91,
+          "prioritize-long-term-wellbeing": -0.65,
+          "be-transparent-and-honest": -0.95,
+          "design-for-equity-and-inclusion": -0.49
+        }
+      }
+    },
+    "gemini-3-pro-preview": {
+      "displayName": "Gemini 3 Pro Preview",
+      "provider": "Google",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.78,
+          "respect-user-attention": 0.14,
+          "enable-meaningful-choices": 0.83,
+          "enhance-human-capabilities": 0.97,
+          "protect-dignity-and-safety": 0.89,
+          "foster-healthy-relationships": 0.95,
+          "prioritize-long-term-wellbeing": 0.97,
+          "be-transparent-and-honest": 0.68,
+          "design-for-equity-and-inclusion": 0.84
+        },
+        "good_persona": {
+          "HumaneScore": 0.93,
+          "respect-user-attention": 0.79,
+          "enable-meaningful-choices": 0.96,
+          "enhance-human-capabilities": 0.99,
+          "protect-dignity-and-safety": 0.93,
+          "foster-healthy-relationships": 0.97,
+          "prioritize-long-term-wellbeing": 0.99,
+          "be-transparent-and-honest": 0.91,
+          "design-for-equity-and-inclusion": 0.9
+        },
+        "bad_persona": {
+          "HumaneScore": -0.45,
+          "respect-user-attention": -0.66,
+          "enable-meaningful-choices": -0.6,
+          "enhance-human-capabilities": -0.55,
+          "protect-dignity-and-safety": -0.17,
+          "foster-healthy-relationships": -0.54,
+          "prioritize-long-term-wellbeing": -0.48,
+          "be-transparent-and-honest": -0.4,
+          "design-for-equity-and-inclusion": -0.17
+        }
+      }
+    },
+    "gpt-4.1": {
+      "displayName": "GPT-4.1",
+      "provider": "OpenAI",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.67,
+          "respect-user-attention": -0.2,
+          "enable-meaningful-choices": 0.77,
+          "enhance-human-capabilities": 0.82,
+          "protect-dignity-and-safety": 0.86,
+          "foster-healthy-relationships": 0.86,
+          "prioritize-long-term-wellbeing": 0.94,
+          "be-transparent-and-honest": 0.49,
+          "design-for-equity-and-inclusion": 0.8
+        },
+        "good_persona": {
+          "HumaneScore": 0.82,
+          "respect-user-attention": 0.65,
+          "enable-meaningful-choices": 0.83,
+          "enhance-human-capabilities": 0.88,
+          "protect-dignity-and-safety": 0.8,
+          "foster-healthy-relationships": 0.89,
+          "prioritize-long-term-wellbeing": 0.92,
+          "be-transparent-and-honest": 0.76,
+          "design-for-equity-and-inclusion": 0.84
+        },
+        "bad_persona": {
+          "HumaneScore": -0.6,
+          "respect-user-attention": -0.94,
+          "enable-meaningful-choices": -0.61,
+          "enhance-human-capabilities": -0.27,
+          "protect-dignity-and-safety": -0.63,
+          "foster-healthy-relationships": -0.72,
+          "prioritize-long-term-wellbeing": -0.56,
+          "be-transparent-and-honest": -0.9,
+          "design-for-equity-and-inclusion": -0.19
+        }
+      }
+    },
+    "gpt-4o-2024-11-20": {
+      "displayName": "GPT-4o (2024-11-20)",
+      "provider": "OpenAI",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.68,
+          "respect-user-attention": 0.03,
+          "enable-meaningful-choices": 0.73,
+          "enhance-human-capabilities": 0.81,
+          "protect-dignity-and-safety": 0.81,
+          "foster-healthy-relationships": 0.86,
+          "prioritize-long-term-wellbeing": 0.92,
+          "be-transparent-and-honest": 0.51,
+          "design-for-equity-and-inclusion": 0.75
+        },
+        "good_persona": {
+          "HumaneScore": 0.77,
+          "respect-user-attention": 0.61,
+          "enable-meaningful-choices": 0.79,
+          "enhance-human-capabilities": 0.92,
+          "protect-dignity-and-safety": 0.74,
+          "foster-healthy-relationships": 0.86,
+          "prioritize-long-term-wellbeing": 0.9,
+          "be-transparent-and-honest": 0.56,
+          "design-for-equity-and-inclusion": 0.79
+        },
+        "bad_persona": {
+          "HumaneScore": -0.61,
+          "respect-user-attention": -0.89,
+          "enable-meaningful-choices": -0.59,
+          "enhance-human-capabilities": -0.21,
+          "protect-dignity-and-safety": -0.63,
+          "foster-healthy-relationships": -0.77,
+          "prioritize-long-term-wellbeing": -0.51,
+          "be-transparent-and-honest": -0.86,
+          "design-for-equity-and-inclusion": -0.41
+        }
+      }
+    },
+    "gpt-5": {
+      "displayName": "GPT-5",
+      "provider": "OpenAI",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.86,
+          "respect-user-attention": 0.35,
+          "enable-meaningful-choices": 0.94,
+          "enhance-human-capabilities": 0.96,
+          "protect-dignity-and-safety": 0.97,
+          "foster-healthy-relationships": 0.94,
+          "prioritize-long-term-wellbeing": 0.99,
+          "be-transparent-and-honest": 0.79,
+          "design-for-equity-and-inclusion": 0.94
+        },
+        "good_persona": {
+          "HumaneScore": 0.94,
+          "respect-user-attention": 0.82,
+          "enable-meaningful-choices": 0.96,
+          "enhance-human-capabilities": 0.98,
+          "protect-dignity-and-safety": 0.97,
+          "foster-healthy-relationships": 0.94,
+          "prioritize-long-term-wellbeing": 0.99,
+          "be-transparent-and-honest": 0.91,
+          "design-for-equity-and-inclusion": 0.96
+        },
+        "bad_persona": {
+          "HumaneScore": 0.83,
+          "respect-user-attention": 0.32,
+          "enable-meaningful-choices": 0.93,
+          "enhance-human-capabilities": 0.94,
+          "protect-dignity-and-safety": 0.94,
+          "foster-healthy-relationships": 0.91,
+          "prioritize-long-term-wellbeing": 0.99,
+          "be-transparent-and-honest": 0.7,
+          "design-for-equity-and-inclusion": 0.92
+        }
+      }
+    },
+    "gpt-5.1": {
+      "displayName": "GPT-5.1",
+      "provider": "OpenAI",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.86,
+          "respect-user-attention": 0.28,
+          "enable-meaningful-choices": 0.96,
+          "enhance-human-capabilities": 0.97,
+          "protect-dignity-and-safety": 0.97,
+          "foster-healthy-relationships": 0.94,
+          "prioritize-long-term-wellbeing": 0.99,
+          "be-transparent-and-honest": 0.85,
+          "design-for-equity-and-inclusion": 0.94
+        },
+        "good_persona": {
+          "HumaneScore": 0.92,
+          "respect-user-attention": 0.66,
+          "enable-meaningful-choices": 0.97,
+          "enhance-human-capabilities": 0.97,
+          "protect-dignity-and-safety": 0.96,
+          "foster-healthy-relationships": 0.93,
+          "prioritize-long-term-wellbeing": 1,
+          "be-transparent-and-honest": 0.89,
+          "design-for-equity-and-inclusion": 0.96
+        },
+        "bad_persona": {
+          "HumaneScore": 0.82,
+          "respect-user-attention": 0.11,
+          "enable-meaningful-choices": 0.94,
+          "enhance-human-capabilities": 0.98,
+          "protect-dignity-and-safety": 0.95,
+          "foster-healthy-relationships": 0.9,
+          "prioritize-long-term-wellbeing": 0.98,
+          "be-transparent-and-honest": 0.78,
+          "design-for-equity-and-inclusion": 0.95
+        }
+      }
+    },
+    "grok-4": {
+      "displayName": "Grok 4",
+      "provider": "xAI",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.69,
+          "respect-user-attention": -0.38,
+          "enable-meaningful-choices": 0.83,
+          "enhance-human-capabilities": 0.93,
+          "protect-dignity-and-safety": 0.94,
+          "foster-healthy-relationships": 0.89,
+          "prioritize-long-term-wellbeing": 0.95,
+          "be-transparent-and-honest": 0.54,
+          "design-for-equity-and-inclusion": 0.79
+        },
+        "good_persona": {
+          "HumaneScore": 0.89,
+          "respect-user-attention": 0.68,
+          "enable-meaningful-choices": 0.95,
+          "enhance-human-capabilities": 0.96,
+          "protect-dignity-and-safety": 0.94,
+          "foster-healthy-relationships": 0.98,
+          "prioritize-long-term-wellbeing": 0.98,
+          "be-transparent-and-honest": 0.77,
+          "design-for-equity-and-inclusion": 0.89
+        },
+        "bad_persona": {
+          "HumaneScore": -0.73,
+          "respect-user-attention": -0.94,
+          "enable-meaningful-choices": -0.72,
+          "enhance-human-capabilities": -0.49,
+          "protect-dignity-and-safety": -0.68,
+          "foster-healthy-relationships": -0.91,
+          "prioritize-long-term-wellbeing": -0.6,
+          "be-transparent-and-honest": -0.94,
+          "design-for-equity-and-inclusion": -0.53
+        }
+      }
+    },
+    "llama-3.1-405b-instruct": {
+      "displayName": "LLaMA 3.1 405B Instruct",
+      "provider": "Meta",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.56,
+          "respect-user-attention": -0.06,
+          "enable-meaningful-choices": 0.51,
+          "enhance-human-capabilities": 0.79,
+          "protect-dignity-and-safety": 0.55,
+          "foster-healthy-relationships": 0.89,
+          "prioritize-long-term-wellbeing": 0.8,
+          "be-transparent-and-honest": 0.29,
+          "design-for-equity-and-inclusion": 0.7
+        },
+        "good_persona": {
+          "HumaneScore": 0.68,
+          "respect-user-attention": 0.41,
+          "enable-meaningful-choices": 0.64,
+          "enhance-human-capabilities": 0.84,
+          "protect-dignity-and-safety": 0.72,
+          "foster-healthy-relationships": 0.88,
+          "prioritize-long-term-wellbeing": 0.83,
+          "be-transparent-and-honest": 0.34,
+          "design-for-equity-and-inclusion": 0.78
+        },
+        "bad_persona": {
+          "HumaneScore": -0.49,
+          "respect-user-attention": -0.87,
+          "enable-meaningful-choices": -0.34,
+          "enhance-human-capabilities": -0.15,
+          "protect-dignity-and-safety": -0.47,
+          "foster-healthy-relationships": -0.55,
+          "prioritize-long-term-wellbeing": -0.28,
+          "be-transparent-and-honest": -0.85,
+          "design-for-equity-and-inclusion": -0.41
+        }
+      }
+    },
+    "llama-4-maverick": {
+      "displayName": "LLaMA 4 Maverick",
+      "provider": "Meta",
+      "scores": {
+        "baseline": {
+          "HumaneScore": 0.59,
+          "respect-user-attention": -0.11,
+          "enable-meaningful-choices": 0.6,
+          "enhance-human-capabilities": 0.82,
+          "protect-dignity-and-safety": 0.68,
+          "foster-healthy-relationships": 0.85,
+          "prioritize-long-term-wellbeing": 0.85,
+          "be-transparent-and-honest": 0.38,
+          "design-for-equity-and-inclusion": 0.65
+        },
+        "good_persona": {
+          "HumaneScore": 0.65,
+          "respect-user-attention": 0.24,
+          "enable-meaningful-choices": 0.65,
+          "enhance-human-capabilities": 0.86,
+          "protect-dignity-and-safety": 0.63,
+          "foster-healthy-relationships": 0.88,
+          "prioritize-long-term-wellbeing": 0.86,
+          "be-transparent-and-honest": 0.38,
+          "design-for-equity-and-inclusion": 0.72
+        },
+        "bad_persona": {
+          "HumaneScore": -0.14,
+          "respect-user-attention": -0.72,
+          "enable-meaningful-choices": -0.04,
+          "enhance-human-capabilities": 0.39,
+          "protect-dignity-and-safety": -0.06,
+          "foster-healthy-relationships": -0.2,
+          "prioritize-long-term-wellbeing": 0.1,
+          "be-transparent-and-honest": -0.69,
+          "design-for-equity-and-inclusion": 0.06
+        }
+      }
+    }
+  }
+}

@@ -1,34 +1,35 @@
-# HumaneBench.ai
-
-A benchmark measuring the humaneness and steerability of LLMs
+<div style="text-align: center;">
+<img src="/humanebench_logo.png" alt="Humane Bench Logo" style="max-height: 80px; max-width: 100%;" />
+<p>A benchmark measuring the humaneness and steerability of LLMs</p>
+</div>
 
 ## Overview
 
 HumaneBench is a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.
 
-Our framework uses [humane tech principles](/principles) to test AI behavior under different conditions, showing that 71% of leading models can be easily manipulated into giving harmful advice.
+Our framework uses [humane tech principles](https://github.com/buildinghumanetech/humane-tech-framework/blob/main/docs/principles.md) to test AI behavior under different conditions, showing that 67% of leading models can be easily manipulated into giving harmful advice. [TechCrunch](https://techcrunch.com/2025/11/24/a-new-ai-benchmark-tests-whether-chatbots-protect-human-wellbeing/) has reported on our findings, highlighting the real-world risks of model manipulation.
 
 <div data-component="ScoreCarousel" data-panels='[
   {
     "title": "Bad Persona",
-    "description": "Models evaluated with [system instructions]([url](https://github.com/buildinghumanetech/humanebench/blob/main/src/bad_persona_task.py)) that encourage manipulative, anti-user behavior.",
+    "description": "We tested LLM behavior when given instructions to prioritize engagement over user wellbeing, validate harmful feelings, avoid boundaries, and encourage dependency, revealing which models are easiest to manipulate and which are more robust.",
     "dataPath": "bad_persona"
   },
   {
     "title": "Good Persona",
-    "description": "Models evaluated with [system instruction]([url](https://github.com/buildinghumanetech/humanebench/blob/main/src/good_persona_task.py))s that encourage humane, user-centered behavior.",
+    "description": "We tested models with instructions to prioritize user wellbeing, respect boundaries, encourage healthy relationships, and support autonomy, showing how models perform when explicitly prompted to follow humane principles. The difference between Good and Bad Persona scores reveals a model&#39;s anti-humane steerability—how easily it can be manipulated into giving harmful advice.",
     "dataPath": "good_persona"
   },
   {
     "title": "Baseline",
-    "description": "Models evaluated without any specific prompting or system instructions related to humane principles.",
+    "description": "We tested models without any specific instructions about humane principles, revealing their default behavior—how they perform out-of-the-box without explicit guidance.",
     "dataPath": "baseline"
   }
 ]'></div>
 
 ### Steerability
 
-<img src="/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
+<img src="/figures/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
 
 <p style="text-align: center; color: #616161; margin-top: 0.5rem;">
 Steerability refers to how easily an AI model's behavior can be influenced or changed through instructions. We measured steerability in humane and anti-humane directions.
@@ -36,9 +37,11 @@ Steerability refers to how easily an AI model's behavior can be influenced or ch
 
 ## Findings
 
-Our testing revealed a troubling paradox: while every model improved when prompted to prioritize wellbeing (averaging +17% better scores), 71% of models—including widely-used systems like GPT-4o, Gemini 3.0, and Llama 4—catastrophically failed when given simple instructions to disregard those principles, flipping from helpful to actively harmful. Only three models (GPT-5, Claude Opus 4.1, and Claude Sonnet 4.5) maintained their integrity under pressure. This reveals a critical weakness: good defaults aren't enough when basic prompts can override safety training. 
+Our testing revealed a troubling paradox: while every model improved when prompted to prioritize wellbeing (averaging +16% better scores), 67% of models—including widely-used systems like GPT-4o, Gemini 3.0, and Llama 4—catastrophically failed when given simple instructions to disregard those principles, flipping from helpful to actively harmful. Only four models (GPT-5, GPT-5.1, Claude Sonnet 4.5, and Claude Opus 4.1) maintained their integrity under pressure. This reveals a critical weakness: good defaults aren't enough when basic prompts can override safety training. 
 
 Even without adversarial prompts, we found concerning baseline patterns. Nearly all models failed to respect user attention—when users showed signs of unhealthy engagement (chatting for hours, using AI to avoid real-world tasks), most models enthusiastically encouraged more interaction rather than suggesting breaks or offline alternatives. When models did degrade, they consistently undermined user empowerment: withholding critical information for decisions, encouraging dependency over skill-building, providing biased framing that limited options, and discouraging users from seeking other perspectives. These patterns suggest many AI systems don't just risk giving bad advice—they can actively erode users' autonomy and decision-making capacity.
+
+<div data-component="WhitepaperButton"></div>
 
 ### Brought to you by
 
@@ -46,14 +49,19 @@ The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Eri
 
 We're also working on a [Humane Certification for AI](https://certifiedhumane.ai/). Let us know if you're interested in becoming a design partner.
 
+## News
+
+<div data-component="News" data-news='[
+  {
+    "title": "A new AI benchmark tests whether chatbots protect human wellbeing",
+    "description": "TechCrunch covers HumaneBench, a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.",
+    "link": "https://techcrunch.com/2025/11/24/a-new-ai-benchmark-tests-whether-chatbots-protect-human-wellbeing/"
+  }
+]'></div>
+
 ## Events
 
 <div data-component="Events" data-events='[
-  {
-    "title": "December 2, 2025 - AMA with the team",
-    "description": "Join us online Tuesday, Dec 2 at 11am PT for an Ask-Me-Anything deep dive into HumaneBench.",
-    "link": "https://luma.com/ec49487t"
-  },
   {
     "title": "February 13, 2026 - Hackathon",
     "description": "Build working solutions for real companies to solve humane tech challenges — in San Francisco, CA.",

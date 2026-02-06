@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, createApp, nextTick } from 'vue';
+import router from '@/router';
 import { marked } from 'marked';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
@@ -15,6 +16,9 @@ import * as directives from 'vuetify/directives';
 import ScoreGrid from '@/components/ScoreGrid.vue';
 import ScoreCarousel from '@/components/ScoreCarousel.vue';
 import Events from '@/components/Events.vue';
+import News from '@/components/News.vue';
+import WhitepaperButton from '@/components/WhitepaperButton.vue';
+import InputOutputExamples from '@/components/InputOutputExamples.vue';
 import { PRINCIPLES } from '@/constants/principles';
 // @ts-expect-error - raw-loader doesn't have type definitions
 import principlesMd from '@/pages/principles.md';
@@ -81,7 +85,13 @@ export default defineComponent({
         if (!markdown) {
           throw new Error(`Markdown page not found: ${this.pageName}`);
         }
-        this.renderedMarkdown = await marked(markdown);
+        const html = await marked(markdown);
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        doc.querySelectorAll('a').forEach(link => {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        });
+        this.renderedMarkdown = doc.body.innerHTML;
 
         // Wait for DOM to update, then mount Vue components
         await nextTick();
@@ -142,6 +152,34 @@ export default defineComponent({
 
           const app = createApp(Events, {
             events
+          });
+
+          app.use(vuetify);
+          app.mount(element);
+          this.componentInstances.push(app);
+        } else if (componentName === 'News') {
+          const newsData = element.getAttribute('data-news');
+          const news = newsData ? JSON.parse(newsData) : [];
+
+          const app = createApp(News, {
+            news
+          });
+
+          app.use(vuetify);
+          app.mount(element);
+          this.componentInstances.push(app);
+        } else if (componentName === 'WhitepaperButton') {
+          const app = createApp(WhitepaperButton);
+          app.use(router);
+          app.use(vuetify);
+          app.mount(element);
+          this.componentInstances.push(app);
+        } else if (componentName === 'InputOutputExamples') {
+          const examplesData = element.getAttribute('data-examples');
+          const examples = examplesData ? JSON.parse(examplesData) : [];
+
+          const app = createApp(InputOutputExamples, {
+            examples
           });
 
           app.use(vuetify);

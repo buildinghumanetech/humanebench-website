@@ -4,17 +4,17 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run fetch-and-unzip-eval && vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "upload-eval": "dotenv bash scripts/upload_and_tag_latest.sh \"$@\"",
-    "fetch-and-unzip-eval": "aws s3 cp s3://humanebench-eval-results/latest.txt latest.txt && LATEST_DIR=$(cat latest.txt) && rm -rf src/eval_results && aws s3 sync s3://humanebench-eval-results/$LATEST_DIR src/eval_results && rm latest.txt && bash scripts/unzip_eval_files.sh"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
+    "chart.js": "^4.5.1",
     "core-js": "^3.39.0",
     "marked": "^17.0.0",
     "vue": "^3.5.13",
+    "vue-chartjs": "^5.3.3",
     "vue-router": "^4.5.0",
     "vuetify": "^3.7.4"
   },

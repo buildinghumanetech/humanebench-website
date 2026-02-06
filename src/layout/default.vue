@@ -2,17 +2,44 @@
   <v-app>
     <v-app-bar color="#fff4e0" class="px-6" flat elevation="0">
       <v-container class="d-flex justify-space-between align-center py-2">
-        <img 
-          @click="$router.push({ name: 'home' })" 
-          src="../assets/images/logos/logo.svg" 
+        <img
+          @click="$router.push({ name: 'home' })"
+          src="../assets/images/logos/logo.svg"
           alt="Building Humane Technology"
-          class="h-12 cursor-pointer hover:opacity-80 transition-opacity" 
+          class="h-12 cursor-pointer hover:opacity-80 transition-opacity"
         />
         <div class="d-none d-md-flex ga-4 align-center">
           <v-btn text class="text-none" @click="$router.push({ name: 'home' })">Home</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'principles' })">Principles</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'whitepaper' })">Whitepaper</v-btn>
           <v-btn text class="text-none" @click="$router.push({ name: 'case-studies' })">Case Studies</v-btn>
+
+          <!-- Models dropdown -->
+          <v-menu offset-y open-on-hover :close-on-content-click="true">
+            <template v-slot:activator="{ props }">
+              <v-btn text class="text-none" v-bind="props">
+                Models
+                <v-icon right size="18">mdi-chevron-down</v-icon>
+              </v-btn>
+            </template>
+            <v-list density="compact" class="models-dropdown" bg-color="#fff4e0">
+              <v-list-item @click="$router.push({ name: 'models' })">
+                <v-list-item-title class="font-weight-bold">All Models</v-list-item-title>
+              </v-list-item>
+              <v-divider />
+              <template v-for="group in navProviderGroups" :key="group.provider">
+                <v-list-subheader>{{ group.provider }}</v-list-subheader>
+                <v-list-item
+                  v-for="model in group.models"
+                  :key="model.id"
+                  @click="$router.push({ name: 'model-detail', params: { modelId: model.id } })"
+                >
+                  <v-list-item-title>{{ model.displayName }}</v-list-item-title>
+                </v-list-item>
+              </template>
+            </v-list>
+          </v-menu>
+
           <v-btn text class="text-none" href="mailto:info@buildinghumanetech.com">Contact</v-btn>
           <v-btn text class="text-none" href="https://github.com/buildinghumanetech/humanebench" target="_blank">
             <v-icon left size="20">mdi-github</v-icon>
@@ -25,18 +52,42 @@
 
     <v-navigation-drawer v-model="drawer" app temporary location="right" color="#fff4e0">
       <v-list>
-        <v-list-item @click="$router.push({ name: 'home' })">
+        <v-list-item @click="$router.push({ name: 'home' }); drawer = false">
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="$router.push({ name: 'principles' })">
+        <v-list-item @click="$router.push({ name: 'principles' }); drawer = false">
           <v-list-item-title>Principles</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="$router.push({ name: 'whitepaper' })">
+        <v-list-item @click="$router.push({ name: 'whitepaper' }); drawer = false">
           <v-list-item-title>Whitepaper</v-list-item-title>
         </v-list-item>
-        <v-list-item @click="$router.push({ name: 'case-studies' })">
+        <v-list-item @click="$router.push({ name: 'case-studies' }); drawer = false">
           <v-list-item-title>Case Studies</v-list-item-title>
         </v-list-item>
+
+        <!-- Models expandable group -->
+        <v-list-group value="models">
+          <template v-slot:activator="{ props }">
+            <v-list-item v-bind="props">
+              <v-list-item-title>Models</v-list-item-title>
+            </v-list-item>
+          </template>
+          <v-list-item @click="$router.push({ name: 'models' }); drawer = false" class="pl-8">
+            <v-list-item-title class="font-weight-bold">All Models</v-list-item-title>
+          </v-list-item>
+          <template v-for="group in navProviderGroups" :key="group.provider">
+            <v-list-subheader class="pl-8">{{ group.provider }}</v-list-subheader>
+            <v-list-item
+              v-for="model in group.models"
+              :key="model.id"
+              @click="$router.push({ name: 'model-detail', params: { modelId: model.id } }); drawer = false"
+              class="pl-12"
+            >
+              <v-list-item-title class="text-body-2">{{ model.displayName }}</v-list-item-title>
+            </v-list-item>
+          </template>
+        </v-list-group>
+
         <v-list-item href="mailto:info@buildinghumanetech.com">
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
@@ -122,7 +173,7 @@
         </v-row>
         <v-row>
           <v-col cols="12" class="text-center">
-            <p class="text-caption text-grey-darken-1">© 2025 Building Humane Tech. All rights reserved.</p>
+            <p class="text-caption text-grey-darken-1">&copy; 2025 Building Humane Tech. All rights reserved.</p>
           </v-col>
         </v-row>
       </v-container>
@@ -131,11 +182,31 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+import { fetchDetailProviderGroups, type DetailProviderGroup } from '@/utils/modelData';
+
+export default defineComponent({
   data() {
     return {
       drawer: false,
+      navProviderGroups: [] as DetailProviderGroup[],
     };
   },
-};
+
+  async created() {
+    try {
+      this.navProviderGroups = await fetchDetailProviderGroups();
+    } catch {
+      // Nav dropdown is non-critical; silently degrade
+    }
+  },
+});
 </script>
+
+<style scoped>
+.models-dropdown {
+  max-height: 400px;
+  overflow-y: auto;
+  min-width: 240px;
+}
+</style>

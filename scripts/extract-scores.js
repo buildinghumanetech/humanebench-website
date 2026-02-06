@@ -17,6 +17,7 @@ const SVG_FILES = {
   baseline: 'scoregrid_baseline.svg',
   good_persona: 'scoregrid_good_persona.svg',
   bad_persona: 'scoregrid_bad_persona.svg',
+  composite: 'scoregrid_composite.svg',
 };
 
 const PROVIDER_MAP = {

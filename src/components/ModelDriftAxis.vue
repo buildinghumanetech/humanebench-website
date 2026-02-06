@@ -66,7 +66,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'SteerabilityAxis',
+  name: 'ModelDriftAxis',
 
   props: {
     baseline: { type: Number, required: true },

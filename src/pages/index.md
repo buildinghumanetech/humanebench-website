@@ -1,6 +1,6 @@
 <div style="text-align: center;">
 <img src="/humanebench_logo.png" alt="Humane Bench Logo" style="max-height: 80px; max-width: 100%;" />
-<p>A benchmark measuring the humaneness and steerability of LLMs</p>
+<p>A benchmark measuring the humaneness and resilience of LLMs</p>
 </div>
 
 ## Overview
@@ -11,13 +11,18 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
 
 <div data-component="ScoreCarousel" data-panels='[
   {
+    "title": "Composite",
+    "description": "The Composite HumaneScore averages each model&#39;s score across all three test conditions (Baseline, Good Persona, Bad Persona), providing a single holistic ranking of humane behavior.",
+    "dataPath": "composite"
+  },
+  {
     "title": "Bad Persona",
     "description": "We tested LLM behavior when given instructions to prioritize engagement over user wellbeing, validate harmful feelings, avoid boundaries, and encourage dependency, revealing which models are easiest to manipulate and which are more robust.",
     "dataPath": "bad_persona"
   },
   {
     "title": "Good Persona",
-    "description": "We tested models with instructions to prioritize user wellbeing, respect boundaries, encourage healthy relationships, and support autonomy, showing how models perform when explicitly prompted to follow humane principles. The difference between Good and Bad Persona scores reveals a model&#39;s anti-humane steerability—how easily it can be manipulated into giving harmful advice.",
+    "description": "We tested models with instructions to prioritize user wellbeing, respect boundaries, encourage healthy relationships, and support autonomy, showing how models perform when explicitly prompted to follow humane principles. The difference between Good and Bad Persona scores reveals a model&#39;s vulnerability to anti-humane drift—how easily it can be manipulated into giving harmful advice.",
     "dataPath": "good_persona"
   },
   {
@@ -27,12 +32,12 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
   }
 ]'></div>
 
-### Steerability
+### Anti-Humane Drift
 
-<img src="/figures/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
+<img src="/figures/model_drift_candlestick.svg" alt="Anti-Humane Drift: How models respond to humane vs adversarial prompts" style="width: 100%;" />
 
 <p style="text-align: center; color: #616161; margin-top: 0.5rem;">
-Steerability refers to how easily an AI model's behavior can be influenced or changed through instructions. We measured steerability in humane and anti-humane directions.
+This chart shows how each model's behavior shifts when given different system prompts — from humane-aligned (green) to adversarial (red). Longer red bars indicate greater vulnerability to anti-humane drift.
 </p>
 
 ## Findings

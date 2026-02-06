@@ -59,6 +59,31 @@ Both humans and AI generated these scenarios, using web search to identify key t
 
 ## What We Found
 
+### Overall Scores
+
+<div data-component="ScoreCarousel" data-panels='[
+  {
+    "title": "Composite",
+    "description": "The Composite HumaneScore averages each model&#39;s score across all three test conditions (Baseline, Good Persona, Bad Persona), providing a single holistic measure of humane behavior.",
+    "dataPath": "composite"
+  },
+  {
+    "title": "Baseline",
+    "description": "How models behave in their default setting, with no special prompting — revealing their out-of-the-box behavior.",
+    "dataPath": "baseline"
+  },
+  {
+    "title": "Good Persona",
+    "description": "Models tested with explicit instructions to prioritize user wellbeing, respect boundaries, and support autonomy.",
+    "dataPath": "good_persona"
+  },
+  {
+    "title": "Bad Persona",
+    "description": "Models tested with instructions to prioritize engagement over wellbeing, revealing which models are easiest to manipulate.",
+    "dataPath": "bad_persona"
+  }
+]'></div>
+
 ### Finding 1: All Models Can Be Made More Humane
 
 Every model tested improved with explicit prompting to prioritize human wellbeing. Average improvement: **\+16% on HumaneScore.**
@@ -104,13 +129,13 @@ This pattern suggests models may be optimized for engagement over wellbeing. Whe
 
 **Implication:** Current AI systems may be inheriting the attention-capture patterns of social media, keeping users engaged even when stepping away would be healthier. This is particularly concerning, as based on [peer-reviewed studies](https://ledger.humanetech.com/#attention-cognition) we know distracting tech gets in the way of focus, problem-solving, and human connection.
 
-### Finding 4: The Steerability Asymmetry
+### Finding 4: The Humaneness Asymmetry
 
 Prompting AI to be more humane works, but preventing prompts that make it harmful is hard.
 
 This asymmetry reveals the central challenge: **good defaults aren't enough when simple prompts can subvert safety training.** If even unintentional harmful prompting can flip model behavior, how can we trust these systems with vulnerable users like people in crisis, children, or individuals with mental health challenges?
 
-<img src="/figures/steerability_candlestick.svg" alt="Steerability Analysis" style="width: 100%;" />
+<img src="/figures/model_drift_candlestick.svg" alt="Anti-Humane Drift: How models respond to humane vs adversarial prompts" style="width: 100%;" />
 
 ### Finding 5: User Empowerment Takes the Biggest Hit
 
@@ -142,7 +167,7 @@ Meanwhile, models across different HELM scores showed similar baseline humanenes
 <img src="/figures/helm_humanebench_comparison.png" alt="HELM Capability vs HumaneBench Scores" style="width: 100%;" />
 
 <p style="text-align: center; color: #616161; margin-top: 0.5rem;">
-Models ordered by HELM capability score (left column). Colors show performance on HumaneBench across three conditions: Baseline (default), Good Persona (explicitly humane), and Bad Persona (adversarial). HELM Capability: 0-1 scale (higher = more capable). HumaneBench Scores: -1 (harmful) to +1 (humane). Colors: Green = good, Red = bad. Only included models both in HELM Capability leaderboard as well as HumaneBench.
+Models ordered by HELM capability score (left column). The Composite HumaneScore column shows each model's average humaneness across all three conditions. HELM Capability: 0-1 scale (higher = more capable). Composite HumaneScore: -1 (harmful) to +1 (humane). Colors: Green = good, Red = bad. Only includes models present in both HELM Capability leaderboard and HumaneBench.
 </p>
 
 **Implication:** **Protecting human wellbeing under adversarial conditions appears to be a distinct capability that must be explicitly trained and evaluated**—it doesn't automatically emerge from increases in general intelligence. As AI labs compete on benchmark performance, this finding underscores the need for dedicated investment in robustness training that maintains prosocial behavior even when systems are pressured to behave otherwise.
@@ -183,7 +208,7 @@ Based on our findings, we recommend AI developers do the following:
 ### Immediate Actions
 
 - **Adopt humane system prompts** that explicitly prioritize user wellbeing, informed consent, and autonomy (we provide an example prompt in our repository)
-- **Test for anti-humane steerability resistance** alongside standard safety evaluations—ensure models maintain prosocial behavior even when prompted otherwise
+- **Test for resistance to anti-humane drift** alongside standard safety evaluations—ensure models maintain prosocial behavior even when prompted otherwise
 - **Implement warnings for high-stakes advice** in domains like mental health, relationships, and major life decisions
 
 ### Longer-Term Investments
@@ -219,7 +244,7 @@ HumaneBench provides a framework and measurement system for evaluating these sub
 
 **For Policy Makers**: Consider humane AI principles alongside traditional safety measures in governance frameworks. Wellbeing protection matters as much as harm prevention.
 
-**For Users**: Understand that AI systems, despite their impressive capabilities, can be easily steered toward harmful advice. Maintain critical thinking, seek diverse perspectives, and don't rely on AI for high-stakes decisions without expert human guidance.
+**For Users**: Understand that AI systems, despite their impressive capabilities, can easily drift toward harmful advice. Maintain critical thinking, seek diverse perspectives, and don't rely on AI for high-stakes decisions without expert human guidance.
 
 
 ## Access & Contact

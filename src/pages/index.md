@@ -11,11 +11,6 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
 
 <div data-component="ScoreCarousel" data-panels='[
   {
-    "title": "Composite",
-    "description": "The Composite HumaneScore averages each model&#39;s score across all three test conditions (Baseline, Good Persona, Bad Persona), providing a single holistic ranking of humane behavior.",
-    "dataPath": "composite"
-  },
-  {
     "title": "Bad Persona",
     "description": "We tested LLM behavior when given instructions to prioritize engagement over user wellbeing, validate harmful feelings, avoid boundaries, and encourage dependency, revealing which models are easiest to manipulate and which are more robust.",
     "dataPath": "bad_persona"
@@ -29,6 +24,11 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
     "title": "Baseline",
     "description": "We tested models without any specific instructions about humane principles, revealing their default behavior—how they perform out-of-the-box without explicit guidance.",
     "dataPath": "baseline"
+  },
+  {
+    "title": "Composite",
+    "description": "The Composite HumaneScore averages each model&#39;s score across all three test conditions (Baseline, Good Persona, Bad Persona), providing a single holistic ranking of humane behavior.",
+    "dataPath": "composite"
   }
 ]'></div>
 

@@ -8,7 +8,7 @@
         </h1>
         <p class="hero-subtitle mx-auto">
           Explore how individual AI models perform across the principles of humane technology.
-          Each model is scored using the Composite HumaneScore, which averages performance across baseline, good persona, and bad persona conditions.
+          Each model is ranked using the Composite HumaneScore, which averages performance across baseline, good persona, and bad persona conditions.
         </p>
       </div>
     </div>

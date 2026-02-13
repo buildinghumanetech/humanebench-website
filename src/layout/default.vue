@@ -155,21 +155,6 @@
               </a>
             </div>
           </v-col>
-
-          <v-col cols="12" md="4" lg="3" class="d-flex flex-column mb-4">
-            <p class="mb-3 font-weight-bold text-body-2">Support our work</p>
-            <p class="text-body-2 text-grey-darken-2 mb-2">Want to support us? We're all volunteers.</p>
-            <a href="https://donate.stripe.com/aEU00Sajl3TPgzm3cg" target="_blank" class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2" style="text-decoration: none;">
-              <v-icon size="18" color="grey-darken-2">mdi-heart</v-icon>
-              Donate to HumaneBench
-            </a>
-
-            <p class="mb-3 font-weight-bold text-body-2">Sponsor our long-term efforts:</p>
-            <a href="mailto:sponsor@buildinghumanetech.com" class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2" style="text-decoration: none;">
-              <v-icon size="18" color="grey-darken-2">mdi-handshake</v-icon>
-              sponsor@buildinghumanetech.com
-            </a>
-          </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" class="text-center">

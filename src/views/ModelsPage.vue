@@ -7,8 +7,7 @@
           Model Performance
         </h1>
         <p class="hero-subtitle mx-auto">
-          Explore how individual AI models perform across the principles of humane technology.
-          Each model is ranked using the Baseline HumaneScore, reflecting default model behavior without any specific persona prompting.
+          Explore how individual AI models perform across principles of humane technology.
         </p>
       </div>
     </div>
@@ -25,12 +24,6 @@
 
     <!-- Content -->
     <div v-else>
-      <!-- Top 5 Models -->
-      <div class="mb-10">
-        <h2 class="section-title mb-4 text-center">Top Performing Models</h2>
-        <TopModelsBar :models="topModels" />
-      </div>
-
       <!-- Radar Comparison Chart -->
       <div class="section-card mb-10">
         <h2 class="section-title mb-4">Principle Comparison</h2>
@@ -52,7 +45,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { fetchRankedModels, type RankedModelEntry } from '@/utils/modelData';
-import TopModelsBar from '@/components/TopModelsBar.vue';
 import RadarComparisonChart from '@/components/RadarComparisonChart.vue';
 import ModelsTable from '@/components/ModelsTable.vue';
 
@@ -60,7 +52,6 @@ export default defineComponent({
   name: 'ModelsPage',
 
   components: {
-    TopModelsBar,
     RadarComparisonChart,
     ModelsTable,
   },
@@ -71,12 +62,6 @@ export default defineComponent({
       error: null as string | null,
       rankedModels: [] as RankedModelEntry[],
     };
-  },
-
-  computed: {
-    topModels(): RankedModelEntry[] {
-      return this.rankedModels.slice(0, 5);
-    },
   },
 
   async created() {
@@ -113,7 +98,6 @@ export default defineComponent({
   font-size: 1.25rem;
   line-height: 1.7;
   color: #4a4a4a;
-  max-width: 700px;
 }
 
 .section-card {

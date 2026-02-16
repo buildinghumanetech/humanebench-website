@@ -34,7 +34,7 @@
       <!-- All Models Table -->
       <div class="section-card mb-10">
         <h2 class="section-title mb-4">All Models</h2>
-        <p class="section-desc mb-2">Scores reflect baseline performance — default model behavior without persona prompting.</p>
+        <p class="section-desc mb-2">Scores reflect baseline performance by default. Use the toggle to compare across Baseline, Good Persona, and Bad Persona results.</p>
         <p class="section-desc mb-4">Click column headers to sort. Click a model name to view details.</p>
         <ModelsTable :models="rankedModels" />
       </div>

@@ -53,7 +53,6 @@ const DATASET_OPTIONS = [
   { key: 'bad_persona', label: 'Bad Persona' },
   { key: 'good_persona', label: 'Good Persona' },
   { key: 'baseline', label: 'Baseline' },
-  { key: 'composite', label: 'Composite' },
 ] as const;
 
 export default defineComponent({
@@ -71,7 +70,7 @@ export default defineComponent({
   data() {
     return {
       selectedIds: [] as string[],
-      selectedDataset: 'composite' as keyof RankedModelEntry['scores'],
+      selectedDataset: 'baseline' as keyof RankedModelEntry['scores'],
       datasetOptions: DATASET_OPTIONS,
     };
   },

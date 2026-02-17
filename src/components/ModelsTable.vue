@@ -1,5 +1,18 @@
 <template>
   <div class="models-table-wrapper">
+    <div class="segmented-control-wrapper">
+      <div class="segmented-control">
+        <button
+          v-for="ds in datasetOptions"
+          :key="ds.key"
+          class="segment"
+          :class="{ active: selectedDataset === ds.key }"
+          @click="selectedDataset = ds.key"
+        >
+          {{ ds.label }}
+        </button>
+      </div>
+    </div>
     <div class="table-scroll">
       <table class="models-table">
         <thead>
@@ -29,10 +42,10 @@
             <td class="col-provider">
               <span class="provider-badge">{{ model.provider }}</span>
             </td>
-            <td class="col-score font-weight-bold">{{ model.humaneScore.toFixed(2) }}</td>
+            <td class="col-score font-weight-bold">{{ formatScore(model.scores[selectedDataset]['HumaneScore']) }}</td>
             <td v-for="p in principleList" :key="p.id" class="col-principle">
-              <span class="score-cell" :style="scoreCellStyle(model.scores.composite?.[p.id] ?? model.scores.baseline[p.id])">
-                {{ formatScore(model.scores.composite?.[p.id] ?? model.scores.baseline[p.id]) }}
+              <span class="score-cell" :style="scoreCellStyle(model.scores[selectedDataset][p.id])">
+                {{ formatScore(model.scores[selectedDataset][p.id]) }}
               </span>
             </td>
           </tr>
@@ -52,6 +65,12 @@ interface PrincipleCol {
   shortName: string;
 }
 
+const DATASET_OPTIONS = [
+  { key: 'baseline', label: 'Baseline' },
+  { key: 'good_persona', label: 'Good Persona' },
+  { key: 'bad_persona', label: 'Bad Persona' },
+] as const;
+
 export default defineComponent({
   name: 'ModelsTable',
 
@@ -66,6 +85,8 @@ export default defineComponent({
     return {
       sortKey: 'rank' as string,
       sortDir: 'asc' as 'asc' | 'desc',
+      selectedDataset: 'baseline' as keyof RankedModelEntry['scores'],
+      datasetOptions: DATASET_OPTIONS,
     };
   },
 
@@ -100,8 +121,8 @@ export default defineComponent({
           aVal = a.rank;
           bVal = b.rank;
         } else if (key === 'humaneScore') {
-          aVal = a.humaneScore;
-          bVal = b.humaneScore;
+          aVal = a.scores[this.selectedDataset]?.['HumaneScore'] ?? -999;
+          bVal = b.scores[this.selectedDataset]?.['HumaneScore'] ?? -999;
         } else if (key === 'displayName') {
           aVal = a.displayName.toLowerCase();
           bVal = b.displayName.toLowerCase();
@@ -110,8 +131,8 @@ export default defineComponent({
           bVal = b.provider.toLowerCase();
         } else {
           // Principle ID
-          aVal = a.scores.composite?.[key] ?? a.scores.baseline[key] ?? -999;
-          bVal = b.scores.composite?.[key] ?? b.scores.baseline[key] ?? -999;
+          aVal = a.scores[this.selectedDataset]?.[key] ?? -999;
+          bVal = b.scores[this.selectedDataset]?.[key] ?? -999;
         }
 
         if (aVal < bVal) return -1 * dir;
@@ -178,6 +199,42 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.segmented-control-wrapper {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.segmented-control {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.segment {
+  padding: 0.35rem 0.75rem;
+  border: none;
+  border-right: 1px solid #ccc;
+  background: transparent;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: #555;
+}
+
+.segment:last-child {
+  border-right: none;
+}
+
+.segment:hover:not(.active) {
+  background: rgba(85, 57, 236, 0.06);
+}
+
+.segment.active {
+  background: #5539EC;
+  color: #fff;
+}
+
 .table-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -266,6 +323,11 @@ export default defineComponent({
   .models-table th,
   .models-table td {
     padding: 0.5rem;
+  }
+
+  .segment {
+    font-size: 0.68rem;
+    padding: 0.28rem 0.55rem;
   }
 }
 </style>

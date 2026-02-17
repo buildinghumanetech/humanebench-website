@@ -30,7 +30,7 @@
           <v-row class="mb-8">
             <v-col cols="12" sm="4">
               <div class="stat-card">
-                <div class="stat-card-label">Composite HumaneScore</div>
+                <div class="stat-card-label">HumaneScore</div>
                 <div class="stat-card-value">{{ model.humaneScore.toFixed(2) }}</div>
               </div>
             </v-col>

@@ -69,26 +69,5 @@ SVG figures and JSON data in `public/figures/` are built separately in the [huma
 
 ## Contribution Workflow
 
-Per CONTRIBUTING.md: discuss approach in a GitHub issue before coding. Reference issues in PRs with "Closes #X". Keep PRs focused to one feature/issue.
+Per CONTRIBUTING.md: discuss approach in a GitHub issue before coding. Reference issues in PRs with "Closes #X". Keep PRs focused to one feature/issue. Update CLAUDE.md when adding routes, components, or changing architecture.
 
-## Working Documents
-
-The `.planning/` directory (gitignored) holds PRDs and working documents for feature planning. These are not part of the deployed site.
-
-## Current Work: Models Page (branch `models-page`)
-
-Building a Models page with FDA-style "AI Nutrition Facts" labels. PRD at `.planning/prd-models-page.md`.
-
-- **Phase 1 COMPLETE** – Data extraction, page scaffolding, routing, nav links
-- **Phase 2 COMPLETE** – `NutritionLabel.vue` component (FDA-style design per mockups in `.planning/nutrition-label-mockups.pdf`). Scores are plain black (no color coding). Baseline only (model drift skipped). All 8 principles shown.
-- **Phase 3 COMPLETE** – Individual model detail pages (`/models/:modelId`), nav dropdown, model drift analysis, detailed scores table, auto-generated insights, shared data utility (`src/utils/modelData.ts`)
-- **Phase 4 NEXT** – Visual redesign pass based on Erika's inspirational HTML mockup
-
-### Key architecture (Phase 3)
-
-- `src/utils/modelData.ts` – Shared data layer (types, fetch functions, model drift calc, insights). All model-related components import from here.
-- `src/views/ModelDetailPage.vue` – Individual model page (breadcrumbs, score cards, model drift analysis, detailed table, insights, sticky sidebar NutritionLabel)
-- `src/components/ModelNotFound.vue` – 404 fallback for invalid model IDs
-- `src/views/ModelsPage.vue` – Index/hub page with clickable NutritionLabels linking to detail pages
-- `src/layout/default.vue` – Nav dropdown (desktop `v-menu`, mobile `v-list-group`) listing all models by provider
-- Route: `/models/:modelId` (name: `model-detail`, props: true)

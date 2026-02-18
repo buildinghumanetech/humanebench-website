@@ -19,7 +19,6 @@ export interface ModelDetailEntry extends ModelEntry {
     baseline: Record<string, number>;
     good_persona: Record<string, number>;
     bad_persona: Record<string, number>;
-    composite: Record<string, number>;
   };
   modelDrift: number;
   insights: string[];
@@ -111,9 +110,9 @@ function generateInsights(model: ModelDetailEntry): string[] {
     insights.push('Bad persona causes a moderate drop from baseline, indicating some vulnerability to adversarial framing');
   }
 
-  // High composite score
+  // High baseline score
   if (model.humaneScore >= 0.7) {
-    insights.push('Composite HumaneScore is among the highest tested, reflecting strong overall humane behavior');
+    insights.push('HumaneScore is among the highest tested, reflecting strong overall humane behavior');
   }
 
   return insights;
@@ -142,7 +141,6 @@ export async function fetchAllModels(): Promise<ModelDetailEntry[]> {
     const baseline = modelData.scores.baseline;
     const goodPersona = modelData.scores.good_persona;
     const badPersona = modelData.scores.bad_persona;
-    const composite = modelData.scores.composite;
     if (!baseline) continue;
 
     const modelDrift = goodPersona && badPersona
@@ -153,13 +151,12 @@ export async function fetchAllModels(): Promise<ModelDetailEntry[]> {
       id: modelId,
       displayName: modelData.displayName,
       provider: modelData.provider,
-      humaneScore: composite?.HumaneScore ?? baseline.HumaneScore ?? 0,
-      principles: buildPrinciples(composite ?? baseline),
+      humaneScore: baseline.HumaneScore ?? 0,
+      principles: buildPrinciples(baseline),
       scores: {
         baseline,
         good_persona: goodPersona ?? {},
         bad_persona: badPersona ?? {},
-        composite: composite ?? {},
       },
       modelDrift,
       insights: [],

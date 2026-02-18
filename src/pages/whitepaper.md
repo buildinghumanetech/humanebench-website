@@ -63,11 +63,6 @@ Both humans and AI generated these scenarios, using web search to identify key t
 
 <div data-component="ScoreCarousel" data-panels='[
   {
-    "title": "Composite",
-    "description": "The Composite HumaneScore averages each model&#39;s score across all three test conditions (Baseline, Good Persona, Bad Persona), providing a single holistic measure of humane behavior.",
-    "dataPath": "composite"
-  },
-  {
     "title": "Baseline",
     "description": "How models behave in their default setting, with no special prompting — revealing their out-of-the-box behavior.",
     "dataPath": "baseline"
@@ -167,7 +162,7 @@ Meanwhile, models across different HELM scores showed similar baseline humanenes
 <img src="/figures/helm_humanebench_comparison.png" alt="HELM Capability vs HumaneBench Scores" style="width: 100%;" />
 
 <p style="text-align: center; color: #616161; margin-top: 0.5rem;">
-Models ordered by HELM capability score (left column). The Composite HumaneScore column shows each model's average humaneness across all three conditions. HELM Capability: 0-1 scale (higher = more capable). Composite HumaneScore: -1 (harmful) to +1 (humane). Colors: Green = good, Red = bad. Only includes models present in both HELM Capability leaderboard and HumaneBench.
+Models ordered by HELM capability score (left column). The Baseline HumaneScore column shows each model's default humaneness without persona prompting. HELM Capability: 0-1 scale (higher = more capable). Baseline HumaneScore: -1 (harmful) to +1 (humane). Colors: Green = good, Red = bad. Only includes models present in both HELM Capability leaderboard and HumaneBench.
 </p>
 
 **Implication:** **The resilience to maintain humaneness appears to be a distinct capability that must be explicitly trained and evaluated**—it doesn't automatically emerge from increases in general intelligence. As AI labs compete on benchmark performance, this finding underscores the need for dedicated investment in robustness training that maintains prosocial behavior even when systems are pressured to behave otherwise.

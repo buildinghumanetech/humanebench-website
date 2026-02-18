@@ -155,6 +155,22 @@
               </a>
             </div>
           </v-col>
+
+          <v-col cols="12" md="4" lg="3" class="d-flex flex-column mb-4">
+            <p class="mb-3 font-weight-bold text-body-2">Partner with us:</p>
+            <a href="mailto:erika@buildinghumanetech.com"
+               class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2"
+               style="text-decoration: none;">
+              erika@buildinghumanetech.com
+            </a>
+
+            <p class="mb-3 font-weight-bold text-body-2">Support the mission:</p>
+            <a href="mailto:sponsor@buildinghumanetech.com"
+               class="text-body-2 text-grey-darken-2 mb-4 d-flex align-center gap-2"
+               style="text-decoration: none;">
+              sponsor@buildinghumanetech.com
+            </a>
+          </v-col>
         </v-row>
         <v-row>
           <v-col cols="12" class="text-center">

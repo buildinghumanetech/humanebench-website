@@ -38,12 +38,14 @@
               <div class="stat-card">
                 <div class="stat-card-label">Strongest Principle</div>
                 <div class="stat-card-value stat-card-text">{{ strongestPrincipleName }}</div>
+                <div class="stat-card-sub-score">{{ strongestPrincipleScore }}</div>
               </div>
             </v-col>
             <v-col cols="12" sm="4">
               <div class="stat-card">
                 <div class="stat-card-label">Weakest Principle</div>
                 <div class="stat-card-value stat-card-text">{{ weakestPrincipleName }}</div>
+                <div class="stat-card-sub-score">{{ weakestPrincipleScore }}</div>
               </div>
             </v-col>
           </v-row>
@@ -174,6 +176,18 @@ export default defineComponent({
       const weakest = getWeakestPrinciple(this.model);
       return weakest ? weakest.name : 'N/A';
     },
+
+    strongestPrincipleScore(): string {
+      if (!this.model) return '';
+      const strongest = getStrongestPrinciple(this.model);
+      return strongest ? strongest.score.toFixed(2) : '';
+    },
+
+    weakestPrincipleScore(): string {
+      if (!this.model) return '';
+      const weakest = getWeakestPrinciple(this.model);
+      return weakest ? weakest.score.toFixed(2) : '';
+    },
   },
 
   watch: {
@@ -244,6 +258,14 @@ export default defineComponent({
   font-size: 0.9rem;
   font-weight: 400;
   color: #999;
+}
+
+.stat-card-sub-score {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #8b7dd8;
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.35rem;
 }
 
 .section-card {

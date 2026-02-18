@@ -123,6 +123,11 @@ export function getStrongestPrinciple(model: ModelDetailEntry): PrincipleScore |
   return [...model.principles].sort((a, b) => b.score - a.score)[0];
 }
 
+export function getWeakestPrinciple(model: ModelDetailEntry): PrincipleScore | null {
+  if (!model.principles.length) return null;
+  return [...model.principles].sort((a, b) => a.score - b.score)[0];
+}
+
 let cachedData: ModelScoresJson | null = null;
 
 async function loadData(): Promise<ModelScoresJson> {

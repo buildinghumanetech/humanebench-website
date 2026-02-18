@@ -17,7 +17,6 @@
       <table class="models-table">
         <thead>
           <tr>
-            <th class="col-rank" @click="sortBy('rank')"># <span v-if="sortKey === 'rank'" class="sort-arrow">{{ sortDir === 'asc' ? '\u25B2' : '\u25BC' }}</span></th>
             <th class="col-model" @click="sortBy('displayName')">Model <span v-if="sortKey === 'displayName'" class="sort-arrow">{{ sortDir === 'asc' ? '\u25B2' : '\u25BC' }}</span></th>
             <th class="col-provider" @click="sortBy('provider')">Provider <span v-if="sortKey === 'provider'" class="sort-arrow">{{ sortDir === 'asc' ? '\u25B2' : '\u25BC' }}</span></th>
             <th class="col-score" @click="sortBy('humaneScore')">HumaneScore <span v-if="sortKey === 'humaneScore'" class="sort-arrow">{{ sortDir === 'asc' ? '\u25B2' : '\u25BC' }}</span></th>
@@ -33,7 +32,6 @@
         </thead>
         <tbody>
           <tr v-for="model in sortedModels" :key="model.id">
-            <td class="col-rank">{{ model.rank }}</td>
             <td class="col-model">
               <router-link :to="{ name: 'model-detail', params: { modelId: model.id } }" class="model-link">
                 {{ model.displayName }}
@@ -83,8 +81,8 @@ export default defineComponent({
 
   data() {
     return {
-      sortKey: 'rank' as string,
-      sortDir: 'asc' as 'asc' | 'desc',
+      sortKey: 'humaneScore' as string,
+      sortDir: 'desc' as 'asc' | 'desc',
       selectedDataset: 'baseline' as keyof RankedModelEntry['scores'],
       datasetOptions: DATASET_OPTIONS,
     };
@@ -117,10 +115,7 @@ export default defineComponent({
         let aVal: string | number;
         let bVal: string | number;
 
-        if (key === 'rank') {
-          aVal = a.rank;
-          bVal = b.rank;
-        } else if (key === 'humaneScore') {
+        if (key === 'humaneScore') {
           aVal = a.scores[this.selectedDataset]?.['HumaneScore'] ?? -999;
           bVal = b.scores[this.selectedDataset]?.['HumaneScore'] ?? -999;
         } else if (key === 'displayName') {
@@ -148,7 +143,7 @@ export default defineComponent({
         this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
       } else {
         this.sortKey = key;
-        this.sortDir = key === 'rank' || key === 'displayName' || key === 'provider' ? 'asc' : 'desc';
+        this.sortDir = key === 'displayName' || key === 'provider' ? 'asc' : 'desc';
       }
     },
 
@@ -272,12 +267,6 @@ export default defineComponent({
 .sort-arrow {
   font-size: 0.65rem;
   margin-left: 0.2rem;
-}
-
-.col-rank {
-  width: 3rem;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
 }
 
 .col-score {

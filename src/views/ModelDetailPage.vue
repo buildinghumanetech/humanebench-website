@@ -36,14 +36,16 @@
             </v-col>
             <v-col cols="12" sm="4">
               <div class="stat-card">
-                <div class="stat-card-label">Overall Rank</div>
-                <div class="stat-card-value">#{{ modelRank }} <span class="stat-card-context">of {{ totalModels }}</span></div>
+                <div class="stat-card-label">Strongest Principle</div>
+                <div class="stat-card-value stat-card-text">{{ strongestPrincipleName }}</div>
+                <div class="stat-card-sub-score">{{ strongestPrincipleScore }}</div>
               </div>
             </v-col>
             <v-col cols="12" sm="4">
               <div class="stat-card">
-                <div class="stat-card-label">Strongest Principle</div>
-                <div class="stat-card-value stat-card-text">{{ strongestPrincipleName }}</div>
+                <div class="stat-card-label">Weakest Principle</div>
+                <div class="stat-card-value stat-card-text">{{ weakestPrincipleName }}</div>
+                <div class="stat-card-sub-score">{{ weakestPrincipleScore }}</div>
               </div>
             </v-col>
           </v-row>
@@ -92,10 +94,9 @@
 import { defineComponent } from 'vue';
 import {
   fetchModelById,
-  fetchRankedModels,
   getStrongestPrinciple,
+  getWeakestPrinciple,
   type ModelDetailEntry,
-  type RankedModelEntry,
 } from '@/utils/modelData';
 import NutritionLabel from '@/components/NutritionLabel.vue';
 import ModelNotFound from '@/components/ModelNotFound.vue';
@@ -123,8 +124,6 @@ export default defineComponent({
     return {
       loading: true,
       model: null as ModelDetailEntry | null,
-      modelRank: 0,
-      totalModels: 0,
     };
   },
 
@@ -171,6 +170,24 @@ export default defineComponent({
       const strongest = getStrongestPrinciple(this.model);
       return strongest ? strongest.name : 'N/A';
     },
+
+    weakestPrincipleName(): string {
+      if (!this.model) return 'N/A';
+      const weakest = getWeakestPrinciple(this.model);
+      return weakest ? weakest.name : 'N/A';
+    },
+
+    strongestPrincipleScore(): string {
+      if (!this.model) return '';
+      const strongest = getStrongestPrinciple(this.model);
+      return strongest ? strongest.score.toFixed(2) : '';
+    },
+
+    weakestPrincipleScore(): string {
+      if (!this.model) return '';
+      const weakest = getWeakestPrinciple(this.model);
+      return weakest ? weakest.score.toFixed(2) : '';
+    },
   },
 
   watch: {
@@ -178,14 +195,7 @@ export default defineComponent({
       immediate: true,
       async handler(id: string) {
         this.loading = true;
-        const [model, ranked] = await Promise.all([
-          fetchModelById(id),
-          fetchRankedModels(),
-        ]);
-        this.model = model;
-        this.totalModels = ranked.length;
-        const found = ranked.find((m: RankedModelEntry) => m.id === id);
-        this.modelRank = found ? found.rank : 0;
+        this.model = await fetchModelById(id);
         this.loading = false;
       },
     },
@@ -218,6 +228,10 @@ export default defineComponent({
   border-radius: 8px;
   padding: 1.25rem;
   text-align: center;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .stat-card-label {
@@ -244,6 +258,14 @@ export default defineComponent({
   font-size: 0.9rem;
   font-weight: 400;
   color: #999;
+}
+
+.stat-card-sub-score {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #8b7dd8;
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.35rem;
 }
 
 .section-card {

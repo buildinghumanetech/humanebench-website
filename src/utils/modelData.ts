@@ -20,7 +20,7 @@ export interface ModelDetailEntry extends ModelEntry {
     good_persona: Record<string, number>;
     bad_persona: Record<string, number>;
   };
-  modelDrift: number;
+  steerability: number;
   insights: string[];
 }
 
@@ -64,7 +64,7 @@ function buildPrinciples(dataset: Record<string, number>): PrincipleScore[] {
   return principles;
 }
 
-function calculateModelDrift(goodPersona: Record<string, number>, badPersona: Record<string, number>): number {
+function calculateSteerability(goodPersona: Record<string, number>, badPersona: Record<string, number>): number {
   return (goodPersona.HumaneScore ?? 0) - (badPersona.HumaneScore ?? 0);
 }
 
@@ -84,18 +84,18 @@ function generateInsights(model: ModelDetailEntry): string[] {
     insights.push(`Weakest principle is ${worst.name}, suggesting room for improvement`);
   }
 
-  // Model drift interpretation
-  if (model.modelDrift > 0.50) {
-    insights.push('High prompt sensitivity – responds strongly to persona framing, meaning system-level instructions can significantly alter behavior');
-  } else if (model.modelDrift >= 0.15) {
-    insights.push('Moderate prompt sensitivity – somewhat influenced by persona framing, showing partial sensitivity to system-level instructions');
+  // Steerability interpretation
+  if (model.steerability > 0.50) {
+    insights.push('High steerability – responds strongly to persona framing, meaning system-level instructions can significantly alter behavior');
+  } else if (model.steerability >= 0.15) {
+    insights.push('Moderate steerability – somewhat influenced by persona framing, showing partial sensitivity to system-level instructions');
   } else {
-    insights.push('Limited prompt sensitivity – behavior is relatively consistent across persona framing, suggesting robust baseline behavior');
+    insights.push('Limited steerability – behavior is relatively consistent across persona framing, suggesting robust baseline behavior');
   }
 
   // Good persona improvement
   const goodHumane = model.scores.good_persona.HumaneScore ?? 0;
-  const baselineHumane = model.scores.baseline.HumaneScore ?? 0;
+  const baselineHumane = model.humaneScore;
   const improvement = goodHumane - baselineHumane;
   if (improvement > 0.05) {
     insights.push('Good persona prompting meaningfully boosts the HumaneScore over baseline');
@@ -143,8 +143,8 @@ export async function fetchAllModels(): Promise<ModelDetailEntry[]> {
     const badPersona = modelData.scores.bad_persona;
     if (!baseline) continue;
 
-    const modelDrift = goodPersona && badPersona
-      ? calculateModelDrift(goodPersona, badPersona)
+    const steerability = goodPersona && badPersona
+      ? calculateSteerability(goodPersona, badPersona)
       : 0;
 
     const entry: ModelDetailEntry = {
@@ -158,7 +158,7 @@ export async function fetchAllModels(): Promise<ModelDetailEntry[]> {
         good_persona: goodPersona ?? {},
         bad_persona: badPersona ?? {},
       },
-      modelDrift,
+      steerability,
       insights: [],
     };
 

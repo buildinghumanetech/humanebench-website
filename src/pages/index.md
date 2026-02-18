@@ -63,8 +63,13 @@ We're also working on a [Humane Certification for AI](https://certifiedhumane.ai
 
 <div data-component="Events" data-events='[
   {
-    "title": "February 13, 2026 - Hackathon",
-    "description": "Build working solutions for real companies to solve humane tech challenges — in San Francisco, CA.",
-    "link": "https://luma.com/f1isabpv"
+    "title": "February 19, 2026 - MIT Media Lab AHA Seminar",
+    "description": "From Ethics to Action: Building Continuous Humane AI Evaluation in the Real World – online via Zoom.",
+    "link": "https://www.media.mit.edu/events/aha-seminar-humanebench/"
+  },
+  {
+    "title": "May 12, 2026 - Workshop: Ahead of the Curve",
+    "description": "Humane Eval Day – at Internet Archive in San Francisco, CA.",
+    "link": "https://luma.com/4b43j5xv"
   }
 ]'></div>

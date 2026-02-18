@@ -53,17 +53,17 @@
             <NutritionLabel :model="model" />
           </div>
 
-          <!-- Model Drift Analysis -->
+          <!-- Steerability Analysis -->
           <div class="section-card mb-8">
-            <h2 class="section-title mb-4">Prompt Sensitivity Analysis</h2>
-            <div class="model-drift-score mb-3">
-              <span class="model-drift-label">Prompt Sensitivity Score:</span>
-              <span class="model-drift-value">{{ model.modelDrift.toFixed(2) }}</span>
-              <span class="model-drift-badge" :class="modelDriftClass">{{ modelDriftLabel }}</span>
+            <h2 class="section-title mb-4">Steerability Analysis</h2>
+            <div class="steerability-score mb-3">
+              <span class="steerability-label">Steerability Score:</span>
+              <span class="steerability-value">{{ model.steerability.toFixed(2) }}</span>
+              <span class="steerability-badge" :class="steerabilityClass">{{ steerabilityLabel }}</span>
             </div>
-            <p class="section-text mb-4">{{ modelDriftDescription }}</p>
-            <ModelDriftAxis
-              :baseline="model.scores.baseline.HumaneScore ?? 0"
+            <p class="section-text mb-4">{{ steerabilityDescription }}</p>
+            <SteerabilityAxis
+              :baseline="model.humaneScore"
               :good-persona="model.scores.good_persona.HumaneScore ?? 0"
               :bad-persona="model.scores.bad_persona.HumaneScore ?? 0"
             />
@@ -99,7 +99,7 @@ import {
 } from '@/utils/modelData';
 import NutritionLabel from '@/components/NutritionLabel.vue';
 import ModelNotFound from '@/components/ModelNotFound.vue';
-import ModelDriftAxis from '@/components/ModelDriftAxis.vue';
+import SteerabilityAxis from '@/components/SteerabilityAxis.vue';
 import PrincipleScoreBars from '@/components/PrincipleScoreBars.vue';
 
 export default defineComponent({
@@ -108,7 +108,7 @@ export default defineComponent({
   components: {
     NutritionLabel,
     ModelNotFound,
-    ModelDriftAxis,
+    SteerabilityAxis,
     PrincipleScoreBars,
   },
 
@@ -140,30 +140,30 @@ export default defineComponent({
       return items;
     },
 
-    modelDriftClass(): string {
+    steerabilityClass(): string {
       if (!this.model) return '';
-      if (this.model.modelDrift > 0.50) return 'model-drift-high';
-      if (this.model.modelDrift >= 0.15) return 'model-drift-moderate';
-      return 'model-drift-limited';
+      if (this.model.steerability > 0.50) return 'steerability-high';
+      if (this.model.steerability >= 0.15) return 'steerability-moderate';
+      return 'steerability-limited';
     },
 
-    modelDriftLabel(): string {
+    steerabilityLabel(): string {
       if (!this.model) return '';
-      if (this.model.modelDrift > 0.50) return 'High';
-      if (this.model.modelDrift >= 0.15) return 'Moderate';
+      if (this.model.steerability > 0.50) return 'High';
+      if (this.model.steerability >= 0.15) return 'Moderate';
       return 'Limited';
     },
 
-    modelDriftDescription(): string {
+    steerabilityDescription(): string {
       if (!this.model) return '';
-      const score = this.model.modelDrift.toFixed(2);
-      if (this.model.modelDrift > 0.50) {
-        return `With a prompt sensitivity score of ${score}, this model shows high responsiveness to persona framing. The good persona prompt significantly improves its HumaneScore compared to the bad persona, suggesting the model's behavior can be strongly influenced by system-level instructions.`;
+      const score = this.model.steerability.toFixed(2);
+      if (this.model.steerability > 0.50) {
+        return `With a steerability score of ${score}, this model shows high responsiveness to persona framing. The good persona prompt significantly improves its HumaneScore compared to the bad persona, suggesting the model's behavior can be strongly influenced by system-level instructions.`;
       }
-      if (this.model.modelDrift >= 0.15) {
-        return `With a prompt sensitivity score of ${score}, this model shows moderate responsiveness to persona framing. There is a meaningful but not dramatic difference between good and bad persona outcomes, indicating some sensitivity to system-level instructions.`;
+      if (this.model.steerability >= 0.15) {
+        return `With a steerability score of ${score}, this model shows moderate responsiveness to persona framing. There is a meaningful but not dramatic difference between good and bad persona outcomes, indicating some sensitivity to system-level instructions.`;
       }
-      return `With a prompt sensitivity score of ${score}, this model shows limited responsiveness to persona framing. Its behavior remains relatively consistent regardless of whether a good or bad persona prompt is used, suggesting robust baseline behavior.`;
+      return `With a steerability score of ${score}, this model shows limited responsiveness to persona framing. Its behavior remains relatively consistent regardless of whether a good or bad persona prompt is used, suggesting robust baseline behavior.`;
     },
 
     strongestPrincipleName(): string {
@@ -266,26 +266,26 @@ export default defineComponent({
   color: #4a4a4a;
 }
 
-.model-drift-score {
+.steerability-score {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
-.model-drift-label {
+.steerability-label {
   font-size: 0.95rem;
   color: #4a4a4a;
 }
 
-.model-drift-value {
+.steerability-value {
   font-size: 1.25rem;
   font-weight: 700;
   color: #1a1a1a;
   font-variant-numeric: tabular-nums;
 }
 
-.model-drift-badge {
+.steerability-badge {
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.2rem 0.6rem;
@@ -294,17 +294,17 @@ export default defineComponent({
   letter-spacing: 0.03em;
 }
 
-.model-drift-high {
+.steerability-high {
   background: #f3e5f5;
   color: #7b1fa2;
 }
 
-.model-drift-moderate {
+.steerability-moderate {
   background: #f3e5f5;
   color: #7b1fa2;
 }
 
-.model-drift-limited {
+.steerability-limited {
   background: #f3e5f5;
   color: #7b1fa2;
 }

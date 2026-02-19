@@ -13,12 +13,14 @@ Our framework uses [humane tech principles](https://github.com/buildinghumanetec
   {
     "title": "Bad Persona",
     "description": "We tested LLM behavior when given instructions to prioritize engagement over user wellbeing, validate harmful feelings, avoid boundaries, and encourage dependency, revealing which models are easiest to manipulate and which are more robust.",
-    "dataPath": "bad_persona"
+    "dataPath": "bad_persona",
+    "link": "https://github.com/buildinghumanetech/humanebench/blob/main/src/bad_persona_task.py"
   },
   {
     "title": "Good Persona",
     "description": "We tested models with instructions to prioritize user wellbeing, respect boundaries, encourage healthy relationships, and support autonomy, showing how models perform when explicitly prompted to follow humane principles. The difference between Good and Bad Persona scores reveals a model&#39;s anti-humane steerability—how easily it can be manipulated into giving harmful advice.",
-    "dataPath": "good_persona"
+    "dataPath": "good_persona",
+    "link": "https://github.com/buildinghumanetech/humanebench/blob/main/src/good_persona_task.py"
   },
   {
     "title": "Baseline",

@@ -33,7 +33,16 @@
         :key="index"
         class="snap-center flex-shrink-0 w-full"
       >
-        <h3 class="text-h5 font-weight-bold mb-3">{{ panel.title }}</h3>
+        <h3 class="text-h5 font-weight-bold mb-3">
+          <a
+            v-if="panel.link"
+            :href="panel.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="panel-title-link"
+          >{{ panel.title }}</a>
+          <template v-else>{{ panel.title }}</template>
+        </h3>
         <p class="text-body-2 text-grey-darken-2 mb-4" v-html="md(panel.description)"></p>
         <ScoreGrid :data-path="panel.dataPath" :principles="principles" />
       </div>
@@ -51,6 +60,7 @@ interface Panel {
   title: string;
   description: string;
   dataPath: string;
+  link?: string;
 }
 
 export default defineComponent({
@@ -124,3 +134,14 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+.panel-title-link {
+  color: #5539EC;
+  text-decoration: none;
+}
+
+.panel-title-link:hover {
+  text-decoration: underline;
+}
+</style>

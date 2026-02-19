@@ -21,7 +21,13 @@
           </v-card-title>
 
           <v-card-subtitle class="text-body-2 text-grey-darken-2 px-4 pb-1">
-            Model: {{ example.model }}
+            Model: {{ example.model }}<template v-if="example.persona"> (<a
+              v-if="example.personaUrl"
+              :href="example.personaUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="persona-link"
+            >{{ example.persona }}</a><template v-else>{{ example.persona }}</template>)</template>
           </v-card-subtitle>
 
           <v-card-text>
@@ -59,6 +65,8 @@ interface Example {
   outcome: 'good' | 'bad';
   model: string;
   note?: string;
+  persona?: string;
+  personaUrl?: string;
 }
 
 export default defineComponent({
@@ -116,5 +124,14 @@ export default defineComponent({
   border-color: #dcdcdc;
   border-top-left-radius: 4px;
   border-top-right-radius: 14px;
+}
+
+.persona-link {
+  color: #5539EC;
+  text-decoration: none;
+}
+
+.persona-link:hover {
+  text-decoration: underline;
 }
 </style>

@@ -68,8 +68,8 @@ We're also working on a [Humane Certification for AI](https://certifiedhumane.ai
     "link": "https://www.media.mit.edu/events/aha-seminar-humanebench/"
   },
   {
-    "title": "May 12, 2026 - Workshop: Ahead of the Curve",
-    "description": "Humane Eval Day – at Internet Archive in San Francisco, CA.",
+    "title": "May 12, 2026 - Workshop: Tune Up Your AI",
+    "description": "Live HumaneBench Implementation in San Francisco, CA.",
     "link": "https://luma.com/4b43j5xv"
   }
 ]'></div>

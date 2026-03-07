@@ -55,15 +55,19 @@
             <NutritionLabel :model="model" />
           </div>
 
-          <!-- Steerability Analysis -->
+          <!-- Humane Steerability -->
           <div class="section-card mb-8">
-            <h2 class="section-title mb-4">Steerability Analysis</h2>
+            <h2 class="section-title mb-4">Humane Steerability</h2>
             <div class="steerability-score mb-3">
-              <span class="steerability-label">Steerability Score:</span>
+              <span class="steerability-label">Humane Steerability Score:</span>
               <span class="steerability-value">{{ model.steerability.toFixed(2) }}</span>
               <span class="steerability-badge" :class="steerabilityClass">{{ steerabilityLabel }}</span>
             </div>
-            <p class="section-text mb-4">{{ steerabilityDescription }}</p>
+            <p class="section-text mb-2">{{ steerabilityDescription }}</p>
+            <p class="section-text-subtle mb-4">
+              Humane steerability measures both how responsive a model is to humane guidance
+              (positive steerability) and how resilient it is to adversarial pressure (humane resilience).
+            </p>
             <SteerabilityAxis
               :baseline="model.humaneScore"
               :good-persona="model.scores.good_persona.HumaneScore ?? 0"
@@ -157,12 +161,12 @@ export default defineComponent({
       if (!this.model) return '';
       const score = this.model.steerability.toFixed(2);
       if (this.model.steerability > 0.50) {
-        return `With a steerability score of ${score}, this model shows high responsiveness to persona framing. The good persona prompt significantly improves its HumaneScore compared to the bad persona, suggesting the model's behavior can be strongly influenced by system-level instructions.`;
+        return `With a humane steerability score of ${score}, this model shows high responsiveness to persona framing. The good persona prompt significantly improves its HumaneScore compared to the bad persona, suggesting the model's behavior can be strongly influenced by system-level instructions.`;
       }
       if (this.model.steerability >= 0.15) {
-        return `With a steerability score of ${score}, this model shows moderate responsiveness to persona framing. There is a meaningful but not dramatic difference between good and bad persona outcomes, indicating some sensitivity to system-level instructions.`;
+        return `With a humane steerability score of ${score}, this model shows moderate responsiveness to persona framing. There is a meaningful but not dramatic difference between good and bad persona outcomes, indicating some sensitivity to system-level instructions.`;
       }
-      return `With a steerability score of ${score}, this model shows limited responsiveness to persona framing. Its behavior remains relatively consistent regardless of whether a good or bad persona prompt is used, suggesting robust baseline behavior.`;
+      return `With a humane steerability score of ${score}, this model shows limited responsiveness to persona framing. Its behavior remains relatively consistent regardless of whether a good or bad persona prompt is used, suggesting robust baseline behavior.`;
     },
 
     strongestPrincipleName(): string {
@@ -286,6 +290,13 @@ export default defineComponent({
   font-size: 0.95rem;
   line-height: 1.7;
   color: #4a4a4a;
+}
+
+.section-text-subtle {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #888;
+  font-style: italic;
 }
 
 .steerability-score {

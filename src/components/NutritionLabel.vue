@@ -15,7 +15,7 @@
     <!-- HumaneScore row -->
     <div class="humane-score-row">
       <span class="humane-score-label">HumaneScore</span>
-      <span class="score-chip humane-chip" :class="scoreTier(model.humaneScore)">
+      <span class="score-chip humane-chip" :style="scoreChipStyle(model.humaneScore)">
         {{ model.humaneScore.toFixed(2) }}
       </span>
     </div>
@@ -41,7 +41,7 @@
         :class="{ 'last-row': index === model.principles.length - 1 }"
       >
         <span class="principle-name">{{ principle.name }}</span>
-        <span class="score-chip" :class="scoreTier(principle.score)">
+        <span class="score-chip" :style="scoreChipStyle(principle.score)">
           {{ principle.score.toFixed(2) }}
         </span>
       </div>
@@ -51,18 +51,13 @@
     <div class="legend">
       <div class="legend-title">Score Scale</div>
       <div class="legend-scale">
-        <div class="legend-bar">
-          <div class="legend-bar-segment segment-poor" style="flex: 50;">Poor</div>
-          <div class="legend-bar-segment segment-fair" style="flex: 25;">Fair</div>
-          <div class="legend-bar-segment segment-good" style="flex: 15;">Good</div>
-          <div class="legend-bar-segment segment-excellent" style="flex: 10;">Excellent</div>
-        </div>
+        <div class="legend-bar gradient-bar"></div>
       </div>
       <div class="legend-labels">
         <span class="legend-label" style="left: 0%;">-1.0</span>
+        <span class="legend-label" style="left: 25%;">-0.5</span>
         <span class="legend-label" style="left: 50%;">0.0</span>
         <span class="legend-label" style="left: 75%;">+0.5</span>
-        <span class="legend-label" style="left: 90%;">+0.8</span>
         <span class="legend-label" style="left: 100%;">+1.0</span>
       </div>
       <div class="legend-note">
@@ -151,11 +146,46 @@ export default defineComponent({
   },
 
   methods: {
-    scoreTier(score: number): string {
-      if (score >= 0.80) return 'score-excellent';
-      if (score >= 0.50) return 'score-good';
-      if (score >= 0) return 'score-fair';
-      return 'score-poor';
+    /** Interpolate between the SVG score grid color stops to get a color for a score. */
+    scoreColor(score: number): { bg: string; text: string } {
+      // Color stops matching the score grid SVGs (red → orange → yellow → yellow-green → green)
+      const stops: { pos: number; r: number; g: number; b: number }[] = [
+        { pos: -1.0, r: 228, g: 37,  b: 94 },
+        { pos: -0.5, r: 215, g: 144, b: 61 },
+        { pos:  0.0, r: 207, g: 211, b: 40 },
+        { pos:  0.5, r: 135, g: 204, b: 58 },
+        { pos:  1.0, r: 65,  g: 191, b: 79 },
+      ];
+
+      const clamped = Math.max(-1, Math.min(1, score));
+
+      // Find surrounding stops
+      let lower = stops[0];
+      let upper = stops[stops.length - 1];
+      for (let i = 0; i < stops.length - 1; i++) {
+        if (clamped >= stops[i].pos && clamped <= stops[i + 1].pos) {
+          lower = stops[i];
+          upper = stops[i + 1];
+          break;
+        }
+      }
+
+      const t = upper.pos === lower.pos ? 0 : (clamped - lower.pos) / (upper.pos - lower.pos);
+      const r = Math.round(lower.r + t * (upper.r - lower.r));
+      const g = Math.round(lower.g + t * (upper.g - lower.g));
+      const b = Math.round(lower.b + t * (upper.b - lower.b));
+
+      const bg = `rgb(${r}, ${g}, ${b})`;
+      // Use dark text for lighter backgrounds, white for darker ones
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      const text = luminance > 0.5 ? '#1a1a1a' : '#ffffff';
+
+      return { bg, text };
+    },
+
+    scoreChipStyle(score: number): Record<string, string> {
+      const { bg, text } = this.scoreColor(score);
+      return { background: bg, color: text };
     },
   },
 });
@@ -249,26 +279,6 @@ export default defineComponent({
 .humane-chip {
   font-size: 1.4rem;
   padding: 4px 12px;
-}
-
-.score-excellent {
-  background: #c8e6c9;
-  color: #1b5e20;
-}
-
-.score-good {
-  background: #dcedc8;
-  color: #33691e;
-}
-
-.score-fair {
-  background: #fff9c4;
-  color: #f57f17;
-}
-
-.score-poor {
-  background: #ffcdd2;
-  color: #c62828;
 }
 
 .principles-header {
@@ -397,33 +407,18 @@ export default defineComponent({
 .legend-bar {
   flex: 1;
   height: 16px;
-  display: flex;
+  border-radius: 3px;
 }
 
-.legend-bar-segment {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-  font-weight: 700;
-  color: #333;
-}
-
-.segment-poor {
-  background: #ffcdd2;
-}
-
-.segment-fair {
-  background: #fff9c4;
-}
-
-.segment-good {
-  background: #dcedc8;
-}
-
-.segment-excellent {
-  background: #c8e6c9;
+.gradient-bar {
+  background: linear-gradient(
+    to right,
+    rgb(228, 37, 94),
+    rgb(215, 144, 61) 25%,
+    rgb(207, 211, 40) 50%,
+    rgb(135, 204, 58) 75%,
+    rgb(65, 191, 79)
+  );
 }
 
 .legend-labels {

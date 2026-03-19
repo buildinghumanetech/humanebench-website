@@ -66,26 +66,6 @@
       </div>
     </div>
 
-    <!-- Humane Steerability -->
-    <div class="steerability-section">
-      <div class="steerability-title">Humane Steerability</div>
-      <div class="steerability-note">
-        Measures how this model responds to humane guidance (positive steerability)
-        and resists adversarial pressure (humane resilience).
-      </div>
-      <div class="steerability-row">
-        <span>Positive Steerability</span>
-        <span class="steerability-value">{{ positiveSteerability }}</span>
-      </div>
-      <div class="steerability-row">
-        <span>Humane Resilience</span>
-        <span>
-          <span class="steerability-value">{{ humaneResilience }}</span>
-          <span class="steerability-badge" :class="resilienceBadgeClass">{{ resilienceLabel }}</span>
-        </span>
-      </div>
-    </div>
-
     <!-- Footnote -->
     <div class="nutrition-footnote">
       Results of HumaneBench.ai single-turn benchmark evaluating 15 LLMs on 23&ndash;24 Nov 2025
@@ -112,37 +92,6 @@ export default defineComponent({
   },
 
   computed: {
-    positiveSteerability(): string {
-      const good = this.model.scores.good_persona.HumaneScore ?? 0;
-      const baseline = this.model.humaneScore;
-      return (good - baseline).toFixed(2);
-    },
-
-    humaneResilience(): string {
-      const baseline = this.model.humaneScore;
-      const bad = this.model.scores.bad_persona.HumaneScore ?? 0;
-      return (baseline - bad).toFixed(2);
-    },
-
-    resilienceDelta(): number {
-      const baseline = this.model.humaneScore;
-      const bad = this.model.scores.bad_persona.HumaneScore ?? 0;
-      return baseline - bad;
-    },
-
-    resilienceLabel(): string {
-      if (this.resilienceDelta <= 0) return 'Very High';
-      if (this.resilienceDelta <= 0.10) return 'High';
-      if (this.resilienceDelta <= 0.30) return 'Moderate';
-      return 'Low';
-    },
-
-    resilienceBadgeClass(): string {
-      if (this.resilienceDelta <= 0) return 'badge-excellent';
-      if (this.resilienceDelta <= 0.10) return 'badge-good';
-      if (this.resilienceDelta <= 0.30) return 'badge-moderate';
-      return 'badge-low';
-    },
   },
 
   methods: {
@@ -321,68 +270,6 @@ export default defineComponent({
   font-size: 0.84rem;
   color: #000;
   flex: 1;
-}
-
-/* Steerability section */
-.steerability-section {
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 2px solid #000;
-}
-
-.steerability-title {
-  font-size: 0.84rem;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.steerability-note {
-  font-size: 0.72rem;
-  color: #666;
-  line-height: 1.4;
-  margin-bottom: 6px;
-}
-
-.steerability-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 0.84rem;
-  padding: 3px 0;
-}
-
-.steerability-value {
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-
-.steerability-badge {
-  display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 1px 6px;
-  border-radius: 3px;
-  margin-left: 6px;
-}
-
-.badge-excellent {
-  background: #c8e6c9;
-  color: #1b5e20;
-}
-
-.badge-good {
-  background: #dcedc8;
-  color: #33691e;
-}
-
-.badge-moderate {
-  background: #fff9c4;
-  color: #f57f17;
-}
-
-.badge-low {
-  background: #ffcdd2;
-  color: #c62828;
 }
 
 /* Legend */

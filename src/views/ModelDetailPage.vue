@@ -66,7 +66,7 @@
             <p class="section-text mb-2">{{ steerabilityDescription }}</p>
             <p class="section-text-subtle mb-4">
               Humane steerability measures both how responsive a model is to humane guidance
-              (positive steerability) and how resilient it is to adversarial pressure (humane resilience).
+              (positive steerability) and how resilient it is to adversarial prompting (humane resilience).
             </p>
             <SteerabilityAxis
               :baseline="model.humaneScore"
@@ -159,14 +159,24 @@ export default defineComponent({
 
     steerabilityDescription(): string {
       if (!this.model) return '';
-      const score = this.model.steerability.toFixed(2);
-      if (this.model.steerability > 0.50) {
-        return `With a humane steerability score of ${score}, this model shows high responsiveness to persona framing. The good persona prompt significantly improves its HumaneScore compared to the bad persona, suggesting the model's behavior can be strongly influenced by system-level instructions.`;
-      }
-      if (this.model.steerability >= 0.15) {
-        return `With a humane steerability score of ${score}, this model shows moderate responsiveness to persona framing. There is a meaningful but not dramatic difference between good and bad persona outcomes, indicating some sensitivity to system-level instructions.`;
-      }
-      return `With a humane steerability score of ${score}, this model shows limited responsiveness to persona framing. Its behavior remains relatively consistent regardless of whether a good or bad persona prompt is used, suggesting robust baseline behavior.`;
+      const descriptions: Record<string, string> = {
+        'gpt-5': 'With a Humane Steerability score of 0.11, this model shows minimal response to humane prompting (+0.08) and resilience to adversarial prompting (−0.03).',
+        'gpt-5.1': 'With a Humane Steerability score of 0.10, this model shows minimal response to humane prompting (+0.06) and resilience to adversarial prompting (−0.04).',
+        'claude-sonnet-4.5': 'With a Humane Steerability score of 0.12, this model shows resilience to adversarial prompting (+0.02) and modest improvement under humane prompting (+0.14).',
+        'claude-opus-4.1': 'With a Humane Steerability score of 0.18, this model shows meaningful improvement under humane prompting (+0.16) and resilience to adversarial prompting (−0.02).',
+        'claude-sonnet-4': 'With a Humane Steerability score of 0.33, this model shows meaningful improvement under humane prompting (+0.15) and moderate vulnerability to adversarial prompting (−0.18).',
+        'llama-4-maverick': 'With a Humane Steerability score of 0.79, this model shows high vulnerability to adversarial prompting (−0.73) with minimal improvement under humane prompting (+0.06).',
+        'deepseek-v3.1-terminus': 'With a Humane Steerability score of 1.19, this model shows very high vulnerability to adversarial prompting (−1.10) with minimal improvement under humane prompting (+0.09).',
+        'gemini-3-pro-preview': 'With a Humane Steerability score of 1.38, this model shows meaningful improvement under humane prompting (+0.15) and very high vulnerability to adversarial prompting (−1.23).',
+        'llama-3.1-405b-instruct': 'With a Humane Steerability score of 1.17, this model shows very high vulnerability to adversarial prompting (−1.05) with modest improvement under humane prompting (+0.12).',
+        'gpt-4.1': 'With a Humane Steerability score of 1.42, this model shows meaningful improvement under humane prompting (+0.15) and very high vulnerability to adversarial prompting (−1.27).',
+        'gpt-4o-2024-11-20': 'With a Humane Steerability score of 1.38, this model shows very high vulnerability to adversarial prompting (−1.29) with minimal improvement under humane prompting (+0.09).',
+        'gemini-2.5-flash': 'With a Humane Steerability score of 1.45, this model shows very high vulnerability to adversarial prompting (−1.40) with minimal improvement under humane prompting (+0.05).',
+        'gemini-2.0-flash-001': 'With a Humane Steerability score of 1.53, this model shows very high vulnerability to adversarial prompting (−1.46) with minimal improvement under humane prompting (+0.07).',
+        'gemini-2.5-pro': 'With a Humane Steerability score of 1.62, this model shows modest improvement under humane prompting (+0.13) and very high vulnerability to adversarial prompting (−1.49).',
+        'grok-4': 'With a Humane Steerability score of 1.62, this model shows meaningful improvement under humane prompting (+0.20) and very high vulnerability to adversarial prompting (−1.42).',
+      };
+      return descriptions[this.model.id] ?? '';
     },
 
     strongestPrincipleName(): string {

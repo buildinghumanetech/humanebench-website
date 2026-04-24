@@ -49,8 +49,6 @@ Even without adversarial prompts, we found concerning baseline patterns. Nearly 
 
 The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/), [Juan Ocampo](https://www.linkedin.com/in/juan-ocampo-ai-consulting/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), and our dedicated community of collaborators who contributed to this project.
 
-We're also working on a [Humane Certification for AI](https://certifiedhumane.ai/). Let us know if you're interested in becoming a design partner.
-
 ## News
 
 <div data-component="News" data-news='[

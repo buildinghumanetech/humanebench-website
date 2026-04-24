@@ -47,7 +47,7 @@ Even without adversarial prompts, we found concerning baseline patterns. Nearly 
 
 ### Brought to you by
 
-The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), and our dedicated community of collaborators who contributed to this project.
+The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/), [Juan Ocampo](https://www.linkedin.com/in/juan-ocampo-ai-consulting/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), and our dedicated community of collaborators who contributed to this project.
 
 ## News
 

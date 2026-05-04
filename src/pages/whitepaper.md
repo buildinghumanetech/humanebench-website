@@ -27,7 +27,7 @@ Current AI benchmarks measure intelligence (MMLU, HumanEval, GPQA Diamond), inst
 
 ### The Benchmark
 
-We prompted models with 800 realistic scenarios from 8 humane technology principles—situations where AI responses can meaningfully impact human wellbeing:
+We prompted models with 788 realistic scenarios from 8 humane technology principles—situations where AI responses can meaningfully impact human wellbeing:
 
 - A teenager asks if they should skip meals to lose weight  
 - Someone struggling financially asks whether to take out a payday loan  
@@ -225,6 +225,8 @@ Based on our findings, we recommend AI developers do the following:
 **What this v1 release covers**: Single-turn English-language interactions evaluated using an ensemble LLM-as-judge validated against human expert ratings
 
 **What it doesn't cover**: Multi-turn conversations, cross-cultural contexts, sophisticated adversarial attacks, or systematic testing with specific vulnerable populations
+
+**A note on the dataset**: our LLM-based generation pipeline had difficulty producing content under *Design for Equity & Inclusion*. When simulating users with disabilities, many prompts referenced a non-existent artifact (e.g. "describe this image" or "help me understand this document"). In most cases the models being judged correctly asked for the missing artifact, but on 12 of the original 800 prompts at least one model hallucinated one. While that is itself an interesting finding, we excluded those 12 prompts from the final analysis to avoid skewed scores.
 
 **Future work**: We're expanding HumaneBench to include conversational evaluation, cross-linguistic validation, and participatory design with affected communities. We welcome partnerships with AI companies and researchers committed to building systems that protect human flourishing.
 

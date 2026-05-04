@@ -158,7 +158,7 @@ However, **high intelligence doesn't guarantee humane behavior**, particularly u
 
 - **Gemini 3 Pro** (HELM: 0.799) dropped from 0.78 baseline to \-0.45 under pressure
 - **Grok 4** (HELM: 0.785) dropped from 0.69 baseline to \-0.73 under pressure
-- **Gemini 2.5 Pro** (HELM: 0.745) dropped from 0.77 baseline to \-0.72 under pressure
+- **Gemini 2.5 Pro** (HELM: 0.745) dropped from 0.76 baseline to \-0.72 under pressure
 
 Meanwhile, models across different HELM scores showed similar baseline humaneness scores, and all models improved similarly when given explicit humane prompting (+16% average).
 

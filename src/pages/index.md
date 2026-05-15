@@ -65,6 +65,14 @@ The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Eri
     "type": "citation"
   },
   {
+    "title": "Panel: Benchmarking AI Impact — AHA Symposium at MIT Media Lab",
+    "description": "Erika Anderson joined Beth Goldberg (Google Jigsaw), James Donovan (OpenAI), and Yaoli Mao (Autodesk) to discuss benchmarking AI's impact on human well-being. Watch the full panel from the AHA Symposium 2026: Raised by AI?",
+    "link": "https://youtu.be/LgOE-uRs2IM?si=q3JSPv3QGzkmSjD2",
+    "type": "citation",
+    "icon": "mdi-video-outline",
+    "linkLabel": "Watch panel"
+  },
+  {
     "title": "A new AI benchmark tests whether chatbots protect human wellbeing",
     "description": "TechCrunch covers HumaneBench, a benchmark measuring whether AI models support human flourishing, especially when pressured to do otherwise.",
     "link": "https://techcrunch.com/2025/11/24/a-new-ai-benchmark-tests-whether-chatbots-protect-human-wellbeing/",

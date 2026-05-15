@@ -70,5 +70,3 @@ The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Eri
   }
 ]'></div>
 -->
-
-<div data-component="Events" data-events='[]'></div>

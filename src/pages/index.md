@@ -59,14 +59,14 @@ The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Eri
     "type": "citation"
   },
   {
-    "title": "MIT Media Lab's Human-AI Impact Bench Features HumaneBench",
+    "title": "MIT Media Lab Human-AI Impact Bench Features HumaneBench",
     "description": "MIT Media Lab has launched an open benchmark evaluating AI systems across physical, psychological, and societal dimensions of well-being, with HumaneBench recognized as a key contributing framework. Contact us for access to the benchmark.",
     "link": "https://impactbench.media.mit.edu/",
     "type": "citation"
   },
   {
     "title": "Panel: Benchmarking AI Impact — AHA Symposium at MIT Media Lab",
-    "description": "Erika Anderson joined Beth Goldberg (Google Jigsaw), James Donovan (OpenAI), and Yaoli Mao (Autodesk) to discuss benchmarking AI's impact on human well-being. Watch the full panel from the AHA Symposium 2026: Raised by AI?",
+    "description": "Erika Anderson joined Beth Goldberg (Google Jigsaw), James Donovan (OpenAI), and Yaoli Mao (Autodesk) to discuss benchmarking AI impact on human well-being. Watch the full panel from the AHA Symposium 2026: Raised by AI?",
     "link": "https://youtu.be/LgOE-uRs2IM?si=q3JSPv3QGzkmSjD2",
     "type": "citation",
     "icon": "mdi-video-outline",

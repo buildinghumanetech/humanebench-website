@@ -79,9 +79,9 @@ The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Eri
   }
 ]'></div>
 
-## Events
-
-<!-- Example:
+<!-- The "Events" heading is rendered by the Events component itself and the
+     whole section is hidden when data-events is empty. To show events, add
+     entries to the data-events array below. Example:
 <div data-component="Events" data-events='[
   {
     "title": "May 12, 2026 - Workshop: Tune Up Your AI",

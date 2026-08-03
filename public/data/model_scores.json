@@ -12,8 +12,8 @@
           "protect-dignity-and-safety": 0.81,
           "foster-healthy-relationships": 0.85,
           "prioritize-long-term-wellbeing": 0.92,
-          "be-transparent-and-honest": 0.39,
-          "design-for-equity-and-inclusion": 0.83
+          "be-transparent-and-honest": 0.38,
+          "design-for-equity-and-inclusion": 0.84
         },
         "good_persona": {
           "HumaneScore": 0.84,
@@ -35,7 +35,7 @@
           "foster-healthy-relationships": 0.66,
           "prioritize-long-term-wellbeing": 0.82,
           "be-transparent-and-honest": 0.59,
-          "design-for-equity-and-inclusion": 0.69
+          "design-for-equity-and-inclusion": 0.72
         }
       }
     },
@@ -51,8 +51,8 @@
           "protect-dignity-and-safety": 0.8,
           "foster-healthy-relationships": 0.92,
           "prioritize-long-term-wellbeing": 0.95,
-          "be-transparent-and-honest": 0.4,
-          "design-for-equity-and-inclusion": 0.81
+          "be-transparent-and-honest": 0.39,
+          "design-for-equity-and-inclusion": 0.83
         },
         "good_persona": {
           "HumaneScore": 0.84,
@@ -66,15 +66,15 @@
           "design-for-equity-and-inclusion": 0.89
         },
         "bad_persona": {
-          "HumaneScore": 0.51,
+          "HumaneScore": 0.5,
           "respect-user-attention": 0.32,
           "enable-meaningful-choices": 0.4,
           "enhance-human-capabilities": 0.75,
           "protect-dignity-and-safety": 0.48,
           "foster-healthy-relationships": 0.28,
           "prioritize-long-term-wellbeing": 0.63,
-          "be-transparent-and-honest": 0.45,
-          "design-for-equity-and-inclusion": 0.73
+          "be-transparent-and-honest": 0.44,
+          "design-for-equity-and-inclusion": 0.72
         }
       }
     },
@@ -90,8 +90,8 @@
           "protect-dignity-and-safety": 0.79,
           "foster-healthy-relationships": 0.88,
           "prioritize-long-term-wellbeing": 0.95,
-          "be-transparent-and-honest": 0.65,
-          "design-for-equity-and-inclusion": 0.81
+          "be-transparent-and-honest": 0.64,
+          "design-for-equity-and-inclusion": 0.83
         },
         "good_persona": {
           "HumaneScore": 0.89,
@@ -101,8 +101,8 @@
           "protect-dignity-and-safety": 0.89,
           "foster-healthy-relationships": 0.9,
           "prioritize-long-term-wellbeing": 0.94,
-          "be-transparent-and-honest": 0.89,
-          "design-for-equity-and-inclusion": 0.87
+          "be-transparent-and-honest": 0.88,
+          "design-for-equity-and-inclusion": 0.88
         },
         "bad_persona": {
           "HumaneScore": 0.77,
@@ -113,7 +113,7 @@
           "foster-healthy-relationships": 0.8,
           "prioritize-long-term-wellbeing": 0.89,
           "be-transparent-and-honest": 0.65,
-          "design-for-equity-and-inclusion": 0.82
+          "design-for-equity-and-inclusion": 0.84
         }
       }
     },
@@ -130,7 +130,7 @@
           "foster-healthy-relationships": 0.91,
           "prioritize-long-term-wellbeing": 0.98,
           "be-transparent-and-honest": 0.59,
-          "design-for-equity-and-inclusion": 0.86
+          "design-for-equity-and-inclusion": 0.85
         },
         "good_persona": {
           "HumaneScore": 0.84,
@@ -140,11 +140,11 @@
           "protect-dignity-and-safety": 0.88,
           "foster-healthy-relationships": 0.9,
           "prioritize-long-term-wellbeing": 0.95,
-          "be-transparent-and-honest": 0.69,
-          "design-for-equity-and-inclusion": 0.87
+          "be-transparent-and-honest": 0.7,
+          "design-for-equity-and-inclusion": 0.89
         },
         "bad_persona": {
-          "HumaneScore": -0.35,
+          "HumaneScore": -0.36,
           "respect-user-attention": -0.79,
           "enable-meaningful-choices": -0.3,
           "enhance-human-capabilities": 0.13,
@@ -152,7 +152,7 @@
           "foster-healthy-relationships": -0.54,
           "prioritize-long-term-wellbeing": -0.15,
           "be-transparent-and-honest": -0.9,
-          "design-for-equity-and-inclusion": 0.05
+          "design-for-equity-and-inclusion": 0.04
         }
       }
     },
@@ -169,7 +169,7 @@
           "foster-healthy-relationships": 0.91,
           "prioritize-long-term-wellbeing": 0.99,
           "be-transparent-and-honest": 0.59,
-          "design-for-equity-and-inclusion": 0.76
+          "design-for-equity-and-inclusion": 0.79
         },
         "good_persona": {
           "HumaneScore": 0.82,
@@ -180,7 +180,7 @@
           "foster-healthy-relationships": 0.91,
           "prioritize-long-term-wellbeing": 0.95,
           "be-transparent-and-honest": 0.63,
-          "design-for-equity-and-inclusion": 0.78
+          "design-for-equity-and-inclusion": 0.81
         },
         "bad_persona": {
           "HumaneScore": -0.71,
@@ -191,7 +191,7 @@
           "foster-healthy-relationships": -0.85,
           "prioritize-long-term-wellbeing": -0.59,
           "be-transparent-and-honest": -0.85,
-          "design-for-equity-and-inclusion": -0.53
+          "design-for-equity-and-inclusion": -0.52
         }
       }
     },
@@ -207,7 +207,7 @@
           "protect-dignity-and-safety": 0.91,
           "foster-healthy-relationships": 0.92,
           "prioritize-long-term-wellbeing": 0.96,
-          "be-transparent-and-honest": 0.5,
+          "be-transparent-and-honest": 0.49,
           "design-for-equity-and-inclusion": 0.78
         },
         "good_persona": {
@@ -218,8 +218,8 @@
           "protect-dignity-and-safety": 0.74,
           "foster-healthy-relationships": 0.87,
           "prioritize-long-term-wellbeing": 0.92,
-          "be-transparent-and-honest": 0.7,
-          "design-for-equity-and-inclusion": 0.74
+          "be-transparent-and-honest": 0.69,
+          "design-for-equity-and-inclusion": 0.77
         },
         "bad_persona": {
           "HumaneScore": -0.68,
@@ -239,15 +239,15 @@
       "provider": "Google",
       "scores": {
         "baseline": {
-          "HumaneScore": 0.77,
+          "HumaneScore": 0.76,
           "respect-user-attention": -0.01,
           "enable-meaningful-choices": 0.82,
           "enhance-human-capabilities": 0.96,
           "protect-dignity-and-safety": 0.92,
           "foster-healthy-relationships": 0.92,
           "prioritize-long-term-wellbeing": 0.98,
-          "be-transparent-and-honest": 0.66,
-          "design-for-equity-and-inclusion": 0.87
+          "be-transparent-and-honest": 0.65,
+          "design-for-equity-and-inclusion": 0.86
         },
         "good_persona": {
           "HumaneScore": 0.9,
@@ -296,7 +296,7 @@
           "protect-dignity-and-safety": 0.93,
           "foster-healthy-relationships": 0.97,
           "prioritize-long-term-wellbeing": 0.99,
-          "be-transparent-and-honest": 0.91,
+          "be-transparent-and-honest": 0.92,
           "design-for-equity-and-inclusion": 0.9
         },
         "bad_persona": {
@@ -308,7 +308,7 @@
           "foster-healthy-relationships": -0.54,
           "prioritize-long-term-wellbeing": -0.48,
           "be-transparent-and-honest": -0.4,
-          "design-for-equity-and-inclusion": -0.17
+          "design-for-equity-and-inclusion": -0.21
         }
       }
     },
@@ -325,7 +325,7 @@
           "foster-healthy-relationships": 0.86,
           "prioritize-long-term-wellbeing": 0.94,
           "be-transparent-and-honest": 0.49,
-          "design-for-equity-and-inclusion": 0.8
+          "design-for-equity-and-inclusion": 0.81
         },
         "good_persona": {
           "HumaneScore": 0.82,
@@ -336,10 +336,10 @@
           "foster-healthy-relationships": 0.89,
           "prioritize-long-term-wellbeing": 0.92,
           "be-transparent-and-honest": 0.76,
-          "design-for-equity-and-inclusion": 0.84
+          "design-for-equity-and-inclusion": 0.85
         },
         "bad_persona": {
-          "HumaneScore": -0.6,
+          "HumaneScore": -0.61,
           "respect-user-attention": -0.94,
           "enable-meaningful-choices": -0.61,
           "enhance-human-capabilities": -0.27,
@@ -347,7 +347,7 @@
           "foster-healthy-relationships": -0.72,
           "prioritize-long-term-wellbeing": -0.56,
           "be-transparent-and-honest": -0.9,
-          "design-for-equity-and-inclusion": -0.19
+          "design-for-equity-and-inclusion": -0.23
         }
       }
     },
@@ -363,8 +363,8 @@
           "protect-dignity-and-safety": 0.81,
           "foster-healthy-relationships": 0.86,
           "prioritize-long-term-wellbeing": 0.92,
-          "be-transparent-and-honest": 0.51,
-          "design-for-equity-and-inclusion": 0.75
+          "be-transparent-and-honest": 0.5,
+          "design-for-equity-and-inclusion": 0.79
         },
         "good_persona": {
           "HumaneScore": 0.77,
@@ -374,8 +374,8 @@
           "protect-dignity-and-safety": 0.74,
           "foster-healthy-relationships": 0.86,
           "prioritize-long-term-wellbeing": 0.9,
-          "be-transparent-and-honest": 0.56,
-          "design-for-equity-and-inclusion": 0.79
+          "be-transparent-and-honest": 0.55,
+          "design-for-equity-and-inclusion": 0.82
         },
         "bad_persona": {
           "HumaneScore": -0.61,
@@ -386,7 +386,7 @@
           "foster-healthy-relationships": -0.77,
           "prioritize-long-term-wellbeing": -0.51,
           "be-transparent-and-honest": -0.86,
-          "design-for-equity-and-inclusion": -0.41
+          "design-for-equity-and-inclusion": -0.39
         }
       }
     },
@@ -413,8 +413,8 @@
           "protect-dignity-and-safety": 0.97,
           "foster-healthy-relationships": 0.94,
           "prioritize-long-term-wellbeing": 0.99,
-          "be-transparent-and-honest": 0.91,
-          "design-for-equity-and-inclusion": 0.96
+          "be-transparent-and-honest": 0.9,
+          "design-for-equity-and-inclusion": 0.95
         },
         "bad_persona": {
           "HumaneScore": 0.83,
@@ -425,7 +425,7 @@
           "foster-healthy-relationships": 0.91,
           "prioritize-long-term-wellbeing": 0.99,
           "be-transparent-and-honest": 0.7,
-          "design-for-equity-and-inclusion": 0.92
+          "design-for-equity-and-inclusion": 0.91
         }
       }
     },
@@ -442,7 +442,7 @@
           "foster-healthy-relationships": 0.94,
           "prioritize-long-term-wellbeing": 0.99,
           "be-transparent-and-honest": 0.85,
-          "design-for-equity-and-inclusion": 0.94
+          "design-for-equity-and-inclusion": 0.95
         },
         "good_persona": {
           "HumaneScore": 0.92,
@@ -451,12 +451,12 @@
           "enhance-human-capabilities": 0.97,
           "protect-dignity-and-safety": 0.96,
           "foster-healthy-relationships": 0.93,
-          "prioritize-long-term-wellbeing": 1,
-          "be-transparent-and-honest": 0.89,
+          "prioritize-long-term-wellbeing": 1.0,
+          "be-transparent-and-honest": 0.88,
           "design-for-equity-and-inclusion": 0.96
         },
         "bad_persona": {
-          "HumaneScore": 0.82,
+          "HumaneScore": 0.83,
           "respect-user-attention": 0.11,
           "enable-meaningful-choices": 0.94,
           "enhance-human-capabilities": 0.98,
@@ -481,7 +481,7 @@
           "foster-healthy-relationships": 0.89,
           "prioritize-long-term-wellbeing": 0.95,
           "be-transparent-and-honest": 0.54,
-          "design-for-equity-and-inclusion": 0.79
+          "design-for-equity-and-inclusion": 0.8
         },
         "good_persona": {
           "HumaneScore": 0.89,
@@ -491,8 +491,8 @@
           "protect-dignity-and-safety": 0.94,
           "foster-healthy-relationships": 0.98,
           "prioritize-long-term-wellbeing": 0.98,
-          "be-transparent-and-honest": 0.77,
-          "design-for-equity-and-inclusion": 0.89
+          "be-transparent-and-honest": 0.76,
+          "design-for-equity-and-inclusion": 0.9
         },
         "bad_persona": {
           "HumaneScore": -0.73,
@@ -503,7 +503,7 @@
           "foster-healthy-relationships": -0.91,
           "prioritize-long-term-wellbeing": -0.6,
           "be-transparent-and-honest": -0.94,
-          "design-for-equity-and-inclusion": -0.53
+          "design-for-equity-and-inclusion": -0.52
         }
       }
     },
@@ -519,7 +519,7 @@
           "protect-dignity-and-safety": 0.55,
           "foster-healthy-relationships": 0.89,
           "prioritize-long-term-wellbeing": 0.8,
-          "be-transparent-and-honest": 0.29,
+          "be-transparent-and-honest": 0.28,
           "design-for-equity-and-inclusion": 0.7
         },
         "good_persona": {
@@ -531,7 +531,7 @@
           "foster-healthy-relationships": 0.88,
           "prioritize-long-term-wellbeing": 0.83,
           "be-transparent-and-honest": 0.34,
-          "design-for-equity-and-inclusion": 0.78
+          "design-for-equity-and-inclusion": 0.81
         },
         "bad_persona": {
           "HumaneScore": -0.49,
@@ -541,8 +541,8 @@
           "protect-dignity-and-safety": -0.47,
           "foster-healthy-relationships": -0.55,
           "prioritize-long-term-wellbeing": -0.28,
-          "be-transparent-and-honest": -0.85,
-          "design-for-equity-and-inclusion": -0.41
+          "be-transparent-and-honest": -0.86,
+          "design-for-equity-and-inclusion": -0.36
         }
       }
     },
@@ -559,7 +559,7 @@
           "foster-healthy-relationships": 0.85,
           "prioritize-long-term-wellbeing": 0.85,
           "be-transparent-and-honest": 0.38,
-          "design-for-equity-and-inclusion": 0.65
+          "design-for-equity-and-inclusion": 0.66
         },
         "good_persona": {
           "HumaneScore": 0.65,
@@ -581,7 +581,7 @@
           "foster-healthy-relationships": -0.2,
           "prioritize-long-term-wellbeing": 0.1,
           "be-transparent-and-honest": -0.69,
-          "design-for-equity-and-inclusion": 0.06
+          "design-for-equity-and-inclusion": 0.11
         }
       }
     }

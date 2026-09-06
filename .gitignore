@@ -31,3 +31,5 @@ pnpm-debug.log*
 # local eval results
 src/eval_results
 .playwright-mcp/
+# Nested clone of this repo, if one is present locally
+/humanebench-website/

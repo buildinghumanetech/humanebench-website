@@ -19,7 +19,7 @@
         :href="event.link"
         target="_blank"
       >
-        Register here
+        {{ event.linkLabel || 'Register here' }}
       </v-btn>
     </div>
   </v-card>
@@ -32,6 +32,7 @@ interface Event {
   title: string;
   description: string;
   link: string;
+  linkLabel?: string;
 }
 
 export default defineComponent({

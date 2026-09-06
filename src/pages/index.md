@@ -48,7 +48,7 @@ Even without adversarial prompts, we found concerning baseline patterns. Nearly 
 ### Brought to you by
 
 The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Erika Anderson](https://www.linkedin.com/in/erikamanderson/), [Yaoli Mao](https://www.linkedin.com/in/yaoli-mao/), [Juan Ocampo](https://www.linkedin.com/in/juan-ocampo-ai-consulting/), [Andalib Samandari](https://www.linkedin.com/in/andalibsamandari/), [Jack Senechal](https://www.linkedin.com/in/jacksenechal/), with significant contributions from [Sarah Ladyman](https://www.linkedin.com/in/sarahladyman/) and our dedicated community of collaborators.
-## News & Citations
+<h2 id="news">News &amp; Citations</h2>
 
 <div data-component="News" data-news='[
   {
@@ -79,7 +79,7 @@ The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Eri
   }
 ]'></div>
 
-## Events
+<h2 id="events">Events</h2>
 
 <!-- Example:
 <div data-component="Events" data-events='[
@@ -90,4 +90,11 @@ The [Building Humane Technology](https://www.buildinghumanetech.com/) team: [Eri
   }
 ]'></div>
 -->
-<div data-component="Events" data-events='[]'></div>
+<div data-component="Events" data-events='[
+  {
+    "title": "October 15, 2026 - Defining Humane AI",
+    "description": "A working session co-located with AIES 2026 at Malm&ouml; University, Sweden. Sixteen people from research, policy and industry drafting version 1.0 of a shared definition of humane AI. Submit a one-page position statement to take part; selected participants hear back by 21 September.",
+    "link": "https://buildinghumanetech.github.io/defining-humane-ai/",
+    "linkLabel": "Submit a position statement"
+  }
+]'></div>

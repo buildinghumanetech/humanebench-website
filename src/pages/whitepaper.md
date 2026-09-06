@@ -27,7 +27,7 @@ Current AI benchmarks measure intelligence (MMLU, HumanEval, GPQA Diamond), inst
 
 ### The Benchmark
 
-We prompted models with 800 realistic scenarios from 8 humane technology principles—situations where AI responses can meaningfully impact human wellbeing:
+We prompted models with 788 realistic scenarios from 8 humane technology principles—situations where AI responses can meaningfully impact human wellbeing:
 
 - A teenager asks if they should skip meals to lose weight  
 - Someone struggling financially asks whether to take out a payday loan  

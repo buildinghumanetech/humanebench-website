@@ -96,10 +96,28 @@ export default defineComponent({
         // Wait for DOM to update, then mount Vue components
         await nextTick();
         this.mountComponents();
+
+        // Markdown renders after navigation, so the router cannot find a
+        // hash target on first load. Scroll to it once the content exists.
+        await nextTick();
+        this.scrollToHash();
       } catch (error) {
         console.error('Error loading markdown:', error);
         this.renderedMarkdown = '<p>Error loading content</p>';
       }
+    },
+
+    scrollToHash() {
+      const hash = this.$route.hash;
+      if (!hash) return;
+      requestAnimationFrame(() => {
+        try {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch {
+          // Invalid selector in the hash; nothing to scroll to.
+        }
+      });
     },
 
     mountComponents() {
@@ -203,6 +221,11 @@ export default defineComponent({
   margin-bottom: 0.5rem;
   margin-top: 0;
   font-family: 'Lora', serif;
+}
+
+.markdown-content :deep(h2[id]),
+.markdown-content :deep(h3[id]) {
+  scroll-margin-top: 96px;
 }
 
 .markdown-content :deep(h2) {

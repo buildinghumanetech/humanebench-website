@@ -43,6 +43,8 @@ Current routes:
 
 **To add a new page:** Create a view component in `src/views/`, add a route in `src/router/index.ts` as a child of the DefaultLayout route, and add a nav link in `src/layout/default.vue` (both the desktop nav buttons and the mobile navigation drawer).
 
+**Hash anchors:** `marked` does not generate heading IDs, so anchor targets are written as raw HTML in the markdown (e.g. `<h2 id="news">News &amp; Citations</h2>`). Two things make them work: `scrollBehavior` in `src/router/index.ts` honours `to.hash`, and `MarkdownPage.scrollToHash()` re-scrolls after the markdown renders, since the target does not exist yet when the router first runs. Offset for the fixed app bar comes from `scroll-margin-top` on `h2[id]`/`h3[id]`.
+
 ### Content Pattern: Markdown with Embedded Components
 
 `MarkdownPage.vue` (`src/views/`) is a reusable view that loads markdown from `src/pages/*.md`, parses it to HTML, then mounts Vue components into `<div data-component="ComponentName">` placeholders. Supported components: ScoreGrid, ScoreCarousel, Events, News, InputOutputExamples, WhitepaperButton.

@@ -1,6 +1,6 @@
 <template>
   <section v-if="events.length > 0">
-    <h2>Events</h2>
+    <h2 id="events">Events</h2>
     <v-card class="p-8 md:p-6 sm:p-4 mb-12 md:mb-8 shadow-md rounded-lg">
       <div v-for="(event, index) in events" :key="index" :class="{ 'mb-8': index < events.length - 1 }">
         <h3 class="text-2xl md:text-xl sm:text-lg font-semibold mb-3 flex items-center gap-2 flex-wrap" :class="{ 'mt-0': index === 0 }">
@@ -17,7 +17,7 @@
           :href="event.link"
           target="_blank"
         >
-          Register here
+          {{ event.linkLabel || 'Register here' }}
         </v-btn>
       </div>
     </v-card>
@@ -31,6 +31,7 @@ interface Event {
   title: string;
   description: string;
   link: string;
+  linkLabel?: string;
 }
 
 export default defineComponent({

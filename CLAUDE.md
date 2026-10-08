@@ -71,5 +71,5 @@ SVG figures and JSON data in `public/figures/` are built separately in the [huma
 
 ## Contribution Workflow
 
-Per CONTRIBUTING.md: discuss approach in a GitHub issue before coding. Reference issues in PRs with "Closes #X". Keep PRs focused to one feature/issue. Update CLAUDE.md when adding routes, components, or changing architecture.
+This repository takes no outside pull requests (see CONTRIBUTING.md); changes come from maintainers. Discuss approach in a GitHub issue before coding. Reference issues in PRs with "Closes #X". Keep PRs focused to one feature/issue. Update CLAUDE.md when adding routes, components, or changing architecture.
 

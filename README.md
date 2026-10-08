@@ -28,3 +28,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## Publishing benchmark results
 
 See the instructions for building and publishing visualizations in the benchmark repo: [https://github.com/buildinghumanetech/humanebench](https://github.com/buildinghumanetech/humanebench/). Once assets are built and copied into this repo, just commit the new `public/figures` directory.
+
+## Outside changes
+
+This repository is the website only and takes no outside pull requests. See [CONTRIBUTING.md](CONTRIBUTING.md).

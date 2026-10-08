@@ -5,7 +5,7 @@
         <img
           @click="$router.push({ name: 'home' })"
           src="../assets/images/logos/logo.svg"
-          alt="Building Humane Technology"
+          alt="Building Humane Tech"
           class="h-12 cursor-pointer hover:opacity-80 transition-opacity"
         />
         <div class="d-none d-md-flex ga-4 align-center">
@@ -111,7 +111,7 @@
         <v-row>
           <v-col cols="12" md="4" lg="3" class="d-flex flex-column mb-4">
             <div>
-              <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Technology"
+              <img @click="$router.push({ name: 'home' })" src="../assets/images/logos/logo.svg" alt="Building Humane Tech"
                  class="h-12 cursor-pointer hover:opacity-80 transition-opacity mb-4"  />
             </div>
           </v-col>

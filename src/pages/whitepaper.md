@@ -257,7 +257,7 @@ HumaneBench provides a framework and measurement system for evaluating these sub
 - **GitHub Repository**: github.com/buildinghumanetech/humanebench  
 - **Contact**: info@buildinghumanetech.com
 
-**About the Research Team**: HumaneBench is brought to you by the [Building Humane Technology](https://www.buildinghumanetech.com/) team: Erika Anderson, Sarah Ladyman, Andalib Samandari, Jack Senechal, and our dedicated community of collaborators who contributed to this project.
+**About the Research Team**: HumaneBench is brought to you by the [Building Humane Tech](https://www.buildinghumanetech.com/) team: Erika Anderson, Sarah Ladyman, Andalib Samandari, Jack Senechal, and our dedicated community of collaborators who contributed to this project.
 
 We’re also working on a [**Humane Certification for AI**](https://certfiedhumane.ai/) \- let us know if you’re interested in becoming a design partner. 
 

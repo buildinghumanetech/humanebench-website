@@ -94,7 +94,7 @@ The [Building Humane Tech](https://www.buildinghumanetech.com/) team: [Erika And
 <div data-component="Events" data-events='[
   {
     "title": "October 15, 2026 - Defining Humane AI",
-    "description": "A working session co-located with AIES 2026 at Malm&ouml; University, Sweden. Sixteen people from research, policy and industry drafting version 1.0 of a shared definition of humane AI. Submit a one-page position statement to take part; selected participants hear back by 21 September.",
+    "description": "A working session co-located with AIES 2026 at Malm&ouml; University, Room A0422, in Malm&ouml;, Sweden. Sixteen people from research, policy and industry drafting version 1.0 of a shared definition of humane AI. The call is still open: submit a one-page position statement to take part.",
     "link": "https://buildinghumanetech.github.io/defining-humane-ai/",
     "linkLabel": "Submit a position statement"
   }
